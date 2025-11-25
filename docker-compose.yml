@@ -1,7 +1,6 @@
 version: "3.9"
 
 services:
-
   api:
     build: ./api
     ports:
@@ -19,6 +18,13 @@ services:
     build: ./admin
     ports:
       - "8002:8000"
+    depends_on:
+      - api
+
+  admin-frontend:
+    build: ./admin-frontend
+    ports:
+      - "8003:80"
     depends_on:
       - api
 

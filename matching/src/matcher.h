@@ -5,6 +5,6 @@
 
 class Matcher {
 public:
-    std::string assign(const Location& loc,
-                       const std::vector<Driver>& drivers);
+    // naive assign: first available driver
+    std::string assign(const Location& loc, const std::vector<Driver>& drivers);
 };

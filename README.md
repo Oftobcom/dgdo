@@ -64,7 +64,7 @@ dgdo/
 ├── api/                # FastAPI API Gateway
 ├── matching/           # C++ Matching Engine
 ├── admin/              # Admin Panel (FastAPI placeholder)
-├── db-postgresql/      # Database init scripts
+├── db/                 # Database init scripts
 └── docker-compose.yml  # Orchestration of all services
 ```
 

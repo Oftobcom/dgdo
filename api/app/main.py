@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-
 from .routes import passenger, driver, trip
 
-app = FastAPI()
+app = FastAPI(title="DG Do API Gateway")
 
 app.include_router(passenger.router)
 app.include_router(driver.router)
