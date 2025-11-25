@@ -152,10 +152,10 @@ For local dev:
 
 # ✅ **Folders structure**
 
-dgdo/
-  backend/     ← modular monolith (Python)
-  matching/    ← C++ high-performance engine
-  grpc/        ← interface between backend and matching
-  data/        ← Postgres + Redis
-  infra/       ← Docker + WSL2 dev setup
+* dgdo/
+*   backend/     ← modular monolith (Python)
+*   matching/    ← C++ high-performance engine
+*   grpc/        ← interface between backend and matching
+*   data/        ← Postgres + Redis
+*   infra/       ← Docker + WSL2 dev setup
 
