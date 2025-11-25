@@ -61,8 +61,8 @@ After a few moments, all services should be running locally.
 
 ```
 dgdo/
-├── api-py/             # FastAPI API Gateway
-├── matching-cpp/       # C++ Matching Engine
+├── api/                # FastAPI API Gateway
+├── matching/           # C++ Matching Engine
 ├── admin/              # Admin Panel (FastAPI placeholder)
 ├── db-postgresql/      # Database init scripts
 └── docker-compose.yml  # Orchestration of all services
