@@ -1,6 +1,6 @@
 # ✅ **FULL ARCHITECTURE DIAGRAM — DG Do**
 
-*(ASCII-диаграмма, читаема как на экране, так и в PDF/markdown)*
+*(ASCII-diagram)*
 
 ```
                                      ┌──────────────────────────────────────┐
