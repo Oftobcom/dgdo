@@ -12,7 +12,7 @@
                                                      │               │
         ┌────────────────────────────────────────────┴───────────────┴────────────────────────────────────────────┐
         │                                        DG Do Backend (Modular Monolith)                                 │
-        │                                       (Go / Python FastAPI recommended)                                 │
+        │                                               (Python FastAPI)                                          │
         │                                                                                                         │
         │  ┌──────────────────────────────┬───────────────────────────────┬────────────────────────────────────┐  │
         │  │ 1. Trip Lifecycle Module     │ 2. Driver State Module        │ 3. Passenger State Module          │  │
