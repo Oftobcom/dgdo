@@ -35,8 +35,6 @@ git clone https://github.com/oftobcom/dgdo.git
 cd dgdo
 ```
 
-Replace the URL with your repo.
-
 ---
 
 # ✅ 3. Run the full stack
