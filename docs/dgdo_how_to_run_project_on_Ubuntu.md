@@ -31,7 +31,7 @@ If these work — you're ready.
 # ✅ 2. Clone the project
 
 ```bash
-git clone https://github.com/your-username/dgdo.git
+git clone https://github.com/oftobcom/dgdo.git
 cd dgdo
 ```
 

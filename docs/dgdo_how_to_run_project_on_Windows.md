@@ -59,7 +59,7 @@ In **Ubuntu WSL terminal**:
 
 ```bash
 cd ~
-git clone https://github.com/your-username/dgdo.git
+git clone https://github.com/oftobcom/dgdo.git
 cd dgdo
 ```
 
