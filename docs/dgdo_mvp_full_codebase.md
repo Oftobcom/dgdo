@@ -636,23 +636,3 @@ docker compose up --build
 
 3. Open FastAPI docs: http://localhost:8000/docs
 4. Use the endpoints to register passengers, register drivers, create trip requests.
-
----
-
-## Next steps I can help automate
-
-- Replace in-memory stores with SQLAlchemy + async Postgres.
-- Implement WebSocket endpoints for real-time driver location updates.
-- Add unit tests and CI (GitHub Actions) for the MVP.
-- Replace C++ stub with a full buildable container (Crow or Pistache + nlohmann::json) and include dependency installation in Dockerfile.
-
----
-
-If you'd like, I can now:
-
-- Generate each file as downloadable files (zipped) — or
-- Add Postgres-backed implementations for the API (SQLAlchemy + alembic) — or
-- Implement basic WebSocket endpoints and a simple JavaScript admin UI.
-
-Pick the next step and I'll produce it.
-
