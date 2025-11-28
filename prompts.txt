@@ -81,4 +81,35 @@ docker compose up
 
 5) React.js for Admin Panel
 
-I have folder ws for WebSockets, but this folder is empty right now. What should be there?
+---
+I'm working on the open-source project "DG Do Matching Engine" for a ride-hailing system similar to Uber, Bolt, and Yandex Go.
+
+Minimum Validity (MVP)
+
+1) The project is launched with the command:
+docker compose up
+
+2) 🧩 Version 0.1 — MUST HAVE
+* Passenger registration
+* Submitting a trip request: from → to
+* Available driver status on the map
+* Driver assignment algorithm
+* Order status change: accepted → en route → completed
+* Simple admin panel
+* REST + WebSocket API
+
+3) Matching and other hi-load parts should be in C++
+
+4) API Gateway in Python FastAPI
+
+5) React.js for Admin Panel
+
+I am university teacher. I have group of twenty students. Generate 70 simple tasks which they should solve and which will make small simple contribution to my project. I want them create functions which together will create DG Do MVP
+1) FastAPI Gateway gets basic CRUD - 10 tasks.
+2) Python WebSocket - 10 tasks.
+3) C++ Matching Engine gets structs + matching core - 10 tasks.
+4) React.js gets admin panel basics - 10 tasks.
+5) DevOps tasks improve developer workflow - 10 tasks.
+6) Docker basics - 10 tasks.
+7) PostgreSQL Database - 10 tasks.
+---

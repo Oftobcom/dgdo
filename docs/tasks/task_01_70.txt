@@ -1,0 +1,124 @@
+Of course! This is an excellent way to engage students in a real-world project. Here are 70 simple, contribution-focused tasks for your students, categorized as requested. The tasks are designed to be mostly independent, allowing students to work in parallel and see their code integrated into the larger system.
+
+---
+
+### 1. FastAPI Gateway (Python - FastAPI)
+
+**Focus:** Building the core REST API endpoints for the system.
+
+1.  **Create Passenger Endpoint:** Implement a POST `/passengers` endpoint to register a new passenger (accept `name`, `email`, `phone`).
+2.  **Get Passenger Endpoint:** Implement a GET `/passengers/{passenger_id}` endpoint to retrieve a passenger's details.
+3.  **Create Driver Endpoint:** Implement a POST `/drivers` endpoint to register a new driver (accept `name`, `email`, `phone`, `car_details`).
+4.  **Update Driver Status:** Implement a PATCH `/drivers/{driver_id}/status` endpoint to allow a driver to update their status (e.g., `"available"`, `"unavailable"`).
+5.  **Create Trip Request:** Implement a POST `/trips` endpoint for a passenger to request a trip (accept `passenger_id`, `pickup_lat`, `pickup_lon`, `dropoff_lat`, `dropoff_lon`).
+6.  **Get Trip Details:** Implement a GET `/trips/{trip_id}` endpoint to fetch the status and details of a specific trip.
+7.  **Driver Accepts Trip:** Implement a POST `/trips/{trip_id}/accept` endpoint for a driver to accept a trip request.
+8.  **Update Trip Status:** Implement a PATCH `/trips/{trip_id}/status` endpoint to update the trip's status (e.g., `"accepted"` -> `"en_route"` -> `"completed"`).
+9.  **List All Drivers:** Implement a GET `/drivers` endpoint (for the admin panel) to list all drivers.
+10. **Health Check Endpoint:** Implement a simple GET `/health` endpoint that returns `{"status": "ok"}`.
+
+---
+
+### 2. Python WebSocket
+
+**Focus:** Handling real-time communication for location updates and notifications.
+
+11. **WebSocket Connection Manager:** Create a basic `ConnectionManager` class to manage active WebSocket connections (e.g., `connect`, `disconnect`, `send_personal_message`).
+12. **Driver Location Broadcast:** Implement a WebSocket endpoint (`/ws/drivers/{driver_id}`) that accepts a driver's current latitude/longitude and broadcasts it to all connected admin panel clients.
+13. **Passenger Trip Updates:** Implement a WebSocket endpoint (`/ws/passengers/{passenger_id}`) that sends trip status updates (e.g., "Driver assigned", "Driver arriving") to the specific passenger.
+14. **Driver Assignment Notification:** Create a function that, when a driver is assigned to a trip, sends a real-time notification via WebSocket to that specific driver.
+15. **Broadcast to All Admins:** Add a method to the `ConnectionManager` to broadcast a message (e.g., "New trip requested") to all connected admin panel clients.
+16. **Handle WebSocket Disconnects:** Improve the `disconnect` method to log when a driver or admin panel disconnects.
+17. **Ping-Pong Heartbeat:** Implement a simple heartbeat (ping-pong) in the WebSocket handler to keep connections alive and detect dead ones.
+18. **Send Driver List on Connect:** When an admin panel connects, automatically send the current list of all available drivers.
+19. **Trip Completion Notification:** Create a function that sends a WebSocket message to the passenger when the driver marks the trip as "completed".
+20. **Authentication Stub for WebSocket:** Create a placeholder function for WebSocket authentication (it can just check for a token in the query string, without full validation for now).
+
+---
+
+### 3. C++ Matching Engine
+
+**Focus:** Defining core data structures and the initial matching logic.
+
+21. **Define `Location` Struct:** Create a `struct Location` with `latitude` and `longitude` (double) members.
+22. **Define `Driver` Struct:** Create a `struct Driver` with `id` (int), `location` (Location), and `is_available` (bool).
+23. **Define `TripRequest` Struct:** Create a `struct TripRequest` with `id` (int), `passenger_location` (Location), and `dropoff_location` (Location).
+24. **Calculate Distance Function:** Write a function `calculate_distance(Location loc1, Location loc2)` that returns the Euclidean distance (good enough for MVP).
+25. **Find Nearest Driver (Naive):** Implement a function `find_nearest_driver(TripRequest request, std::vector<Driver> drivers)` that loops through all available drivers and returns the ID of the closest one.
+26. **Add Driver to Pool:** Create a function `add_driver(Driver new_driver)` that adds a driver to an in-memory `std::vector` (the "driver pool").
+27. **Remove Driver from Pool:** Create a function `remove_driver(int driver_id)` that removes a driver from the pool (e.g., when they go offline).
+28. **Update Driver Location:** Create a function `update_driver_location(int driver_id, Location new_location)`.
+29. **Simple Matching Loop:** Create a function `void run_matching_loop()` that, in a loop, checks for new trip requests and assigns the nearest driver (using the function from #25). It can sleep for a short period between iterations.
+30. **Create a Trip Assignment Struct:** Define a `struct TripAssignment { int trip_id; int driver_id; }` to be the output of the matching process.
+
+---
+
+### 4. React.js Admin Panel
+
+**Focus:** Building the UI components for the admin dashboard.
+
+31. **Setup and Component Scaffolding:** Create a new React app and basic components: `Dashboard`, `DriverList`, `TripList`.
+32. **Driver List Component:** Create the `DriverList` component to display a simple table of drivers (ID, Name, Status).
+33. **Trip List Component:** Create the `TripList` component to display a table of trips (ID, Passenger ID, Status).
+34. **Fetch and Display Drivers:** Use the `fetch` API inside `DriverList` to GET `/drivers` from the FastAPI gateway and display the data.
+35. **Fetch and Display Trips:** Use the `fetch` API inside `TripList` to GET a new `/trips` endpoint (you may need to create a `GET /trips` endpoint in the gateway) and display the data.
+36. **WebSocket Connection in React:** Establish a WebSocket connection from the `Dashboard` component to the gateway's admin broadcast endpoint.
+37. **Real-time Driver Status Update:** When a "driver status updated" message is received via WebSocket, update the `DriverList` component in real-time.
+38. **Real-time New Trip Alert:** When a "new trip requested" message is received via WebSocket, show a browser alert or a toast notification.
+39. **Basic Styling with CSS:** Apply basic CSS to the `DriverList` and `TripList` tables to make them readable (e.g., borders, padding).
+40. **Admin Panel Routing Stub:** Set up React Router with placeholder routes for `/drivers` and `/trips`, even if they just render the same components for now.
+
+---
+
+### 5. DevOps (Improve Developer Workflow)
+
+**Focus:** Setting up tools for code quality and easier development.
+
+41. **Create a `.gitignore` File:** Set up a comprehensive `.gitignore` for Python, C++, React, and Docker.
+42. **Setup `pre-commit` Hooks:** Configure basic `pre-commit` hooks to run a code formatter (e.g., `black` for Python) before commits.
+43. **Create a `requirements.txt`:** Generate a `requirements.txt` file for the Python FastAPI dependencies.
+44. **Create a `Makefile` for C++:** Write a simple `Makefile` to compile the C++ matching engine into a binary.
+45. **Write a Basic `README.md`:** Create a project `README.md` with instructions on how to run `docker compose up`.
+46. **Add a `docker-compose.dev.yml`:** Create an override file for development (e.g., mount local source code as volumes for live reload).
+47. **Setup a Linter for React:** Add `eslint` to the React project with a basic configuration.
+48. **Create a Logging Format Standard:** Define a simple JSON logging format for the FastAPI gateway and implement it in one endpoint.
+49. **Environment Variables for Configuration:** Move the database connection string in the FastAPI app to be read from an environment variable.
+50. **Create a Simple `test_api.sh` Script:** Write a bash script that uses `curl` to test the `/health` and `/passengers` endpoints to verify the API is up.
+
+---
+
+### 6. Docker Basics
+
+**Focus:** Containerizing each service and the overall application.
+
+51. **Dockerfile for FastAPI:** Write a `Dockerfile` for the FastAPI gateway, based on a Python image, that copies the code and installs dependencies.
+52. **Dockerfile for C++ Engine:** Write a `Dockerfile` for the C++ service, based on a gcc image, that compiles the code and runs the binary.
+53. **Dockerfile for React Admin:** Write a `Dockerfile` for the React admin panel, based on a Node.js image, that builds the static files and serves them with a simple server (e.g., `nginx` or `serve`).
+54. **Docker Compose Service: Postgres:** Define the `db` service in `docker-compose.yml` using the official `postgres` image.
+55. **Docker Compose Service: FastAPI:** Define the `api` service in `docker-compose.yml`, building from the FastAPI `Dockerfile`.
+56. **Docker Compose Service: C++ Engine:** Define the `matching-engine` service in `docker-compose.yml`, building from the C++ `Dockerfile`.
+57. **Docker Compose Service: React Admin:** Define the `admin-panel` service in `docker-compose.yml`, building from the React `Dockerfile`.
+58. **Container Networking:** Ensure all services in `docker-compose.yml` are on the same network and can communicate using service names as hostnames (e.g., `api` can connect to `db` on `host: db`).
+59. **Environment Variables in Compose:** Set the Postgres password and database name as environment variables in the `db` service within `docker-compose.yml`.
+60. **Volume for Database Data:** Add a named volume to the `docker-compose.yml` to persist the PostgreSQL data, so it's not lost when the container restarts.
+
+---
+
+### 7. PostgreSQL Database
+
+**Focus:** Designing and interacting with the database schema.
+
+61. **Create `passengers` Table:** Write a SQL script to create a `passengers` table with `id (SERIAL PRIMARY KEY)`, `name (VARCHAR)`, `email (VARCHAR)`, and `created_at (TIMESTAMP)`.
+62. **Create `drivers` Table:** Write a SQL script to create a `drivers` table with `id`, `name`, `email`, `status (VARCHAR)`, and `current_location (POINT)` or `lat (DECIMAL)`, `lon (DECIMAL)`.
+63. **Create `trips` Table:** Write a SQL script to create a `trips` table with `id`, `passenger_id (FOREIGN KEY)`, `driver_id (FOREIGN KEY)`, `status (VARCHAR)`, `requested_at (TIMESTAMP)`, and `completed_at (TIMESTAMP)`.
+64. **Insert Sample Passenger Data:** Write a SQL script to insert 3-5 sample passengers into the `passengers` table.
+65. **Insert Sample Driver Data:** Write a SQL script to insert 3-5 sample drivers into the `drivers` table.
+66. **Basic Query: Find Available Drivers:** Write a SQL query to select all drivers where `status = 'available'`.
+67. **Basic Query: Find Trips by Status:** Write a SQL query to select all trips with a status of `'completed'`.
+68. **Update Driver Location via SQL:** Write a SQL `UPDATE` statement to change a specific driver's `current_location`.
+69. **Add an Index:** Add a database index on the `drivers(status)` column to speed up the query for available drivers.
+70. **Database Connection Helper in FastAPI:** Create a helper function in the FastAPI code (e.g., `get_db()`) that uses `psycopg2` or an ORM to manage a database connection pool.
+
+---
+
+By completing these tasks, your students will have collaboratively built a functional, distributed MVP that covers the entire stack, from the database to the user interface. Good luck with the project
