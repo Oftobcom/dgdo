@@ -1,0 +1,116 @@
+Here’s a structured set of **70 beginner-friendly tasks** for your students, divided into **7 categories of 10 tasks each**. Each task is small, safe, and results in a tangible contribution to the DG Do MVP.
+
+---
+
+# ✅ **1) FastAPI Gateway — Basic CRUD (10 tasks)**
+
+1. Create Pydantic model `PassengerCreate` (`name`, `phone`).
+2. Create Pydantic model `PassengerRead`.
+3. Add POST `/passengers` endpoint for registration.
+4. Add GET `/passengers/{id}` endpoint.
+5. Add GET `/passengers` list endpoint.
+6. Add PUT `/passengers/{id}` endpoint.
+7. Add DELETE `/passengers/{id}` endpoint.
+8. Create Pydantic model `TripCreate` (`passenger_id`, `from_lat`, `from_lon`, `to_lat`, `to_lon`).
+9. Add POST `/trips` endpoint.
+10. Add PATCH `/trips/{id}/status` endpoint (statuses: accepted → en route → completed).
+
+---
+
+# ✅ **2) Python WebSocket — Real-Time API (10 tasks)**
+
+11. Create WebSocket endpoint `/ws/passenger/{id}`.
+12. Create WebSocket endpoint `/ws/driver/{id}`.
+13. Implement connection manager to store active connections.
+14. Broadcast “trip assigned” event to passenger.
+15. Broadcast “driver location update” to admin panel.
+16. Broadcast “trip status update” event.
+17. Add heartbeat ping/pong messages.
+18. Handle WebSocket disconnect events.
+19. Add small logging for connections and messages.
+20. Validate incoming JSON messages for required fields.
+
+---
+
+# ✅ **3) C++ Matching Engine — Structs + Core Logic (10 tasks)**
+
+21. Create `struct Location { double lat, lon; }`.
+22. Create `struct Passenger { int id; Location pos; }`.
+23. Create `struct Driver { int id; Location pos; bool available; }`.
+24. Create `struct Trip { int id; int passenger_id; Location from, to; }`.
+25. Implement function `double distance(lat1, lon1, lat2, lon2)` (Haversine).
+26. Implement function `getAvailableDrivers()` returning only available drivers.
+27. Implement function `findClosestDriver(trip)` returning driver id.
+28. Implement function `assignDriver(trip_id, driver_id)`.
+29. Implement function `updateDriverStatus(driver_id, status)`.
+30. Implement simple logging of assignments and status changes.
+
+---
+
+# ✅ **4) React.js Admin Panel — Basic UI (10 tasks)**
+
+31. Initialize React project structure.
+32. Create page `Passengers` with a table skeleton.
+33. Fetch and display list of passengers from FastAPI.
+34. Create page `Drivers` with table skeleton.
+35. Fetch and display list of drivers from FastAPI.
+36. Create page `Trips` with table skeleton.
+37. Fetch and display trips from FastAPI.
+38. Add form to register new passengers.
+39. Add sidebar navigation with links to all pages.
+40. Display driver location updates via a simple feed or console log.
+
+---
+
+# ✅ **5) DevOps — Improve Developer Workflow (10 tasks)**
+
+41. Add `.editorconfig` for consistent formatting.
+42. Add `.gitignore` for Python, C++, React.
+43. Add Makefile with commands: `run`, `test`, `lint`.
+44. Add pre-commit hook for code formatting.
+45. Add GitHub Action workflow for Python linting.
+46. Add GitHub Action workflow to build C++ engine.
+47. Add GitHub Action workflow to build React project.
+48. Add README section: how to run backend locally.
+49. Add README section: how to run React frontend locally.
+50. Create `.env.example` file with placeholder ports and URLs.
+
+---
+
+# ✅ **6) Docker Basics (10 tasks)**
+
+51. Create Dockerfile for FastAPI service.
+52. Create Dockerfile for C++ Matching Engine service.
+53. Create Dockerfile for React Admin Panel.
+54. Create `docker-compose.yml` with all three services.
+55. Add persistent volume for PostgreSQL data.
+56. Map FastAPI container to port 8000.
+57. Map React container to port 3000.
+58. Add healthcheck for FastAPI container.
+59. Add restart policy to all containers.
+60. Add shared network between services for inter-container communication.
+
+---
+
+# ✅ **7) PostgreSQL Database — Schema + Queries (10 tasks)**
+
+61. Create `passengers` table in `schema.sql`.
+62. Create `drivers` table in `schema.sql`.
+63. Create `trips` table in `schema.sql`.
+64. Add foreign key `trips.passenger_id → passengers.id`.
+65. Add index on `drivers.available` for fast lookups.
+66. Write Python function to insert a new passenger into DB.
+67. Write Python function to insert a new trip.
+68. Write Python function to fetch all active drivers.
+69. Create SQL view `active_trips_view`.
+70. Implement DB migration script using Alembic.
+
+---
+
+If you want, I can also generate:
+
+* **70 GitHub Issues**, ready to paste for student assignments.
+* **Task assignment matrix** for 20 students.
+* **Starter folder structure** with placeholders for each task.
+
+Do you want me to generate these next?

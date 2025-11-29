@@ -1,0 +1,158 @@
+Below are **80 extremely simple, beginner-friendly, isolated tasks**—exactly 20 per module (FastAPI, WebSocket, C++, React).
+Each task is a tiny contribution and can be safely completed by a student with minimal experience.
+
+They are designed so each student creates a **small function, component, struct, or endpoint**, resulting in real contributions to the DG Do MVP.
+
+---
+
+# ✅ **1) FastAPI Gateway — Basic CRUD (20 tasks)**
+
+Small endpoints, models, helpers.
+
+### **Passenger CRUD (8 tasks)**
+
+1. Create Pydantic model `PassengerCreate` (`name`, `phone`).
+2. Create Pydantic model `PassengerRead`.
+3. Add POST `/passengers` endpoint.
+4. Add GET `/passengers/{id}` endpoint.
+5. Add GET `/passengers` list endpoint.
+6. Add PUT `/passengers/{id}` endpoint (update passenger).
+7. Add DELETE `/passengers/{id}` endpoint.
+8. Add in-memory storage list for passengers.
+
+### **Driver CRUD (8 tasks)**
+
+9. Create Pydantic model `DriverCreate` (`name`, `car_model`, `car_number`).
+10. Create Pydantic model `DriverRead`.
+11. Add POST `/drivers`.
+12. Add GET `/drivers/{id}`.
+13. Add GET `/drivers`.
+14. Add PUT `/drivers/{id}`.
+15. Add DELETE `/drivers/{id}`.
+16. Add simple “available / unavailable” field.
+
+### **Trip CRUD (4 tasks)**
+
+17. Create Pydantic model `TripCreate` (origin, destination, passenger_id).
+18. Add POST `/trips`.
+19. Add GET `/trips/{id}`.
+20. Add PATCH `/trips/{id}/status` to update trip status.
+
+---
+
+# ✅ **2) Python WebSocket — Real-Time Events (20 tasks)**
+
+Each task adds one tiny WebSocket feature.
+
+### **Connection Management (6 tasks)**
+
+21. Create `/ws/passenger/{id}` WebSocket endpoint.
+22. Create `/ws/driver/{id}` WebSocket endpoint.
+23. Store connected passenger sockets in dictionary.
+24. Store connected driver sockets in dictionary.
+25. Add `disconnect` handler for passenger sockets.
+26. Add `disconnect` handler for driver sockets.
+
+### **Broadcast Events (8 tasks)**
+
+27. Function: broadcast “driver assigned” to a passenger.
+28. Function: broadcast “trip accepted” event.
+29. Function: broadcast “driver en_route” event.
+30. Function: broadcast “driver arrived” event.
+31. Function: broadcast “trip completed” event.
+32. Function: broadcast “driver location updated”.
+33. Function: broadcast “new trip request” to available drivers.
+34. Function: broadcast server system message (string).
+
+### **WebSocket Utility (6 tasks)**
+
+35. Add heartbeat “ping” every 20 seconds.
+36. Add logging for each new connection.
+37. Add small JSON schema validation for incoming messages.
+38. Add message queue (list) for offline clients.
+39. Add WebSocket auth token check.
+40. Add admin WebSocket at `/ws/admin`.
+
+---
+
+# ✅ **3) C++ Matching Engine — Structs + Core Logic (20 tasks)**
+
+All tasks are tiny: create one struct, one function, one file.
+
+### **Data Structures (8 tasks)**
+
+41. Create `struct Location { double lat; double lon; };`
+42. Create `struct Passenger { int id; Location pos; };`
+43. Create `struct Driver { int id; Location pos; bool available; };`
+44. Create `struct Trip { int id; int passenger_id; Location from; Location to; };`
+45. Create in-memory vector `std::vector<Driver>` for drivers.
+46. Create in-memory vector `std::vector<Trip>` for trips.
+47. Create in-memory vector `std::vector<Passenger>` for passengers.
+48. Create simple ID generator function.
+
+### **Matching Logic (8 tasks)**
+
+49. Implement Haversine distance function.
+50. Implement function to find nearest driver to passenger.
+51. Implement function to filter only available drivers.
+52. Implement function to mark driver as “busy”.
+53. Implement function to mark driver as “available”.
+54. Implement function to add new trip to vector.
+55. Implement function to add/update driver location.
+56. Implement function to print debug logs (id, action).
+
+### **Integration Helpers (4 tasks)**
+
+57. Implement simple JSON serialization for passenger struct.
+    58 Implement simple JSON serialization for driver struct.
+58. Implement simple JSON serialization for trip struct.
+59. Implement “process_trip_request” that uses nearest-driver logic.
+
+---
+
+# ✅ **4) React.js Admin Panel — Basic UI (20 tasks)**
+
+Very small tasks: build tiny components, tables, pages.
+
+### **Structure + Layout (6 tasks)**
+
+61. Create base layout: sidebar + header + content.
+62. Create navigation menu with links: Passengers, Drivers, Trips.
+63. Create `<DashboardPage />` with static text.
+64. Add React Router with 3 routes.
+65. Add page title component.
+66. Add global CSS file / Tailwind config.
+
+### **Passengers UI (5 tasks)**
+
+67. Create `PassengersPage` skeleton.
+68. Add table listing passengers (mock data).
+69. Add button “Add Passenger” opening modal.
+70. Add form fields: name + phone.
+71. Integrate POST `/passengers` via fetch/Axios.
+
+### **Drivers UI (5 tasks)**
+
+72. Create `DriversPage` skeleton.
+73. Add table to list drivers (mock data).
+74. Add column: status (available/busy).
+75. Add button “Mark Available” (mock).
+76. Integrate GET `/drivers`.
+
+### **Trips UI (4 tasks)**
+
+77. Create `TripsPage`.
+78. Add table listing trips (mock data).
+79. Display status (accepted, en_route, completed).
+80. Integrate GET `/trips`.
+
+---
+
+# 🎁 **If you want, I can also generate:**
+
+* **80 GitHub issues, ready to paste**
+* A **CSV distribution plan** (who does what)
+* A **repo folder structure** matching all tasks
+* Simple **starter templates** for each task (code skeletons)
+
+Just tell me what you want next.

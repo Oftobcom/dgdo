@@ -1,0 +1,223 @@
+Here are **additional categories of tasks** you can assign to your 20 students — beyond CRUD, WebSockets, C++ engine, React UI, DevOps, and Docker.
+These tasks are still **simple, atomic, beginner-friendly**, but they deepen the project and make it more realistic.
+
+You can mix them into future sprints or expand your MVP.
+
+---
+
+# 🧩 **1) Small Database Tasks (SQL, PostgreSQL)**
+
+These teach students schema design, migrations, and simple queries.
+
+### Examples:
+
+1. Create PostgreSQL table for `passengers`.
+2. Create PostgreSQL table for `drivers`.
+3. Create table for `trip_requests`.
+4. Create table for `driver_locations`.
+5. Add migration tool (Alembic).
+6. Write SELECT query to get last driver location.
+7. Write query to get all active requests.
+8. Create stored procedure to clear old trips.
+9. Add indexes for driver location search.
+10. Add foreign keys + constraints.
+
+---
+
+# 🗺 **2) Map + Geolocation Tasks**
+
+Small tasks that help integrate “real map logic”.
+
+### Examples:
+
+11. Write function to validate coordinates.
+12. Write function to generate random coordinates for testing.
+13. Implement Haversine distance in Python.
+14. Implement Haversine distance in JavaScript.
+15. Parse coordinates from a string safely.
+16. Add bounding box for “city area”.
+17. Add utility to convert between lat/lon ↔ XY grid.
+18. Add function that checks if driver left the service area.
+19. Add polyline decoder for routes.
+20. Add static map preview in admin panel (simple image).
+
+---
+
+# ⚙️ **3) Testing Tasks (Unit Tests)**
+
+Tasks to improve code quality, easy to assign to students.
+
+### Examples:
+
+21. Write unit test for passenger registration.
+22. Write unit test for trip request.
+23. Write unit test for driver assignment (mock C++ call).
+24. Write unit test for WebSocket broadcast.
+25. Write test for distance calculation.
+26. Write test for C++ matching engine data parsing.
+27. Write test for JSON responses in FastAPI.
+28. Write test for errors and invalid input.
+29. Write unit test for admin panel components (React Testing Library).
+30. Write test for Makefile tasks.
+
+---
+
+# 🎨 **4) UI/UX Improvements**
+
+Small, atomic front-end tasks.
+
+### Examples:
+
+31. Add loading indicators to Driver/Trip tables.
+32. Add empty state (“No drivers yet”).
+33. Make responsive layout (mobile-friendly).
+34. Add color coding for driver statuses.
+35. Add color coding for trip statuses.
+36. Add a simple search bar on Drivers page.
+37. Add a simple filter on Trips page.
+38. Add sorting by name/trip id.
+39. Implement small dashboard widget (total drivers).
+40. Add dark mode toggle.
+
+---
+
+# 🔐 **5) Security & Validation Tasks**
+
+Teach students real-world backend constraints.
+
+### Examples:
+
+41. Validate phone number format.
+42. Validate trip request input.
+43. Add API key middleware.
+44. Add rate limiter on passenger registration.
+45. Prevent duplicate trips from same passenger.
+46. Sanitize driver name input.
+47. Add CORS config.
+48. Add HTTPS-ready configuration.
+49. Add password hashing (for future real auth).
+50. Create simple JWT demo (optional).
+
+---
+
+# 🗃 **6) Logging & Monitoring Tasks**
+
+Students learn observability, which is important in real projects.
+
+### Examples:
+
+51. Add request logging in FastAPI.
+52. Add error logging in FastAPI.
+53. Add access logs for C++ engine.
+54. Add WebSocket connect/disconnect logs.
+55. Add structured JSON logs.
+56. Add simple metrics endpoint `/metrics`.
+57. Add timestamp and latency measurements.
+58. Add driver-matching logs (which driver chosen and why).
+59. Add colored logs in console.
+60. Add CSV export for logs.
+
+---
+
+# 📥 **7) Tools & Code Generation**
+
+Tasks that create utilities and scripts.
+
+### Examples:
+
+61. Script to generate fake driver data.
+62. Script to generate fake trip data.
+63. CLI tool to send test driver locations.
+64. CLI tool to test matching engine.
+65. Simple load-testing script (Python).
+66. Script to export data to JSON.
+67. Script to clean database.
+68. Script to restart docker containers.
+69. Tool to visualize trip history (matplotlib).
+70. Code generator for API clients.
+
+---
+
+# 📡 **8) Networking + API Tasks**
+
+More API-oriented tasks for networking logic.
+
+### Examples:
+
+71. Add pagination to `/drivers`.
+72. Add pagination to `/trips`.
+73. Add filtering: `/drivers?status=active`.
+74. Add endpoint to update driver car info.
+75. Add endpoint to clear all test data.
+76. Add `/stats` endpoint (total drivers, trips).
+77. Add `/nearest-drivers?lat=..&lon=..`.
+78. Add WebSocket “pong” handler.
+79. Add driver heartbeat endpoint.
+80. Add simple rate limiting in WebSocket.
+
+---
+
+# 🤖 **9) Lightweight AI/ML Tasks (very simple, optional)**
+
+Only for students who are stronger.
+
+### Examples:
+
+81. Predict driver ETA using simple linear formula.
+82. Simple rule-based demand heatmap.
+83. Detect idle drivers.
+84. Score drivers based on distance.
+85. Auto-assign driver with a “priority score”.
+86. Auto-detect long delays.
+87. Simple anomaly detection (too frequent requests).
+88. Generate synthetic trips for stress testing.
+89. Compute average pickup distance.
+90. Compute top 5 busiest hours.
+
+---
+
+# 🧱 **10) Architecture / Documentation Tasks**
+
+Very beginner and low-risk.
+
+### Examples:
+
+91. Draw architecture diagram (FastAPI + C++ + React).
+92. Document API routes in markdown.
+93. Document data flows (registration, matching).
+94. Create entity-relationship diagram.
+95. Document WebSocket message types.
+96. Document C++ module structure.
+97. Write short tutorial: “How to contribute”.
+98. Write style guide for Python.
+99. Write style guide for C++.
+100. Write style guide for React.
+
+---
+
+# ✔ Summary
+
+You can expand your student assignments into:
+
+* SQL tasks
+* Map/geolocation tasks
+* UI/UX tasks
+* Testing tasks
+* Security tasks
+* Monitoring tasks
+* Scripting tools
+* Networking & API expansions
+* Simple ML logic
+* Documentation & architecture tasks
+
+This gives you **hundreds of micro-tasks** for continuous progress.
+
+---
+
+If you want, I can now generate:
+
+📌 **A full list of 200 beginner-friendly tasks**
+📌 **Task assignment matrix (20 students → tasks)**
+📌 **GitHub Issues auto-generated text**
+
+Just tell me what you prefer.

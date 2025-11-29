@@ -1,0 +1,274 @@
+Below is a **full list of 200 intermediate-level tasks** for your university group, all directly contributing to building the **DG Do MVP** (FastAPI + C++ Matching Engine + PostGIS + React Admin Panel + Docker).
+
+Tasks are **modular**, so each student can work independently while still improving the same codebase.
+
+Tasks are grouped into **10 categories × 20 tasks each = 200 tasks**.
+
+---
+
+# ✅ **200 Intermediate Tasks for DG Do MVP**
+
+---
+
+# **A. Core Backend (FastAPI) – 20 tasks**
+
+1. Implement async database connection pooling with SQLAlchemy.
+2. Add rate-limiting middleware for passenger endpoints.
+3. Create unified error handling and error response schema.
+4. Implement email/phone validation service.
+5. Add JWT-based authentication for passengers.
+6. Add JWT-based authentication for drivers.
+7. Implement password hashing and salting for registrations.
+8. Add refresh-token support and token rotation.
+9. Build health-check endpoint for infrastructure.
+10. Create middleware that logs request latency.
+11. Add dependency injection for database sessions.
+12. Create standardized pagination for all list endpoints.
+13. Add CORS configuration for React admin panel.
+14. Implement global FastAPI exception logging (file + console).
+15. Create a system to track API usage per user.
+16. Create endpoint to update passenger profile details.
+17. Implement full CRUD for driver profiles.
+18. Add endpoint for uploading passenger avatars.
+19. Add endpoint for uploading driver documents.
+20. Add a cleanup job to remove unused uploaded files.
+
+---
+
+# **B. PostGIS & Geospatial Features – 20 tasks**
+
+21. Create PostGIS table for driver locations with spatial index.
+22. Implement function to validate incoming coordinates.
+23. Normalize coordinates into standard SRID (e.g., 4326).
+24. Implement endpoint returning all drivers within a given radius.
+25. Add zone clustering (represent city as hex-grid).
+26. Implement reverse lookup: which zone a coordinate belongs to.
+27. Precompute centroids of zones for faster queries.
+28. Add function calculating distance matrix between zones.
+29. Implement nearest-driver query using ST_DistanceSphere.
+30. Add function calculating estimated trip distance (polyline).
+31. Store trip routes as LineString geometry.
+32. Add index for trip geodata to optimize queries.
+33. Implement bounding-box query for map visualization.
+34. Build function to detect if driver leaves allowed service area.
+35. Implement merging of nearby points into clusters for the map.
+36. Add function calculating driver density heatmap.
+37. Add geographic trip statistics: avg distance per zone.
+38. Implement spatial query to detect duplicate locations.
+39. Create a geographical cache table for repeated queries.
+40. Write maintenance script rebuilding spatial indexes weekly.
+
+---
+
+# **C. C++ Matching Engine – 20 tasks**
+
+41. Write a C++ class representing a driver state.
+42. Write a C++ class representing passenger request.
+43. Implement a vector-based container for active drivers.
+44. Implement a spatial grid (simple uniform grid) for fast lookup.
+45. Add logic to insert/update/remove drivers from spatial index.
+46. Implement match scoring function (distance + rating + ETA).
+47. Implement driver filtering (vehicle type, capacity).
+48. Add multi-threading for matching loop.
+49. Implement lock-free queue for incoming requests.
+50. Add JSON parser for incoming FastAPI messages.
+51. Implement C++ module for ETA calculation.
+52. Add module for distance calculation (Haversine).
+53. Create unit tests for matching logic.
+54. Create benchmark test for performance measurement.
+55. Add system that logs match attempts.
+56. Implement backoff algorithm if no driver found.
+57. Add C++ metrics collection (latency, queue lengths).
+58. Implement graceful shutdown of engine.
+59. Add hot-reload of configuration without restart.
+60. Implement fallback mode (simple nearest driver search).
+
+---
+
+# **D. FastAPI → C++ Engine Integration – 20 tasks**
+
+61. Implement TCP-based communication between FastAPI and C++.
+62. Add WebSocket communication option for engine updates.
+63. Create serialization format for requests → engine.
+64. Implement response deserialization engine → FastAPI.
+65. Add timeout handling for engine requests.
+66. Implement retry mechanism if engine is overloaded.
+67. Add signature validation to ensure request integrity.
+68. Build request queue in FastAPI to avoid overload.
+69. Implement logging of each engine call.
+70. Add monitoring endpoint for engine uptime and load.
+71. Add health-check ping from FastAPI to engine.
+72. Implement fallback to database if engine is unreachable.
+73. Add “dry-run” mode for testing engine without drivers.
+74. Create simulation script sending fake ride requests.
+75. Add automatic engine restart via supervisor.
+76. Build endpoint streaming engine logs to admin panel.
+77. Implement rate-limiting for engine request bursts.
+78. Add event tracing (OpenTelemetry) for engine calls.
+79. Write integration tests verifying FastAPI ↔ C++ loop.
+80. Add dashboard for engine performance metrics.
+
+---
+
+# **E. React Admin Panel – 20 tasks**
+
+81. Create login page for admin with JWT authentication.
+82. Display list of passengers with pagination.
+83. Display list of drivers with pagination.
+84. Add map showing driver locations (Leaflet or Mapbox).
+85. Add panel displaying active trip requests.
+86. Implement trip history table with filters.
+87. Add driver verification page (documents check).
+88. Create UI for editing passenger profiles.
+89. Create UI for editing driver profiles.
+90. Add settings page for system configuration.
+91. Display results of matching engine (who was assigned).
+92. Add real-time updates using WebSockets.
+93. Create map visualization for heatmap of demand.
+94. Build dashboard showing KPIs (trips, GMV, cancellations).
+95. Add logs viewer (API logs, engine logs).
+96. Create error monitoring page.
+97. Add alerts panel for anomalies or fraud flags.
+98. Implement bulk driver import (CSV).
+99. Add dark/light mode toggle.
+100. Add localization support (English/Russian/Tajik).
+
+---
+
+# **F. Trips & Order Flow – 20 tasks**
+
+101. Implement endpoint for creating a trip request.
+102. Add validation of trip coordinates.
+103. Implement endpoint for driver accepting a trip.
+104. Add function “start trip” → “end trip” updates.
+105. Validate that only assigned driver can update trip state.
+106. Add trip cancellation for passengers.
+107. Add cancellation from drivers.
+108. Store cancellation reason codes.
+109. Add endpoint returning active trip for a given user.
+110. Add state machine validator (accepted → en route → completed).
+111. Implement fare breakdown calculator.
+112. Add table storing fare components.
+113. Add discount/bonus system.
+114. Integrate dynamic pricing multiplier.
+115. Store driver-route polyline (optional).
+116. Add driver ETA prediction before pickup.
+117. Add passenger ETA prediction.
+118. Add endpoint returning trip summary.
+119. Implement notification system for state changes.
+120. Add auto-cancel if driver doesn’t move for X minutes.
+
+---
+
+# **G. Payments & Pricing – 20 tasks**
+
+121. Implement simple fare calculator (base + distance).
+122. Add support for payment method = cash/card/wallet.
+123. Create passenger wallet with top-up.
+124. Add transaction history.
+125. Implement refund system.
+126. Add function detecting duplicate payment attempts.
+127. Create webhook handling for payment provider (mock).
+128. Validate payment status before completing trip.
+129. Add driver payout calculation.
+130. Store driver payout statements.
+131. Add surge multiplier in fare calculator.
+132. Add promo codes system.
+133. Add corporate account billing.
+134. Add invoice generation (PDF or JSON).
+135. Add monthly financial summary endpoint.
+136. Implement rounding rules for prices.
+137. Add currency conversion option.
+138. Implement fraud detection for payments.
+139. Add alerts for suspicious payment activity.
+140. Create dashboard visualizing GMV trends.
+
+---
+
+# **H. Analytics & ML – 20 tasks**
+
+141. Implement trip count per hour analytics.
+142. Create heatmap of driver density (PostGIS).
+143. Implement simple demand forecasting (moving average).
+144. Add driver churn score calculator.
+145. Predict ETA using historical durations.
+146. Implement anomaly detection for short trips.
+147. Add anomaly detection for long idle times.
+148. Add anomaly detection for repeated cancellations.
+149. Build endpoint streaming analytics to admin panel.
+150. Add daily scheduled analytics refresh.
+151. Implement A/B test framework for matching algorithm.
+152. Implement A/B framework for surge pricing.
+153. Create retention metrics (7-day, 30-day).
+154. Build script exporting aggregated metrics to CSV.
+155. Add segment-based demand predictions (zones).
+156. Add feature store table for ML inputs.
+157. Implement simple linear regression model for forecasting.
+158. Add visualization for analytics trends.
+159. Implement anomaly alert notifications.
+160. Add experiment results dashboard.
+
+---
+
+# **I. DevOps, Docker, CI/CD – 20 tasks**
+
+161. Create Dockerfile for FastAPI with multi-stage build.
+162. Create Dockerfile for C++ engine.
+163. Create Dockerfile for React.
+164. Set up docker-compose with database + services.
+165. Add healthcheck script for API.
+166. Add healthcheck script for C++ engine.
+167. Implement automatic database migrations on startup.
+168. Add script seeding development data.
+169. Configure logging volume mounts.
+170. Add `.env` loader and environment separation.
+171. Add CI workflow running unit tests on each commit.
+172. Add CI workflow building docker images.
+173. Add CI workflow running lint tools.
+174. Add GitHub Actions for automatic deployment (mock).
+175. Add image version tagging strategy.
+176. Implement smoke tests for deployment.
+177. Add database backup/restore script.
+178. Add log rotation system.
+179. Monitor service container resource usage.
+180. Add documentation for local & production deployment.
+
+---
+
+# **J. Documentation, Testing, QA – 20 tasks**
+
+181. Write OpenAPI specification for all endpoints.
+182. Create README for developer setup.
+183. Add documentation of database schema.
+184. Add documentation for matching algorithm.
+185. Write detailed explanation of surge pricing logic.
+186. Provide examples of API requests/responses.
+187. Add unit tests for user registration.
+188. Add unit tests for trip creation.
+189. Add unit tests for driver location updates.
+190. Add unit tests for pricing calculator.
+191. Add integration tests for FastAPI endpoints.
+192. Add integration tests for C++ communication.
+193. Write load test simulating 1000 concurrent passengers.
+194. Write test simulating 500 simultaneous drivers.
+195. Add manual QA checklist for release.
+196. Add code style rules (Black, Flake8, ClangFormat).
+197. Add script checking for unused imports.
+198. Add commit message style guide.
+199. Add architecture diagram (Markdown + SVG).
+200. Write "Contributing Guide" for new developers.
+
+---
+
+# ✅ Want more?
+
+I can generate:
+
+📌 200 *advanced* tasks
+📌 200 *beginner* tasks
+📌 50 tasks *for each micro-module*
+📌 Distribution plan for 20 students
+📌 Full semester syllabus
+📌 Git repo folder structure for entire project
+
+Just tell me what you want.
