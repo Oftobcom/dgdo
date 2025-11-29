@@ -1,0 +1,154 @@
+Here are **60 tasks** (30 beginner + 30 intermediate/advanced) specifically connecting **PostGIS ↔ C++ Matching Engine** in the DG Do platform.
+
+These tasks are **practical, production-oriented, and directly usable** for your university group.
+Each task produces a *real contribution* to DG Do: algorithms, data pipelines, utilities, benchmarks, micro-features, or integrations.
+
+---
+
+# ✅ **30 Beginner-Level Tasks (C++ + PostGIS Fundamentals)**
+
+### **Basic DB Connectivity**
+
+1. Write a C++ function that connects to PostgreSQL using `libpq`.
+2. Create a C++ wrapper class `PgClient` for executing SQL queries.
+3. Implement `PgClient::execute()` and `PgClient::query()` with error handling.
+4. Load PostGIS extension via C++ and verify it exists.
+5. Write a C++ method that fetches driver coordinates from the `drivers` table.
+6. Write a method that inserts a new driver with `(lon, lat)` from C++.
+7. Write a method that updates driver status (`available`, `busy`).
+
+### **Geometry I/O Basics**
+
+8. Fetch a PostGIS point as WKT (`ST_AsText`) and parse it in C++.
+9. Write WKT → C++ point parser.
+10. Write a C++ function generating WKT (`POINT(lon lat)`) for inserts.
+11. Fetch a GeoJSON driver point and decode it using rapidjson.
+12. Write a simple C++ geometry struct for `Point{double lon, lat;}`.
+
+### **Distance Queries**
+
+13. C++ function calling PostGIS: `SELECT ST_Distance(...)`.
+14. Compute distance between two drivers using PostGIS via C++.
+15. Compare C++ haversine implementation vs PostGIS distance.
+
+### **Nearest Driver Queries**
+
+16. Write C++ code to call nearest-driver SQL using KNN `<->`.
+17. Convert SQL results to a vector of `DriverCandidate`.
+18. Write a function: `std::vector<DriverCandidate> findNearestDrivers(point, N)`.
+
+### **Trip Requests**
+
+19. C++ method that fetches all active trip requests.
+20. Insert a trip request from C++ using WKT.
+21. Fetch trip origin/destination and convert into C++ Points.
+
+### **Simple Geofencing**
+
+22. Call SQL: `ST_Contains(zone, point)` from C++.
+23. Use C++ to check if a driver is in any polygon zone.
+24. Print zone name(s) for a driver from C++.
+
+### **Index Inspection**
+
+25. Write C++ function to check if GiST index exists.
+26. Write C++ function that prints index sizes (`pg_indexes_size`).
+27. Benchmark SQL queries from C++ using measuring execution time.
+
+### **Low-Level Integration Tasks**
+
+28. Write C++ code to create a `driver_location` table (DDL via SQL).
+29. Automatically generate test drivers from C++ random coordinates.
+30. Build a C++ CLI program:
+    `matching-engine --nearest-driver lon lat`
+
+---
+
+# 🚀 **30 Intermediate/Advanced Tasks (High-Load Matching + PostGIS)**
+
+### **High-Load Driver Matching**
+
+1. Implement C++ class `NearestDriverFinder` using PostGIS KNN queries.
+2. Add fallback: if no drivers in 3 km → 6 km → 10 km radius.
+3. Combine PostGIS distance with C++ custom scoring formula.
+4. Prioritize drivers by:
+   **score = distance*0.7 + rating*0.2 + idle_time*0.1**
+5. Fetch first 50 candidates from PostGIS, compute final ranking in C++.
+
+### **Real-Time Location Sync**
+
+6. Build a C++ method to pull all driver coordinates each second.
+7. Write incremental sync: only fetch drivers updated in last X seconds.
+8. Write C++ cache of driver positions to reduce DB load.
+
+### **Database Load Reduction**
+
+9. Implement prepared statements for KNN queries (`PQprepare`).
+10. Use server-side cursors for large result sets.
+11. Use connection pooling (e.g., pgpool) and C++ client configs.
+
+### **Route & ETA Computations**
+
+12. Fetch a polyline (simple straight line) from PostGIS.
+13. Compute route distance using PostGIS from C++.
+14. Combine PostGIS distance with C++ average driver speed for ETA.
+15. Compare ETA from C++ vs ETA from database.
+
+### **Spatial Data Transformations**
+
+16. Fetch a bounding box of active drivers and decode it in C++.
+17. Use `ST_SnapToGrid` in SQL to simplify driver positions for C++ caching.
+18. Request polygon zones as GeoJSON and convert into C++ polygon structs.
+
+### **Advanced Geofencing**
+
+19. C++ code to fetch all zones intersecting a driver movement line.
+20. Fetch multi-polygons from PostGIS and convert into vector-of-vectors.
+21. Use C++ to check point-in-polygon using results from PostGIS boundaries.
+
+### **Batch Matching**
+
+22. Write C++ function that assigns drivers to 10 trips in one batch:
+
+    * fetch all trip origins
+    * fetch candidates for each
+    * match independently
+23. Write SQL that fetches all trips within the same geozone.
+24. Use C++ to sort trips by urgency and call SQL for each.
+
+### **Heatmap & Analytics**
+
+25. Fetch heatmap hexagons from PostGIS using C++.
+26. Calculate trip density directly from SQL and feed to C++ engine.
+27. Fetch cluster centroids from PostGIS (`ST_ClusterKMeans`) for C++ analysis.
+
+### **Performance Benchmarks**
+
+28. Benchmark PostGIS vs pure C++ haversine on 10k distances.
+29. Benchmark 1 nearest-driver lookup vs 1k lookups per second.
+30. Build a C++ script printing:
+
+```
+DB Latency
+SQL Query Time
+Matching Time
+Total Cycle Time
+```
+
+---
+
+# ⚙️ Want Next Steps?
+
+I can generate:
+
+### ✔ **60 tasks integrating PostGIS + FastAPI + C++ end-to-end**
+
+### ✔ **40 tasks integrating React maps (Leaflet/Mapbox) with PostGIS**
+
+### ✔ **C++ templates for: geospatial classes, scoring, workers**
+
+### ✔ **Architecture diagrams for DG Do Matching Engine**
+
+### ✔ **Full semester curriculum for your 20 students (12 weeks, labs, exams, projects)**
+
+Say the word — I’ll prepare everything.

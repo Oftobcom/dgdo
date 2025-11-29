@@ -1,0 +1,134 @@
+Excellent! Adding Analytics & Machine Learning will transform your ride-hailing platform from reactive to predictive. Here are 70 focused tasks across 7 ML/Analytics domains for your students.
+
+## 1. Demand Forecasting (10 tasks)
+
+**Focus:** Predict ride demand patterns to optimize driver positioning.
+
+1. **Historical Data Collector:** Create function `collect_historical_demand(hours_back=168)` that aggregates past ride requests by hour and location grid.
+2. **Time Feature Extractor:** Implement `extract_time_features(timestamp)` returning day_of_week, hour, is_weekend, is_holiday.
+3. **Weather Data Integration:** Create function `fetch_weather_data(lat, lon, timestamp)` integrating with OpenWeatherMap API.
+4. **Event Data Collector:** Implement `get_local_events(location, date)` checking for concerts, sports events affecting demand.
+5. **Simple Moving Average Predictor:** Create `predict_demand_moving_average(location, hour, window=7)` using historical averages.
+6. **Demand Heatmap Generator:** Build function `generate_demand_heatmap(predictions)` for visualization.
+7. **Demand API Endpoint:** Implement GET `/analytics/demand-forecast?lat=X&lon=Y&hours_ahead=24`.
+8. **Prediction Accuracy Metrics:** Create function `calculate_forecast_accuracy(actual_demand, predicted_demand)` with MAE/RMSE.
+9. **Real-time Demand Updater:** Implement streaming update of demand predictions as new rides come in.
+10. **Demand Forecast Dashboard:** React component showing predicted demand heatmaps for next 24 hours.
+
+## 2. Driver Churn Prediction (10 tasks)
+
+**Focus:** Identify at-risk drivers for retention interventions.
+
+11. **Driver Activity Metrics:** Create function `calculate_driver_metrics(driver_id, days_back=30)` computing rides/day, online hours, earnings.
+12. **Engagement Trend Calculator:** Implement `calculate_engagement_trend(driver_id)` detecting decreasing activity over time.
+13. **Rating & Feedback Aggregator:** Create function `aggregate_driver_feedback(driver_id)` analyzing rating trends and comments.
+14. **Churn Label Generator:** Implement `label_churned_drivers()` marking drivers inactive for >30 days as "churned".
+15. **Feature Matrix Builder:** Create `build_churn_features()` compiling metrics into ML-ready features.
+16. **Simple Rule-Based Classifier:** Implement `predict_churn_risk_rules(driver_id)` using thresholds (e.g., <5 rides/week = high risk).
+17. **Churn Risk API:** Implement GET `/analytics/driver-churn-risk/{driver_id}` returning risk score 0-100.
+18. **Retention Alert System:** Create WebSocket notifications for operations team when high-risk drivers identified.
+19. **Churn Model Evaluation:** Implement function `evaluate_churn_predictions()` comparing predictions to actual churn.
+20. **Driver Health Dashboard:** React component showing driver engagement metrics and churn risk scores.
+
+## 3. Route Optimization ML (10 tasks)
+
+**Focus:** Improve ETA accuracy using historical trip data.
+
+21. **Trip Duration Database:** Enhance trips table with `actual_duration` and `predicted_duration` for model training.
+22. **Traffic Pattern Extractor:** Create function `extract_traffic_patterns(route, time_of_day)` from historical trip times.
+23. **Route Feature Engineering:** Implement `extract_route_features(start_coords, end_coords)` calculating distance, highway_ratio, urban_density.
+24. **Baseline ETA Model:** Create `predict_eta_naive(distance, time_of_day)` using simple linear regression.
+25. **Historical Travel Time Calculator:** Implement `get_historical_travel_time(route, departure_time)` using similar historical trips.
+26. **Weather Impact Model:** Create function `calculate_weather_impact(weather_condition, route_type)` adjusting ETAs for rain/snow.
+27. **Real-time ETA Updater:** Implement `update_eta_during_trip(trip_id, current_location)` during active trips.
+28. **ETA Accuracy Tracking:** Create function `log_eta_accuracy(trip_id)` comparing predicted vs actual times.
+29. **Optimized Route Suggestor:** Implement `suggest_optimized_route(start, end, conditions)` considering traffic patterns.
+30. **ETA Analytics Dashboard:** React component showing ETA prediction accuracy and improvement over time.
+
+## 4. Dynamic Pricing Models (10 tasks)
+
+**Focus:** Advanced surge pricing using ML beyond simple multipliers.
+
+31. **Pricing Feature Extractor:** Create `extract_pricing_features(location, time, demand, supply)` for ML model.
+32. **Price Elasticity Analyzer:** Implement `analyze_price_elasticity(historical_data)` measuring demand sensitivity to price changes.
+33. **Competitive Price Monitor:** Create function `monitor_competitor_prices(location)` (stub for external data integration).
+34. **Willingness-to-Pay Estimator:** Implement `estimate_wtp(passenger_profile, route, time)` based on user history.
+35. **Multi-factor Surge Model:** Create `calculate_ml_surge(features)` using random forest or gradient boosting.
+36. **Surge Optimization Objective:** Define function `surge_profit_objective(demand_curve, surge_multiplier)` maximizing revenue.
+37. **Price Testing Framework:** Implement `test_pricing_strategy(location, new_multiplier)` for controlled experiments.
+38. **Customer Impact Monitor:** Create function `monitor_booking_conversion(prices)` tracking if surge prices reduce bookings.
+39. **Dynamic Pricing API v2:** Enhance pricing endpoint with ML model integration.
+40. **Pricing Strategy Dashboard:** React component comparing ML vs rule-based pricing performance.
+
+## 5. Anomaly Detection (10 tasks)
+
+**Focus:** Identify fraud, system abuse, and unusual patterns.
+
+41. **Trip Anomaly Scorer:** Create `score_trip_anomaly(trip_data)` flagging unusual distances, durations, or prices.
+42. **Payment Anomaly Detector:** Implement `detect_payment_anomalies(payment_attempts)` identifying suspicious patterns.
+43. **Driver Behavior Monitor:** Create `monitor_driver_behavior(driver_id)` detecting unusual acceptance/cancellation patterns.
+44. **Passenger Behavior Monitor:** Implement `monitor_passenger_behavior(passenger_id)` flagging suspicious booking patterns.
+45. **Location Spoofing Detector:** Create `detect_location_spoofing(location_updates)` identifying impossible travel.
+46. **Collusion Detection:** Implement `detect_driver_passenger_collusion(pairs)` finding suspicious frequent pairings.
+47. **Real-time Anomaly Alerts:** Create WebSocket system for immediate anomaly notifications to admins.
+48. **Anomaly Investigation Tool:** Implement GET `/analytics/anomalies?type=X&date=Y` for manual review.
+49. **False Positive Reducer:** Create function `reduce_false_positives(anomalies)` using feedback from investigations.
+50. **Anomaly Detection Dashboard:** React component showing anomaly types, frequencies, and resolution status.
+
+## 6. A/B Testing Framework (10 tasks)
+
+**Focus:** Systematic testing of new features and algorithms.
+
+51. **Experiment Schema Design:** Create `experiments` table tracking test name, groups, start/end dates.
+52. **User Group Assigner:** Implement `assign_user_to_group(user_id, experiment_id)` using consistent hashing.
+53. **Feature Flag System:** Create `is_feature_enabled(user_id, feature_name)` checking group assignments.
+54. **Metric Definition System:** Implement `define_experiment_metrics(experiment_id, primary_metric, secondary_metrics)`.
+55. **Data Collection Pipeline:** Create `collect_experiment_data(experiment_id, user_id, metrics)` logging all interactions.
+56. **Statistical Significance Calculator:** Implement `calculate_significance(control_metric, treatment_metric, sample_size)`.
+57. **Experiment Results API:** Implement GET `/analytics/experiments/{experiment_id}/results`.
+58. **Automatic Stopping Rule:** Create `check_experiment_completion(experiment_id)` stopping when significance reached.
+59. **A/B Test Dashboard:** React component showing active experiments, results, and significance levels.
+60. **Multi-variate Testing Foundation:** Extend system to support testing multiple variables simultaneously.
+
+## 7. Business Intelligence Dashboards (10 tasks)
+
+**Focus:** Comprehensive metrics and visualization for decision-making.
+
+61. **GMV Calculator:** Implement `calculate_gmv(start_date, end_date)` summing all completed trip values.
+62. **Utilization Rate Calculator:** Create `calculate_driver_utilization(driver_id, period)` measuring active vs available time.
+63. **Key Metrics Aggregator:** Implement `aggregate_business_metrics(date)` computing daily active users, completed trips, revenue.
+64. **Growth Trend Analyzer:** Create `analyze_growth_metrics(period)` calculating week-over-week, month-over-month changes.
+65. **Geographic Performance Mapper:** Implement `get_geographic_metrics(grid_size)` showing performance by location.
+66. **Driver Performance Benchmark:** Create `benchmark_driver_performance(segment)` comparing top vs average drivers.
+67. **Customer Segmentation Engine:** Implement `segment_customers(behavioral_data)` grouping by frequency, value, preferences.
+68. **Real-time Metrics Stream:** Create WebSocket stream of key metrics for live dashboard updates.
+69. **Exportable Reports:** Implement GET `/analytics/reports/{report_type}/export` generating CSV/PDF reports.
+70. **Executive Dashboard:** Comprehensive React dashboard with all key metrics, trends, and alerts.
+
+## Implementation Strategy for Students:
+
+**Technology Stack:**
+- **Python ML:** scikit-learn, pandas, numpy for models
+- **PostgreSQL:** Advanced analytics with window functions
+- **Redis:** Caching for real-time predictions
+- **Celery:** Async model training and data processing
+- **Plotly/D3.js:** Advanced visualizations in React
+
+**Team Organization:**
+- 7 teams of ~3 students each focusing on one domain
+- Each team has: 1 Data Engineer (pipelines), 1 ML Engineer (models), 1 Visualization Engineer (UI)
+- Weekly integration sessions to combine components
+
+**Progressive Implementation:**
+1. **Weeks 1-2:** Data collection and basic analytics
+2. **Weeks 3-4:** Simple rule-based systems and dashboards
+3. **Weeks 5-6:** ML model development and integration
+4. **Weeks 7-8:** Testing, optimization, and refinement
+
+**Educational Benefits:**
+- **Real-world ML:** From data collection to production deployment
+- **Full-stack analytics:** Databases → APIs → Frontend visualization
+- **A/B testing methodology:** Evidence-based feature development
+- **Business metrics thinking:** Connecting technical work to business outcomes
+
+This comprehensive analytics system will give your students experience with the complete data science lifecycle while building valuable features that significantly enhance your platform's intelligence and competitiveness!

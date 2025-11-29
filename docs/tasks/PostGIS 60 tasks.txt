@@ -1,0 +1,118 @@
+Here are **60 PostGIS-related tasks** (30 beginner + 30 intermediate).
+All tasks are **practical**, and each task produces a *small, real contribution* to your DG Do project (data structures, queries, indices, helper functions, utilities, tests, etc.).
+
+---
+
+# ✅ **30 Beginner-Level PostGIS Tasks**
+
+### **Foundations: geometry, geography, SRIDs**
+
+1. Create a `drivers` table with a `location` column of type `geography(Point, 4326)`.
+2. Create a `passengers` table with `home_location` of type `geometry(Point, 4326)`.
+3. Insert 10 sample drivers using `ST_MakePoint(lon, lat)::geography`.
+4. Insert 10 sample passengers using `ST_SetSRID(ST_MakePoint(lon, lat), 4326)`.
+5. Convert a geometry point to geography using `ST_Transform` and explain the difference.
+6. Validate existing points using `ST_IsValid`.
+7. Extract longitude/latitude from a geography point using `ST_X` and `ST_Y`.
+8. Create a `ride_requests` table with `origin` and `destination` as geography points.
+9. Write an SQL query to measure the distance between two points using `ST_Distance`.
+10. Write an SQL query that returns the closest driver using `ORDER BY location <-> point`.
+
+### **Indices & performance basics**
+
+11. Add a GiST index on `drivers.location`.
+12. Add a SP-GiST index on `ride_requests.origin`.
+13. Compare distances with and without an index and measure execution time.
+14. Explain what the `<->` KNN operator does in practice.
+15. Show that `geometry` distance is different from spherical `geography` distance.
+
+### **Simple spatial operations**
+
+16. Compute bounding box of all drivers (`ST_Extent`).
+17. Compute bounding box of all passenger origins.
+18. Convert bounding box to geometry using `ST_Envelope`.
+19. Check if a driver is within 5 km of a given point using `ST_DWithin`.
+20. Check if a point is inside a rectangle using `ST_Contains`.
+
+### **Geozones & polygons**
+
+21. Create a table `zones` with polygons (for surge areas).
+22. Insert two simple rectangular polygons for “City Center” and “Airport.”
+23. Test if a driver's point belongs to any zone using `ST_Contains`.
+24. Create an index on `zones.geom`.
+25. Convert text WKT polygon into geometry using `ST_GeomFromText`.
+26. Calculate area of each zone using `ST_Area`.
+27. Get zone centroid using `ST_Centroid`.
+28. Split a zone into 2 parts using `ST_Split` (simple polygon).
+29. Buffer driver location by 100 meters (`ST_Buffer`).
+30. Visualize polygons as GeoJSON using `ST_AsGeoJSON`.
+
+---
+
+# 🚀 **30 Intermediate-Level PostGIS Tasks**
+
+### **Real Ride-Hailing Scenarios**
+
+1. Implement a query that finds **5 nearest available drivers** within 3 km.
+2. Implement a query that finds drivers sorted by **distance + rating weight**.
+3. Implement a query that checks whether a driver is inside a surge zone.
+4. Implement a function to compute **ETA (simple distance / speed)**.
+5. Create a materialized view of “active drivers with distance from city center.”
+6. Add a “heatmap table” storing trip densities using `ST_Collect`.
+7. Build a “recent trip zones” polygon using convex hull (`ST_ConvexHull`).
+
+### **Optimized Spatial Indexing**
+
+8. Benchmark GiST vs SP-GiST on 50k fake drivers.
+9. Create a partial index for only active drivers (`WHERE status='active'`).
+10. Implement a nearest-neighbor search using `ST_DistanceSphere`.
+
+### **Geospatial Data Cleaning & Normalization**
+
+11. Write a function that ensures all points use SRID 4326.
+12. Detect invalid geometries in zones (self-intersections).
+13. Auto-correct invalid polygons using `ST_MakeValid`.
+14. Create a script converting raw CSV coordinates into PostGIS format.
+15. Normalize zone geometries to avoid MultiPolygon issues.
+
+### **Working With Routes (No pgRouting)**
+
+16. Generate a straight-line polyline route between origin and destination.
+17. Calculate route length using `ST_Length`.
+18. Convert polyline to GeoJSON for map display.
+19. Write a function to segment a route into N equal parts (`ST_LineInterpolatePoint`).
+20. Compute midpoint of any trip route.
+
+### **Trip & Driver Analytics**
+
+21. Identify the most popular passenger origins using clustering (`ST_ClusterKMeans`).
+22. Compute average trip distance per hour of the day.
+23. Compute distribution of trip directions using bearings (`ST_Azimuth`).
+24. Create a heatmap grid using hexagons (`ST_HexagonGrid` or DIY grid).
+25. Assign each trip to the nearest hexagon.
+
+### **More Advanced Geometry & Geofencing**
+
+26. Create a 500 m buffer around airport zone and detect when drivers enter it.
+27. Merge multiple surge polygons into one using `ST_Union`.
+28. Split a polygon into equal-area parts for load balancing.
+29. Create a “driver movement history” line for each driver using `ST_MakeLine`.
+30. Detect drivers who moved more than X km within last 10 minutes using geometry.
+
+---
+
+# ✅ Want next steps?
+
+I can also generate:
+
+### ✔ 60 coding tasks connecting PostGIS with FastAPI
+
+### ✔ 40 tasks connecting PostGIS with C++ Matching Engine
+
+### ✔ 30 tasks for React map + PostGIS integration
+
+### ✔ SQL templates for your DG Do curriculum
+
+### ✔ A full practical student assignment plan (10 weeks)
+
+Just tell me what you want next.

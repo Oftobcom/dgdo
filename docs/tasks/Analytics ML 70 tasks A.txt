@@ -1,0 +1,140 @@
+Below are **70 simple, student-friendly tasks** that contribute small but meaningful parts toward an **Analytics + ML + Data-Driven** subsystem of your *DG Do* project.
+
+All tasks are **function-level**, **simple**, and **incremental**, so twenty students can work in parallel and still contribute.
+
+---
+
+# ✅ **70 Tasks for Analytics & ML in DG Do**
+
+---
+
+# 📊 **A. Demand Forecasting (10 tasks)**
+
+Predict ride demand by time & location.
+
+1. Create a Python function to load trip history from PostgreSQL.
+2. Create a FastAPI route `/analytics/trips/hourly` returning trips per hour.
+3. Write a function to group trips by city zone (grid of squares).
+4. Implement a function that counts trips per zone per hour.
+5. Add a script that plots (matplotlib) trips/hour (static PNG).
+6. Implement a moving-average smoothing for hourly demand.
+7. Implement a simple linear regression predicting next hour demand.
+8. Add a FastAPI route `/forecast/next-hour`.
+9. Create a function that logs prediction results into a new table.
+10. Write a function that exports forecast results to CSV.
+
+---
+
+# 🚕 **B. Driver Churn Prediction (10 tasks)**
+
+Identify drivers likely to leave platform.
+
+11. Create a function that loads driver activity logs.
+12. Count days since last completed trip for each driver.
+13. Implement a function computing average trips/day per driver.
+14. Build a simple churn score = "days inactive × 0.5 − avg trips × 0.3".
+15. Add a FastAPI endpoint `/analytics/churn-scores`.
+16. Write a task to visualize churn distribution (histogram).
+17. Implement a function labeling drivers as "low/medium/high" churn risk.
+18. Build a weekly job (simple function) to refresh churn predictions.
+19. Add a function storing churn scores in DB.
+20. Implement an alert: print list of high-risk drivers.
+
+---
+
+# 🗺️ **C. Route Optimization ML (10 tasks)**
+
+Learn from historical data to improve ETAs.
+
+21. Load historical trips with actual durations from DB.
+22. Compute geographic distance using Haversine formula.
+23. Create a baseline ETA model: duration = distance / avg_speed.
+24. Add weather factor mock (rain, snow → +10% duration).
+25. Add time-of-day factor mock (rush hour → +20% duration).
+26. Build a simple linear model combining the factors.
+27. Add FastAPI endpoint `/eta/predict`.
+28. Create function recording prediction errors.
+29. Implement function updating avg_speed by driver.
+30. Load error statistics and print MAPE (Mean Absolute Percentage Error).
+
+---
+
+# 💸 **D. Dynamic Pricing Models (10 tasks)**
+
+More advanced surge pricing.
+
+31. Create a function computing demand-to-supply ratio by zone.
+32. Implement surge coefficient = min(1 + ratio × 0.3, 3.0).
+33. Add temporal factor: night hours → −20% surge.
+34. Add weather factor: bad weather → +15% surge.
+35. Combine factors into final dynamic price multiplier.
+36. Build endpoint `/pricing/dynamic`.
+37. Create DB table storing surge history per zone.
+38. Write function for rolling-average smoothing of surge.
+39. Build script to simulate surge for last 24 hours.
+40. Create JSON report of surge events (e.g., surge > 2.0).
+
+---
+
+# ⚠️ **E. Anomaly Detection (10 tasks)**
+
+Fraud & system abuse detection.
+
+41. Load trip logs with payments.
+42. Implement rule: unusually short trips (<200m) flagged as anomalies.
+43. Rule: unusually long trips (>80km) flagged.
+44. Rule: too frequent cancellations (>5 per hour).
+45. Rule: multiple accounts from same device.
+46. Aggregate anomaly flags into an "anomaly score".
+47. Store anomaly events in DB table `trip_anomalies`.
+48. Endpoint `/analytics/anomalies`.
+49. Daily summary function: print total anomalies.
+50. Build function that emails (mock) admin list of anomalies.
+
+---
+
+# 🧪 **F. A/B Testing Framework (10 tasks)**
+
+Compare features & algorithms.
+
+51. Create a table `experiments` with variants A and B.
+52. Write function to randomly assign users to group A/B.
+53. Build FastAPI middleware attaching experiment variant to requests.
+54. Create function recording metrics (CTR, accepted trips).
+55. Build endpoint `/experiments/start`.
+56. Build endpoint `/experiments/stop`.
+57. Function computing difference in success rates.
+58. Function creating statistical significance test (Z-score mock).
+59. Generate CSV report summarizing A/B test results.
+60. Implement visualization of A/B comparison (bar chart).
+
+---
+
+# 📈 **G. Business Intelligence (10 tasks)**
+
+Dashboards & metrics for management.
+
+61. Query GMV (Gross Merchandise Value) for a date range.
+62. Query number of completed trips per day.
+63. Query number of active drivers per hour.
+64. Query passenger retention (7-day vs 30-day).
+65. Compute driver utilization: time-with-passengers (%) per day.
+66. Compute fleet availability: active drivers vs online ones.
+67. Compute average fare per kilometre.
+68. Compute cancellation rate (%).
+69. Build endpoint `/dashboard/summary`.
+70. Generate a simple HTML dashboard template.
+
+---
+
+# Want me to…?
+
+I can also generate:
+
+📌 detailed instructions for each task
+📌 code stubs for all 70 tasks
+📌 database schema that all tasks rely on
+📌 how to distribute tasks among 20 students
+📌 a 10-week university plan built on these tasks
+
+Just tell me what you want next.

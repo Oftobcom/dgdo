@@ -112,4 +112,110 @@ I am university teacher. I have group of twenty students. Generate 70 simple tas
 5) DevOps tasks improve developer workflow - 10 tasks.
 6) Docker basics - 10 tasks.
 7) PostgreSQL Database - 10 tasks.
+
 ---
+I'm working on the open-source project "DG Do Matching Engine" for a ride-hailing system similar to Uber, Bolt, and Yandex Go.
+
+Minimum Validity (MVP)
+
+1) The project is launched with the command:
+docker compose up
+
+2) 🧩 Version 0.1 — MUST HAVE
+* Passenger registration
+* Submitting a trip request: from → to
+* Available driver status on the map
+* Driver assignment algorithm
+* Order status change: accepted → en route → completed
+* Simple admin panel
+* REST + WebSocket API
+
+3) Matching and other hi-load parts should be in C++
+
+4) API Gateway in Python FastAPI
+
+5) React.js for Admin Panel
+
+6) PostGIS for handling Geographical Data
+
+I am university teacher. I have group of twenty students. Generate 60 related to PostGIS which they should solve and which will make small contribution to my project.
+30 beginner level task on PostGIS. 30 intermediate level task on PostGIS.
+
+---
+I'm working on the open-source project "DG Do Matching Engine" for a ride-hailing system similar to Uber, Bolt, and Yandex Go.
+
+Minimum Validity (MVP)
+
+1) The project is launched with the command:
+docker compose up
+
+2) 🧩 Version 0.1 — MUST HAVE
+* Passenger registration
+* Submitting a trip request: from → to
+* Available driver status on the map
+* Driver assignment algorithm
+* Order status change: accepted → en route → completed
+* Simple admin panel
+* REST + WebSocket API
+
+3) Matching and other hi-load parts should be in C++
+
+4) API Gateway in Python FastAPI
+
+5) React.js for Admin Panel
+
+6) PostGIS for handling Geographical Data
+
+I am university teacher. I have group of twenty students. Generate 70 simple tasks which they should solve and which will make small simple contribution to my project. I want them create functions which together will create DG Do MVP.
+
+Payment & Pricing Systems & Financial Flows:
+
+    Dynamic Pricing: Surge pricing algorithms during high demand - 10 tasks.
+
+    Multiple Payment Methods: Credit cards, digital wallets, cash, corporate accounts - 10 tasks.
+
+    Split Payments: Dividing fare among multiple passengers - 10 tasks.
+
+    Commission Structure: Platform fees, driver earnings, bonuses - 10 tasks.
+
+    Invoice Generation: Receipts with trip details and breakdown - 10 tasks.
+
+    Fraud Detection: Prevent payment fraud and fake trips - 10 tasks.
+
+    Refund Processing: Handle customer disputes and refund requests - 10 tasks.
+
+---
+I'm working on the open-source project "DG Do Matching Engine" for a ride-hailing system similar to Uber, Bolt, and Yandex Go.
+
+Minimum Validity (MVP)
+
+1) The project is launched with the command:
+docker compose up
+
+2) 🧩 Version 0.1 — MUST HAVE
+* Passenger registration
+* Submitting a trip request: from → to
+* Available driver status on the map
+* Driver assignment algorithm
+* Order status change: accepted → en route → completed
+* Simple admin panel
+* REST + WebSocket API
+
+3) Matching and other hi-load parts should be in C++
+
+4) API Gateway in Python FastAPI
+
+5) React.js for Admin Panel
+
+6) PostGIS for handling Geographical Data
+
+I am university teacher. I have group of twenty students. Generate 70 simple tasks which they should solve and which will make small simple contribution to my project. I want them create functions which together will create DG Do MVP.
+
+Analytics & Machine Learning & Data-Driven Decisions:
+- **Demand Forecasting:** Predict ride demand by time and location - 10 tasks.
+- **Driver Churn Prediction:** Identify drivers at risk of leaving the platform - 10 tasks.
+- **Route Optimization ML:** Learn from historical data to improve ETAs - 10 tasks.
+- **Dynamic Pricing Models:** More sophisticated surge pricing algorithms - 10 tasks.
+- **Anomaly Detection:** Identify fraudulent patterns, system abuse - 10 tasks.
+- **A/B Testing Framework:** Test new features and algorithms - 10 tasks.
+- **Business Intelligence:** Dashboards for key metrics (GMV, completed trips, utilization) - 10 tasks.

@@ -1,0 +1,149 @@
+Below are **70 simple, student-friendly tasks**, each producing a tiny but real contribution to the **Payment & Pricing subsystem** of your DG Do MVP.
+
+They are divided exactly as you requested:
+
+* **10 Surge Pricing tasks**
+* **10 Multiple Payment Method tasks**
+* **10 Split Payment tasks**
+* **10 Commission Structure tasks**
+* **10 Invoice Generation tasks**
+* **10 Fraud Detection tasks**
+* **10 Refund Processing tasks**
+
+All tasks are **simple**, **isolated**, and ideal for *20 students working in parallel*.
+
+These tasks will accumulate into a real payment/pricing subsystem for your ride-hailing MVP.
+
+---
+
+# 🟦 **A. Dynamic Pricing (Surge Pricing) — 10 Tasks**
+
+1. Create a FastAPI function that returns current surge multiplier (default = 1.0).
+2. Add database table `surge_zones` with fields `(zone_id, multiplier)`.
+3. Implement endpoint to update surge multiplier for a zone.
+4. Write function to get surge multiplier by coordinate (point).
+5. Add C++ stub that receives multiplier as input.
+6. Implement Python function applying surge pricing: `base_price * multiplier`.
+7. Create endpoint `/pricing/estimate` that returns estimated price with surge.
+8. Add validation: multiplier must be between 1.0 and 5.0.
+9. Add cron job (mock) that sets multiplier to 1.0 at night.
+10. Create a simple UI widget in React to show “Surge in your area”.
+
+---
+
+# 🟦 **B. Multiple Payment Methods — 10 Tasks**
+
+1. Add table `payment_methods` for each passenger.
+2. Implement FastAPI endpoint: “Add payment method”.
+3. Implement FastAPI endpoint: “List user payment methods”.
+4. Add attribute “is_default” to payment methods.
+5. Write FastAPI endpoint: “Set default payment method”.
+6. Write validation: only one default method allowed.
+7. Add field `payment_method_id` to trip creation request.
+8. Add mock integration class `CreditCardProcessor` (dummy).
+9. Add dummy `DigitalWalletProcessor` (returns “OK”).
+10. Add route that checks if payment method exists before starting a trip.
+
+---
+
+# 🟦 **C. Split Payments — 10 Tasks**
+
+1. Add `co_passengers` array to trip request model.
+2. Implement function that calculates per-person share:
+   `total_fare / count_passengers`.
+3. Add endpoint allowing passenger to accept split fare.
+4. Add endpoint allowing passenger to reject split fare.
+5. Create DB table `split_payments` (trip_id, user_id, share_amount).
+6. Add backend logic to recalc shares if number of passengers changes.
+7. Add API endpoint that shows each passenger’s current share.
+8. Validate: total shares must sum to trip fare (simple check).
+9. Add React panel showing per-person price breakdown.
+10. Add unit test checking split payments with 2, 3, 4 passengers.
+
+---
+
+# 🟦 **D. Commission Structure — 10 Tasks**
+
+1. Add table `commission_rules` containing base percentage (e.g., 20%).
+2. Write API endpoint to update commission % (admin only).
+3. Implement function:
+   `platform_cut = fare * commission_percent / 100`.
+4. Add journey completion logic calculating (driver_earnings, platform_cut).
+5. Add field “bonus” to driver profile.
+6. Implement function: add bonus if driver completes 10 trips/day (mock).
+7. Add endpoint `/driver/earnings/today`.
+8. Add summary for admin: total platform income today.
+9. Add DB migration adding `earnings_history` table.
+10. Add React module “Driver Earnings Summary”.
+
+---
+
+# 🟦 **E. Invoice Generation — 10 Tasks**
+
+1. Create `invoices` table storing `(trip_id, passenger_id, amount, pdf_url)`.
+2. Write function generating simple text invoice (no PDF).
+3. Add endpoint: `/invoice/{trip_id}` returning invoice text.
+4. Add driver name & car model to invoice.
+5. Add timestamps (trip start, trip end) to invoice.
+6. Add surge multiplier info into invoice.
+7. Add method to store invoice in DB.
+8. Add email sending stub (just print “email sent”).
+9. Add admin panel page listing all invoices.
+10. Add a unit test verifying invoice totals.
+
+---
+
+# 🟦 **F. Fraud Detection — 10 Tasks**
+
+1. Add table `fraud_flags` storing suspicious events.
+2. Add logic: flag if the same passenger uses 5 cards in 10 minutes.
+3. Add logic: flag if fare exceeds 10× city average.
+4. Add logic: flag if driver position jumps more than 3 km instantly.
+5. Create endpoint `/fraud/check-trip/{trip_id}` returning flags.
+6. Add React admin page displaying flagged trips.
+7. Add function marking a flag as “reviewed”.
+8. Build dashboard: total fraud cases per day.
+9. Unit test: fake a jump in driver location → expect fraud flag.
+10. Add endpoint that disables user account if too many fraud flags.
+
+---
+
+# 🟦 **G. Refund Processing — 10 Tasks**
+
+1. Add DB table `refund_requests` (trip_id, user_id, reason).
+2. Implement endpoint: passenger submits refund request.
+3. Add endpoint: admin approves refund.
+4. Add endpoint: admin rejects refund.
+5. Add FastAPI function to compute refund amount (simple rule).
+6. Add event: when refund approved, subtract from platform income.
+7. Add event: when refund approved, notify driver (stub).
+8. Add event: send email to passenger (stub).
+9. Create admin React page for refund requests.
+10. Add pytest validating refund approval workflow.
+
+---
+
+# ✔️ What This Gives Your Class
+
+These 70 tasks:
+
+* are **simple**, even for beginners
+* are **real contributions** to the project
+* can be parallelized across 20 students
+* build a complete Payments, Pricing & Financial module
+* integrate naturally into your DG Do architecture
+* teach full-stack skills: DB → FastAPI → C++ → React → workflows
+
+---
+
+If you want, I can also generate:
+
+### 🔥 **80 tasks for Driver Management subsystem**
+
+### 🔥 **80 tasks for Passenger App subsystem**
+
+### 🔥 **100 tasks for C++ High-Load Matching Engine**
+
+### 🔥 **Full semester course with 12 weeks, labs, grading, exams**
+
+Want the full roadmap?

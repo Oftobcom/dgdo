@@ -1,0 +1,127 @@
+Excellent! Adding Payment & Pricing systems takes your MVP from a technical demo to a commercially viable platform. Here are 70 focused tasks across the 7 financial domains for your 20 students.
+
+## 1. Dynamic Pricing & Surge Algorithms (10 tasks)
+
+**Focus:** Implement time and demand-based fare multipliers.
+
+1. **Base Fare Calculator:** Create a function `calculate_base_fare(distance_km, duration_min)` that computes fare using fixed rates per km and minute.
+2. **Time-Based Surge Detection:** Create a function `get_time_of_day_multiplier()` that returns higher multipliers during rush hours (7-9 AM, 5-7 PM).
+3. **Demand Calculator:** Create a function `calculate_demand_ratio(available_drivers, pending_requests)` that returns a ratio of demand/supply.
+4. **Surge Multiplier Algorithm:** Implement `calculate_surge_multiplier(demand_ratio)` that scales from 1.0x to 3.0x based on demand.
+5. **Surge Zone Identification:** Create a function `identify_surge_zones()` that groups pending requests by geographic areas to apply localized surge pricing.
+6. **Surge Pricing API Endpoint:** Implement GET `/pricing/surge-multiplier?lat=X&lon=Y` that returns current surge for a location.
+7. **Surge Notification System:** Create WebSocket event that notifies admin panel when surge pricing activates in any zone.
+8. **Surge History Logger:** Implement function `log_surge_event(zone, multiplier, timestamp)` to track pricing changes.
+9. **Surge Multiplier Cap:** Add validation to ensure surge multiplier never exceeds 5.0x for consumer protection.
+10. **Dynamic Pricing Dashboard:** Create React component showing real-time surge zones and multipliers on the admin map.
+
+## 2. Multiple Payment Methods (10 tasks)
+
+**Focus:** Support different payment options with secure handling.
+
+11. **Payment Method Schema:** Design database table `payment_methods` with columns for `user_id`, `method_type`, `tokenized_data`, `is_default`.
+12. **Add Credit Card Method:** Implement POST `/users/{user_id}/payment-methods` endpoint to add encrypted credit card details.
+13. **Payment Method List:** Implement GET `/users/{user_id}/payment-methods` to list saved payment methods.
+14. **Set Default Payment Method:** Implement PUT `/users/{user_id}/payment-methods/{method_id}/default` to set default payment method.
+15. **Cash Payment Flag:** Add `payment_type` field to trip requests with default `cash` or `card`.
+16. **Digital Wallet Stub:** Create placeholder functions for Apple Pay/Google Pay token processing.
+17. **Corporate Account Linking:** Add `corporate_account_id` field to users table for business payments.
+18. **Payment Method Validation:** Create function `validate_payment_method(user_id, trip_amount)` that checks if payment method can cover the trip.
+19. **Payment Method Selection UI:** Add payment method dropdown in trip request React component.
+20. **Payment Method Encryption:** Implement basic encryption/decryption for sensitive payment data in database.
+
+## 3. Split Payments (10 tasks)
+
+**Focus:** Divide fare among multiple passengers.
+
+21. **Split Payment Request Schema:** Add `split_among_passengers` field to trip requests containing array of user IDs.
+22. **Split Fare Calculator:** Create function `calculate_split_amounts(total_fare, passenger_count)` that divides fare equally.
+23. **Split Payment Invitation:** Implement POST `/trips/{trip_id}/split-invite` that notifies other passengers via WebSocket.
+24. **Split Acceptance Tracking:** Create database table `trip_splits` to track which passengers have accepted their share.
+25. **Split Payment Status Endpoint:** Implement GET `/trips/{trip_id}/split-status` showing who has paid.
+26. **Auto-decline Expiry:** Create cron job that automatically declines split requests after 24 hours.
+27. **Partial Payment Processing:** Implement function `process_split_payment(trip_id, user_id, amount)` for individual payments.
+28. **Split Payment Reminder:** Create automated reminder system for pending split payments.
+29. **Uneven Split Support:** Enhance split calculator to handle manual amount overrides for each passenger.
+30. **Split Payment Dashboard:** Add React component showing split payment status for each trip in admin panel.
+
+## 4. Commission Structure (10 tasks)
+
+**Focus:** Platform fees, driver earnings, and incentive systems.
+
+31. **Commission Rate Configuration:** Create table `commission_rates` with `rate_percentage` and `effective_date`.
+32. **Driver Earnings Calculator:** Implement function `calculate_driver_earnings(trip_fare, commission_rate)`.
+33. **Platform Revenue Tracking:** Add `platform_commission` field to trips table.
+34. **Dynamic Commission Rates:** Create function `get_commission_rate(driver_id, trip_time)` for variable rates based on driver performance.
+35. **Bonus Eligibility Checker:** Implement `check_bonus_eligibility(driver_id, period)` for weekly/monthly incentives.
+36. **Surge Commission Calculation:** Ensure platform commission is calculated on the surged amount, not base fare.
+37. **Driver Statement Endpoint:** Implement GET `/drivers/{driver_id}/earnings?start_date=X&end_date=Y`.
+38. **Commission Analytics:** Create admin dashboard component showing total platform revenue by day/week.
+39. **Bonus Payout Processing:** Implement function `process_driver_bonuses()` that calculates and pays weekly bonuses.
+40. **Driver Tier System:** Create `driver_tiers` table with different commission rates for Gold/Silver/Bronze drivers.
+
+## 5. Invoice Generation (10 tasks)
+
+**Focus:** Professional receipts with detailed breakdowns.
+
+41. **Invoice Schema Design:** Create `invoices` table linked to trips with all fare components.
+42. **Fare Breakdown Builder:** Implement function `build_fare_breakdown(trip_id)` returning base_fare, surge_multiplier, tolls, taxes, etc.
+43. **Invoice Number Generator:** Create function `generate_invoice_number()` that produces sequential, unique invoice numbers.
+44. **PDF Invoice Generation:** Implement endpoint GET `/invoices/{trip_id}/pdf` that generates downloadable invoice.
+45. **Email Invoice Service:** Create function `send_invoice_email(passenger_email, trip_id, invoice_url)`.
+46. **Invoice Line Items:** Support itemized charges: distance fare, time fare, surge, booking fee, taxes.
+47. **Multi-language Invoices:** Add support for different languages in invoice templates.
+48. **Invoice Search API:** Implement GET `/invoices?passenger_id=X&date_from=Y` for invoice history.
+49. **Corporate Invoice Formatting:** Special invoice format for corporate accounts with billing codes.
+50. **Invoice Analytics:** React component showing invoice generation statistics and trends.
+
+## 6. Fraud Detection (10 tasks)
+
+**Focus:** Prevent payment fraud and system abuse.
+
+51. **Velocity Checking:** Implement `check_ride_velocity(passenger_id)` flagging users with too many rides in short period.
+52. **Duplicate Payment Detection:** Create function `detect_duplicate_payments(card_token, amount, time_window)`.
+53. **Suspicious Location Patterns:** Flag trips with identical pickup/dropoff locations repeatedly.
+54. **Driver-Passenger Collusion Detection:** Identify driver-passenger pairs with frequent short trips.
+55. **Cancellation Rate Monitor:** Track excessive trip cancellations by both drivers and passengers.
+56. **Payment Method Cycling:** Detect users frequently changing payment methods (potential stolen cards).
+57. **Fraud Scoring System:** Implement `calculate_fraud_score(trip_request)` that scores risk from 0-100.
+58. **Manual Review Queue:** Create admin interface for reviewing trips with high fraud scores.
+59. **IP Address Geolocation Check:** Compare user's IP location with trip locations for inconsistencies.
+60. **Fraud Alert Webhooks:** Implement system to notify admins via WebSocket when high-risk transactions occur.
+
+## 7. Refund Processing (10 tasks)
+
+**Focus:** Handle disputes and refund requests efficiently.
+
+61. **Refund Request Schema:** Create `refund_requests` table with `trip_id`, `reason`, `amount_requested`, `status`.
+62. **Refund Eligibility Checker:** Implement `check_refund_eligibility(trip_id)` based on cancellation timing and reasons.
+63. **Partial Refund Calculator:** Create function `calculate_partial_refund(trip_fare, cancellation_time)`.
+64. **Refund Request API:** Implement POST `/refunds` endpoint for passengers to submit refund requests.
+65. **Refund Approval Workflow:** Create admin endpoints for reviewing and approving/denying refund requests.
+66. **Refund Processing Service:** Implement `process_refund_payment(refund_request_id)` that handles actual payment reversal.
+67. **Refund Status Notifications:** Send WebSocket/email notifications when refund status changes.
+68. **Refund Analytics Dashboard:** React component showing refund rates, reasons, and amounts over time.
+69. **Automatic Refund Rules:** Implement rules for automatic refunds (e.g., driver never showed up).
+70. **Refund Dispute Escalation:** Create system for escalating unresolved refund disputes to customer service.
+
+## Implementation Notes for Students:
+
+**Technology Integration:**
+- Use **Stripe/PayPal SDKs** for actual payment processing in the gateway
+- Implement **Redis** for caching surge multipliers and fraud scores  
+- Use **Celery** for async tasks like email sending and PDF generation
+- **PostGIS** for geographic fraud detection (impossible travel distances)
+
+**Team Organization:**
+- Divide into 7 teams of ~3 students, each tackling one domain
+- One student per team focuses on database schema
+- One focuses on API endpoints  
+- One focuses on business logic and algorithms
+
+**Progressive Complexity:**
+- Start with hardcoded values (e.g., fixed 15% commission)
+- Move to configurable parameters
+- Finally implement dynamic, data-driven systems
+
+This breakdown gives each student 3-4 meaningful tasks while building a comprehensive financial system that would truly make your platform production-ready!
