@@ -393,3 +393,80 @@ wsl -l -v
 ```
 
 and look for a solution online. Sorry.
+
+# Here are the methods to completely remove Ubuntu from WSL on Windows 10:
+
+## Method 1: Using Command Line (Recommended)
+
+### Unregister/Remove Ubuntu distribution:
+```cmd
+wsl --unregister Ubuntu
+```
+
+If you have multiple distributions, first check the exact name:
+```cmd
+wsl --list --all
+```
+Then use the exact name in the unregister command.
+
+## Method 2: Using PowerShell
+
+### List all installed distributions:
+```powershell
+wsl --list --verbose
+```
+
+### Remove Ubuntu:
+```powershell
+wsl --unregister Ubuntu
+```
+
+## Method 3: Through Windows Settings
+
+1. Open **Settings** → **Apps** → **Apps & features**
+2. Search for "Ubuntu" or "Windows Subsystem for Linux"
+3. Click on the Ubuntu installation and select **Uninstall**
+
+## Method 4: Remove from Microsoft Store (if installed from Store)
+
+1. Open Microsoft Store
+2. Click on your profile picture → **My Library**
+3. Find Ubuntu and select **Uninstall**
+
+## Complete Cleanup Steps:
+
+1. **Terminate running instances first:**
+   ```cmd
+   wsl --terminate Ubuntu
+   ```
+
+2. **Unregister the distribution:**
+   ```cmd
+   wsl --unregister Ubuntu
+   ```
+
+3. **Verify removal:**
+   ```cmd
+   wsl --list --all
+   ```
+   (Ubuntu should no longer appear in the list)
+
+4. **Optional: Delete leftover files**
+   - Navigate to `%localappdata%\Packages`
+   - Look for folders containing "Ubuntu" or "Canonical" in the name
+   - Delete these folders (be careful to only delete the correct ones)
+
+## Important Notes:
+
+- **`--unregister` permanently deletes all data, settings, and files** within that WSL distribution
+- This action cannot be undone - backup important files first
+- The WSL feature itself remains installed, only the Ubuntu distribution is removed
+- If you want to remove WSL completely, you'll need to disable the Windows feature
+
+## To Completely Remove WSL:
+
+1. Open **Control Panel** → **Programs** → **Turn Windows features on or off**
+2. Uncheck **"Windows Subsystem for Linux"**
+3. Click **OK** and restart your computer
+
+After removal, you can always reinstall Ubuntu from the Microsoft Store if needed.

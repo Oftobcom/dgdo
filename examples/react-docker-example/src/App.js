@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Welcome to React in Docker!</h1>
-        <h2>Greetings from Rahmatjon I. Hakimov! Test</h2>
+        <h2>Greetings from Rahmatjon I. Hakimov!</h2>
         <p>
           This is a simple React application running inside a Docker container.
         </p>
