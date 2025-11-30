@@ -1,0 +1,63 @@
+docker compose up --build
+
+# Build the Docker image
+docker build -t fastapi-docker-example .
+
+# Run with auto-reload
+docker run -d -p 8000:8000 --name fastapi-app \
+  -v $(pwd)/app:/app \
+  fastapi-docker-example uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+# Run the container with host network (important for WSL2)
+docker run -d -p 8000:8000 --name fastapi-app fastapi-docker-example
+
+# Check running containers
+docker ps
+
+# Check logs if needed
+docker logs fastapi-app
+
+# Get the WSL IP address
+hostname -I
+
+# Or more specifically
+ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+
+# Check if the port is bound correctly
+netstat -tulpn | grep 8000
+
+# Stop and restart with explicit port binding
+docker stop fastapi-app
+docker rm fastapi-app
+docker run -d -p 0.0.0.0:8000:8000 --name fastapi-app fastapi-docker-example
+
+# In your project directory
+docker stop fastapi-app 2>/dev/null || true
+docker rm fastapi-app 2>/dev/null || true
+
+# Start Docker service (if using Docker Desktop WSL2 integration)
+sudo service docker start
+
+# Or if using Docker installed directly in WSL
+sudo systemctl start docker
+
+# Stop the container
+docker stop fastapi-app
+
+# Start the container
+docker start fastapi-app
+
+# Restart the container
+docker restart fastapi-app
+
+# Remove the container
+docker rm fastapi-app
+
+# Remove the image
+docker rmi fastapi-docker-example
+
+# Start with auto-reload
+docker-compose up -d
+
+# View logs to confirm it's working
+docker-compose logs -f

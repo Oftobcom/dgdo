@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first (better caching)
+COPY package*.json ./
+
+# Install dependencies (no dev dependencies pruning for faster installs)
+RUN npm install --no-optional
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start with increased watcher limits
+CMD ["npm", "start"]

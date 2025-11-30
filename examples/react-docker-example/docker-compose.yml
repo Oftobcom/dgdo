@@ -1,0 +1,41 @@
+services:
+  react-app:
+    build: .
+    ports:
+      - "3000:3000"
+    labels:
+      - "com.docker.desktop.port=3000"
+    environment:
+      # FAST REFRESH SETTINGS
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - FAST_REFRESH=true
+      - WDS_SOCKET_PORT=0
+      
+      # React specific optimizations
+      - BROWSER=none
+      - GENERATE_SOURCEMAP=false
+      - REACT_EDITOR=none
+      
+      # Node.js memory optimizations
+      - NODE_OPTIONS=--max-old-space-size=4096
+      - NODE_ENV=development
+      
+    volumes:
+      # Full project sync for instant updates
+      - .:/app
+      - /app/node_modules
+      - /app/.eslintcache
+      
+    # Development optimizations
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    
+    # Health check to ensure app is running
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

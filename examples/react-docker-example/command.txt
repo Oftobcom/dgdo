@@ -1,0 +1,61 @@
+# Build the image
+docker build -t react-docker-app .
+
+# Run the container
+docker run -p 3000:3000 -v $(pwd):/app -v /app/node_modules react-docker-app
+
+# Check running containers
+docker ps
+
+# Check logs if needed
+docker logs react-docker-app
+
+# Get the WSL IP address
+hostname -I
+
+# Or more specifically
+ip addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
+
+# Check if the port is bound correctly
+netstat -tulpn | grep 8000
+
+# Stop and restart with explicit port binding
+docker stop react-docker-app
+docker rm react-docker-app
+docker run -p 3000:3000 -v $(pwd):/app -v /app/node_modules react-docker-app
+
+# Start Docker service (if using Docker Desktop WSL2 integration)
+sudo service docker start
+
+# Or if using Docker installed directly in WSL
+sudo systemctl start docker
+
+# Stop the container
+docker stop react-docker-app
+
+# Start the container
+docker start react-docker-app
+
+# Restart the container
+docker restart react-docker-app
+
+# Remove the container
+docker rm react-docker-app
+
+# Remove the image
+
+
+# Start with fast refresh
+docker-compose up
+
+# Start in background
+docker-compose up -d
+
+# View logs to monitor refresh
+docker-compose logs -f
+
+# Restart if needed (fast)
+docker-compose restart
+
+# Full rebuild (when needed)
+docker-compose up --build

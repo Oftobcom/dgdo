@@ -219,3 +219,8 @@ Analytics & Machine Learning & Data-Driven Decisions:
 - **Anomaly Detection:** Identify fraudulent patterns, system abuse - 10 tasks.
 - **A/B Testing Framework:** Test new features and algorithms - 10 tasks.
 - **Business Intelligence:** Dashboards for key metrics (GMV, completed trips, utilization) - 10 tasks.
+
+---
+What libraries can I use to create a simple C++ API project?
+---
+Create a simple, minimal Docker-based C++ API project using Drogon. I will run the project on Ubuntu 24.04.
