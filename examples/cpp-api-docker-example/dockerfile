@@ -1,26 +1,57 @@
-FROM ubuntu:24.04
+# --- Stage 1: Builder ---
+FROM ubuntu:22.04 AS builder
 
-# Install Drogon and all dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 1. Install dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
+    git \
     cmake \
-    pkg-config \
-    libdrogon-dev \
+    g++ \
     libjsoncpp-dev \
-    libssl-dev \
     uuid-dev \
+    libssl-dev \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Set up project directory
+# 2. Build and Install Drogon Framework
+WORKDIR /opt
+RUN git clone https://github.com/drogonframework/drogon && \
+    cd drogon && \
+    git checkout v1.9.7 && \
+    git submodule update --init && \
+    mkdir build && cd build && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release && \
+    make -j$(nproc) && \
+    make install
+
+# 3. Build Your Application
 WORKDIR /app
 COPY . .
-
-# Build the project
 RUN mkdir build && cd build && \
-    cmake .. && \
+    cmake .. -DCMAKE_BUILD_TYPE=Release && \
     make -j$(nproc)
+
+# --- Stage 2: Runner ---
+FROM ubuntu:22.04
+
+# Install runtime libraries only
+RUN apt-get update && apt-get install -y \
+    libjsoncpp25 \
+    uuid \
+    libssl3 \
+    zlib1g \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the compiled executable and drogon libraries
+COPY --from=builder /app/build/drogon_api /usr/local/bin/drogon_api
+# Note: Drogon installs shared libs to /usr/local/lib by default
+COPY --from=builder /usr/local/lib/libdrogon.so* /usr/local/lib/
+COPY --from=builder /usr/local/lib/libtrantor.so* /usr/local/lib/
+
+# Update linker cache so it finds the new libraries
+RUN ldconfig
 
 EXPOSE 8080
 
-CMD ["./build/drogon_api"]
+CMD ["drogon_api"]

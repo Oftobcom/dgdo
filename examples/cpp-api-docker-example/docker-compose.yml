@@ -1,10 +1,18 @@
+version: '3.8'
+
 services:
-  drogon-api:
-    build: .
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: drogon-app
+    container_name: drogon_api_container
     ports:
       - "8080:8080"
-    volumes:
-      - .:/app
     restart: unless-stopped
-    labels:
-      - "com.docker.desktop.port=8080"
+    # Optional: Limits to ensure the container doesn't consume all host resources
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
