@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  fastapi-client:
+    build: .
+    container_name: fastapi-grpc-client
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app                      # hot reload
+    command:
+      uvicorn main:app
+      --host 0.0.0.0
+      --port 8000
+      --reload                     # enables auto-reload
+    environment:
+      - PYTHONUNBUFFERED=1
