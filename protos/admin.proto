@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package dgdo.admin;
+
+import "trip.proto";
+import "trip_request.proto";
+
+// Admin action logs
+message AdminActionLog {
+  string trip_id = 1;
+  string driver_id = 2;
+  string passenger_id = 3;
+  string status = 4;
+  string action = 5;
+  string comment = 6;
+}
+
+// Admin service
+service AdminService {
+  rpc ListTrips(triprequest.TripRequest) returns (stream trip.Trip);
+  rpc ForceCancelTrip(trip.Trip) returns (trip.Trip);
+  rpc OverrideAssignment(trip.Trip) returns (trip.Trip);
+}

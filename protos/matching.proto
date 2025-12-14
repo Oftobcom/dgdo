@@ -1,0 +1,33 @@
+// matching.proto
+syntax = "proto3";
+
+package dgdo.matching;
+
+import "trip_request.proto";
+
+
+// Candidate driver
+message DriverCandidate {
+  string driver_id = 1;
+  double probability = 2;
+}
+
+message DriverProbability {
+  string driver_id = 1;
+  double probability = 2;   // must satisfy 0 < p ≤ 1
+}
+
+message MatchTripRequestCommand {
+  dgdo.triprequest.TripRequest trip_request = 1;
+  uint32 max_candidates = 2;   // hard cap (e.g. 10)
+}
+
+message MatchDistribution {
+  string request_id = 1;
+  repeated DriverProbability candidates = 2;
+}
+
+service MatchingService {
+  rpc MatchTripRequest(MatchTripRequestCommand)
+      returns (MatchDistribution);
+}

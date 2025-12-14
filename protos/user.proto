@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package dgdo.user;
+
+import "common.proto";
+
+// User roles
+enum UserRole {
+  PASSENGER = 0;
+  DRIVER = 1;
+}
+
+// User status
+enum UserStatus {
+  INACTIVE = 0;
+  ACTIVE = 1;
+}
+
+// User message
+message User {
+  string id = 1;
+  string name = 2;
+  UserRole role = 3;
+  UserStatus status = 4;
+  string phone = 5;
+  string email = 6;
+  double rating = 7;
+  dgdo.common.Location location = 8; // for drivers
+  dgdo.common.Metadata metadata = 9;
+}
+
+// User service
+service UserService {
+  rpc CreateUser(User) returns (User);
+  rpc GetUser(User) returns (User);
+  rpc UpdateUserStatus(User) returns (User);
+  rpc ListAvailableDrivers(dgdo.common.Location) returns (stream User);
+}

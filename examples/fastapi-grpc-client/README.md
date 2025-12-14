@@ -140,7 +140,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ```bash
 docker build -t fastapi-grpc-client .
-docker run --rm -p 8000:8000 fastapi-grpc-client --reload
+docker run --rm -p 8000:8000 fastapi-grpc-client
 ```
 
 ---

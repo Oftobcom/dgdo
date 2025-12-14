@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package dgdo.driver_status;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+// Vehicle info
+message VehicleInfo {
+  string make = 1;
+  string model = 2;
+  string plate_number = 3;
+}
+
+// Driver status
+message DriverStatus {
+  string driver_id = 1;
+  bool is_available = 2;
+  dgdo.common.Location current_location = 3;
+  google.protobuf.Timestamp last_seen = 4;
+  VehicleInfo vehicle_info = 5;
+}
+
+// DriverStatus service
+service DriverStatusService {
+  rpc UpdateDriverStatus(DriverStatus) returns (DriverStatus);
+  rpc GetAvailableDrivers(dgdo.common.Location) returns (stream DriverStatus);
+}

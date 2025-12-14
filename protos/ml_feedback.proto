@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package dgdo.ml_feedback;
+
+import "common.proto";
+import "matching.proto";
+import "google/protobuf/timestamp.proto";
+
+// Feedback for ML
+message Feedback {
+  string trip_request_id = 1;
+  repeated matching.DriverCandidate candidate_list = 2;
+  string matched_driver = 3;
+  bool success_flag = 4;
+  google.protobuf.Timestamp timestamp = 5;
+}
+
+// ML feedback service
+service MLFeedbackService {
+  rpc SendFeedback(Feedback) returns (Feedback);
+  rpc GetTrainingBatch(dgdo.common.Metadata) returns (stream Feedback);
+}

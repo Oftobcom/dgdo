@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package dgdo.notifications;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+// Notification message
+message Notification {
+  string recipient_id = 1;
+  string message_type = 2;
+  string payload = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+// Notification service
+service NotificationService {
+  rpc SendNotification(Notification) returns (Notification);
+  rpc SubscribeChannel(dgdo.common.Location) returns (stream Notification);
+}

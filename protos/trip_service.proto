@@ -1,0 +1,26 @@
+// trip_service.proto
+
+syntax = "proto3";
+
+package dgdo.tripservice;
+
+import "common.proto";
+import "trip.proto";
+
+message CreateTripCommand {
+  string request_id = 1;
+  string passenger_id = 2;
+  string driver_id = 3;
+  dgdo.common.Location origin = 4;
+  dgdo.common.Location destination = 5;
+}
+
+message TripId {
+  string id = 1;
+}
+
+service TripService {
+  rpc CreateTrip(CreateTripCommand) returns (dgdo.trip.Trip);
+  rpc GetTrip(TripId) returns (dgdo.trip.Trip);
+  rpc UpdateTripStatus(dgdo.trip.Trip) returns (dgdo.trip.Trip);
+}

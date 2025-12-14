@@ -1,45 +1,27 @@
 version: "3.9"
 
 services:
-  api:
-    build: ./api
+  trip_request_service:
+    image: dgdo-trip-request
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
-      - matching
+      - "50051:50051"
 
-  matching:
-    build: ./matching
+  trip_service:
+    image: dgdo-trip-service
     ports:
-      - "8001:8001"
+      - "50052:50052"
 
-  admin:
-    build: ./admin
+  matching_service:
+    image: dgdo-matching
     ports:
-      - "8002:8000"
-    depends_on:
-      - api
+      - "50053:50053"
 
-  admin-frontend:
-    build: ./admin-frontend
+  telemetry_service:
+    image: dgdo-telemetry
     ports:
-      - "8003:80"
-    depends_on:
-      - api
+      - "50054:50054"
 
-  db:
-    image: postgres:15
-    container_name: dgdo_postgres
-    environment:
-      POSTGRES_USER: dgdo
-      POSTGRES_PASSWORD: dgdo
-      POSTGRES_DB: dgdo
+  ml_feedback_service:
+    image: dgdo-ml-feedback
     ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-
-volumes:
-  pgdata:
+      - "50055:50055"

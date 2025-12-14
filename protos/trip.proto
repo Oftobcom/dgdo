@@ -1,0 +1,31 @@
+// trip.proto
+
+syntax = "proto3";
+
+package dgdo.trip;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+// Trip status
+enum TripStatus {
+  ACCEPTED = 0;
+  EN_ROUTE = 1;
+  COMPLETED = 2;
+  CANCELLED = 3;
+  CANCELLED_BY_DRIVER = 4;
+}
+
+// Trip message
+message Trip {
+  string id = 1;
+  string trip_request_id = 2;
+  string passenger_id = 3;
+  string driver_id = 4;
+  dgdo.common.Location origin = 5;
+  dgdo.common.Location destination = 6;
+  TripStatus status = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  dgdo.common.Metadata metadata = 10;
+}

@@ -1,0 +1,43 @@
+// trip_request.proto
+syntax = "proto3";
+
+package dgdo.triprequest;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+enum TripRequestStatus {
+  TRIP_REQUEST_STATUS_UNSPECIFIED = 0;
+  OPEN = 1;
+  MATCHED = 2;
+  CANCELLED = 3;
+  EXPIRED = 4;
+}
+
+message TripRequest {
+  string id = 1;
+  string passenger_id = 2;
+  dgdo.common.Location origin = 3;
+  dgdo.common.Location destination = 4;
+  TripRequestStatus status = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+message CreateTripRequestCommand {
+  string passenger_id = 1;
+  dgdo.common.Location origin = 2;
+  dgdo.common.Location destination = 3;
+}
+
+message CancelTripRequestCommand {
+  string request_id = 1;
+}
+
+// TripRequest service
+service TripRequestService {
+  rpc CreateTripRequest(TripRequest) returns (TripRequest);
+  rpc CancelTripRequest(TripRequest) returns (TripRequest);
+  rpc GetTripRequest(TripRequest) returns (TripRequest);
+}
+

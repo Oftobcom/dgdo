@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package dgdo.pricing;
+
+// Pricing info
+message Fare {
+  string trip_id = 1;
+  double base_fare = 2;
+  double distance = 3;
+  double time = 4;
+  double surge_multiplier = 5;
+  double final_fare = 6;
+}
+
+// Pricing service
+service PricingService {
+  rpc CalculateFare(Fare) returns (Fare);
+  rpc ApplyDiscount(Fare) returns (Fare);
+}

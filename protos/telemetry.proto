@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package dgdo.telemetry;
+
+import "google/protobuf/timestamp.proto";
+import "common.proto";
+
+// Telemetry event
+message TelemetryEvent {
+  string event_type = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  string entity_id = 3; // trip_id, trip_request_id, driver_id
+  dgdo.common.Metadata metadata = 4;
+  string reason_code = 5;
+}
+
+// Telemetry service
+service TelemetryService {
+  rpc LogEvent(TelemetryEvent) returns (TelemetryEvent);
+  rpc QueryMetrics(dgdo.common.Metadata) returns (stream TelemetryEvent);
+}

@@ -14,7 +14,8 @@ The project's goal is to demonstrate a working framework for a ride-hailing plat
 ## Technologies
 - **Backend:** C++, Python, FastAPI
 - **Database:** PostgreSQL + PostGIS
-- **Frontend:** React + Leaflet
+- **Frontend:** React + MapLibre
+- **Map:** OpenStreetMap (OSM)
 
 ## Purpose
 The project is developed primarily for educational and research purposes. At the same time, we welcome and encourage any practical applications or real-world implementations that may emerge from its use.
@@ -44,6 +45,76 @@ After a few moments, all services should be running locally.
 
 ---
 
+## 🧩 Project Structure
+
+```
+dgdo/
+├─ protos/                    # All proto definitions
+│  ├─ common.proto
+│  ├─ trip_request.proto
+│  ├─ trip.proto
+│  ├─ trip_service.proto
+│  ├─ matching.proto
+│  ├─ user.proto
+│  ├─ driver_status.proto
+│  ├─ admin.proto
+│  ├─ telemetry.proto
+│  ├─ ml_feedback.proto
+│  ├─ pricing.proto
+│  └─ notifications.proto
+│
+├─ services/                  # Implementation code for each service
+│  ├─ python/                 # Python services
+│  │  ├─ trip_request_server.py
+│  │  ├─ trip_server.py
+│  │  ├─ telemetry_server.py
+│  │  ├─ ml_feedback_server.py
+│  │  └─ common_utils.py
+│  │
+│  ├─ cpp/                    # C++ services
+│  │  ├─ matching_server.cpp
+│  │  ├─ matching.pb.cc
+│  │  ├─ matching.pb.h
+│  │  ├─ matching.grpc.pb.cc
+│  │  └─ matching.grpc.pb.h
+│  │
+│  └─ (future: user_service, driver_status_service, admin_service, pricing_service, notifications_service)
+│
+├─ tests/                     # Test scripts
+│  └─ test_full_flow.py
+│
+├─ docker/                    # Dockerfiles for all services
+│  ├─ trip_request_service.Dockerfile
+│  ├─ trip_service.Dockerfile
+│  ├─ telemetry_service.Dockerfile
+│  ├─ ml_feedback_service.Dockerfile
+│  └─ matching_service.Dockerfile
+│
+├─ docker-compose.yml         # Compose all services
+├─ requirements.txt           # Python dependencies
+└─ README.md
+
+```
+---
+
+## Build order
+
+```bash
+# Base image
+docker build -t dgdo-python-base -f docker/python_base.Dockerfile .
+
+# Python services
+docker build -t dgdo-trip-request -f docker/trip_request_service.Dockerfile .
+docker build -t dgdo-trip-service -f docker/trip_service.Dockerfile .
+docker build -t dgdo-telemetry -f docker/telemetry_service.Dockerfile .
+docker build -t dgdo-ml-feedback -f docker/ml_feedback_service.Dockerfile .
+
+# C++ MatchingService
+docker build -t dgdo-matching -f docker/matching_service.Dockerfile .
+```
+
+---
+
 ## 🔧 Local Services & Access Links
 
 | Service             | URL / Port                                          |
@@ -54,19 +125,6 @@ After a few moments, all services should be running locally.
 | Postgres Database   | localhost:5432                                      |
 
 > **Tip:** Use your browser to access the web services (API docs available at `/docs` on FastAPI).
-
----
-
-## 🧩 Project Structure
-
-```
-dgdo/
-├── api/                # FastAPI API Gateway
-├── matching/           # C++ Matching Engine
-├── admin/              # Admin Panel (FastAPI placeholder)
-├── db/                 # Database init scripts
-└── docker-compose.yml  # Orchestration of all services
-```
 
 ---
 
