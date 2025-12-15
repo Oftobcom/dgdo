@@ -49,7 +49,7 @@ After a few moments, all services should be running locally.
 
 ```
 dgdo/
-├─ protos/                    # All proto definitions
+├─ protos/                          # All proto definitions
 │  ├─ common.proto
 │  ├─ trip_request.proto
 │  ├─ trip.proto
@@ -63,35 +63,48 @@ dgdo/
 │  ├─ pricing.proto
 │  └─ notifications.proto
 │
-├─ services/                  # Implementation code for each service
-│  ├─ python/                 # Python services
+├─ generated/                       # files generated from proto-files
+│  ├─ cpp/                          # C++ modules
+│  │  ├─ admin.grpc.pb.cc
+│  │  ├─ admin.grpc.pb.h
+│  │  ├─ admin.pb.cc
+│  │  ├─ admin.pb.h
+│  │  └─ (etc.)
+│  │
+│  ├─ python/                       # Python modules
+│  │  ├─ admin_pb2_grpc.py
+│  │  ├─ admin_pb2.py
+│  │  ├─ common_pb2_grpc.py
+│  │  ├─ common_pb2.py
+│  │  └─ (etc.)
+│  │
+├─ services/                        # Implementation code for each service
+│  ├─ cpp/                          # C++ services
+│  │  ├─ CMakeLists.txt
+│  │  ├─ matching_server.cpp
+│  │  └─ test_matching.py
+│  │
+│  ├─ python/                       # Python services
 │  │  ├─ trip_request_server.py
 │  │  ├─ trip_server.py
 │  │  ├─ telemetry_server.py
 │  │  ├─ ml_feedback_server.py
 │  │  └─ common_utils.py
 │  │
-│  ├─ cpp/                    # C++ services
-│  │  ├─ matching_server.cpp
-│  │  ├─ matching.pb.cc
-│  │  ├─ matching.pb.h
-│  │  ├─ matching.grpc.pb.cc
-│  │  └─ matching.grpc.pb.h
-│  │
 │  └─ (future: user_service, driver_status_service, admin_service, pricing_service, notifications_service)
 │
-├─ tests/                     # Test scripts
+├─ tests/                           # Test scripts
 │  └─ test_full_flow.py
 │
-├─ docker/                    # Dockerfiles for all services
+├─ docker/                          # Dockerfiles for all services
 │  ├─ trip_request_service.Dockerfile
 │  ├─ trip_service.Dockerfile
 │  ├─ telemetry_service.Dockerfile
 │  ├─ ml_feedback_service.Dockerfile
 │  └─ matching_service.Dockerfile
 │
-├─ docker-compose.yml         # Compose all services
-├─ requirements.txt           # Python dependencies
+├─ docker-compose.yml               # Compose all services
+├─ requirements.txt                 # Python dependencies
 └─ README.md
 
 ```
@@ -141,3 +154,30 @@ docker build -t dgdo-matching -f docker/matching_service.Dockerfile .
 
 * Contributions are welcome! Please open issues or pull requests.
 * Follow standard GitHub fork → feature branch → pull request workflow.
+
+---
+
+Here’s a **mapping of current proto-files to MVP functionality**, showing which features are fully covered, partially covered, or optional for alpha launch. 
+This will help **prioritize work and see gaps clearly**.
+
+| Proto File              | MVP Feature(s) Covered                   | Status / Notes                                                                            |
+| ----------------------- | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **common.proto**        | `Location`, `Metadata`                   | ✅ Fully covered; used in Trip, TripRequest, Matching                                     |
+| **trip.proto**          | Trip entity, FSM fields                  | ✅ Fully covered; immutable fields, status, timestamps                                    |
+| **trip_service.proto**  | Trip creation, updates, cancellation     | ✅ Fully covered; idempotency via `trip_request_id`                                       |
+| **trip_request.proto**  | Create/Cancel TripRequest                | ✅ Fully covered; single active request per passenger, cold-start logic stubbed           |
+| **matching.proto**      | Candidate drivers, probabilities         | ✅ Fully covered for deterministic MVP; supports max_candidates and seed-based replay     |
+| **driver_status.proto** | Driver availability & status             | ✅ Partially; could include real-time streaming later, but sufficient for static matching |
+| **user.proto**          | Passenger registration / info            | ✅ Fully covered for MVP; basic fields enough for login/register                          |
+| **admin.proto**         | Admin panel queries                      | ✅ Partially; can expand later, basic trip listing is enough                              |
+| **notifications.proto** | Push notifications                       | ⚪ Optional for alpha; could be stubbed or delayed                                        |
+| **telemetry.proto**     | Event logging (Trip, Matching, failures) | ✅ Fully covered; essential for debugging & ML                                            |
+| **ml_feedback.proto**   | Candidate distribution logging           | ⚪ Optional for MVP; can stub logging for now                                             |
+| **pricing.proto**       | Fare calculation                         | ⚪ Optional for alpha; minimal static fares ok                                            |
+| **common.proto**        | Locations & metadata                     | ✅ Required dependency for all services                                                   |
+
+### ✅ MVP Summary
+
+* **Fully covered**: core Trip & TripRequest flows, MatchingService deterministic selection, TripService FSM, basic telemetry
+* **Partially covered**: Admin panel (listing trips), driver availability, user registration (basic fields)
+* **Optional / can be stubbed**: Notifications, pricing logic, ML feedback, real-time driver streaming

@@ -1,33 +1,44 @@
 // matching.proto
+
 syntax = "proto3";
 
 package dgdo.matching;
 
-import "trip_request.proto";
+import "common.proto";
 
-
+// --------------------
 // Candidate driver
-message DriverCandidate {
+// --------------------
+
+message Candidate {
   string driver_id = 1;
-  double probability = 2;
+  double probability = 2;   // normalized, sum ≈ 1
 }
 
-message DriverProbability {
-  string driver_id = 1;
-  double probability = 2;   // must satisfy 0 < p ≤ 1
+// --------------------
+// Matching request (command)
+// --------------------
+message MatchingRequest {
+  string trip_request_id = 1;      // immutable reference for idempotency
+  double origin_lat = 2;           // minimal geo info
+  double origin_lon = 3;
+  double dest_lat = 4;
+  double dest_lon = 5;
+  uint32 max_candidates = 6;       // hard cap
+  int64 seed = 7;                  // deterministic replay
 }
 
-message MatchTripRequestCommand {
-  dgdo.triprequest.TripRequest trip_request = 1;
-  uint32 max_candidates = 2;   // hard cap (e.g. 10)
+// --------------------
+// Matching response
+// --------------------
+message MatchingResponse {
+  repeated Candidate candidates = 1;
+  string reason_code = 2;          // e.g., "NO_DRIVERS", empty if OK
 }
 
-message MatchDistribution {
-  string request_id = 1;
-  repeated DriverProbability candidates = 2;
-}
-
+// --------------------
+// Service
+// --------------------
 service MatchingService {
-  rpc MatchTripRequest(MatchTripRequestCommand)
-      returns (MatchDistribution);
+  rpc GetCandidates(MatchingRequest) returns (MatchingResponse);
 }

@@ -1,16 +1,16 @@
+// common.proto
+
 syntax = "proto3";
 
 package dgdo.common;
 
-import "google/protobuf/timestamp.proto";
-
+// Location without mutable timestamp for TripService
 message Location {
   double lat = 1;
   double lon = 2;
-  google.protobuf.Timestamp timestamp = 3;
 }
 
-// Standardized metadata container
+// Metadata for telemetry / ML only
 message Metadata {
   map<string, string> data = 1;
 }

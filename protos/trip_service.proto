@@ -7,20 +7,47 @@ package dgdo.tripservice;
 import "common.proto";
 import "trip.proto";
 
+// --------------------
+// Commands
+// --------------------
+
 message CreateTripCommand {
-  string request_id = 1;
+  string trip_request_id = 1;      // idempotency key
   string passenger_id = 2;
   string driver_id = 3;
   dgdo.common.Location origin = 4;
   dgdo.common.Location destination = 5;
 }
 
-message TripId {
-  string id = 1;
+message GetTripByIdRequest {
+  string trip_id = 1;
 }
 
+message GetTripByRequestIdRequest {
+  string trip_request_id = 1;
+}
+
+message UpdateTripStatusCommand {
+  string trip_id = 1;
+  dgdo.trip.TripStatus new_status = 2;
+  int32 expected_version = 3;       // optimistic locking
+}
+
+message CancelTripCommand {
+  string trip_id = 1;
+  dgdo.trip.TripStatus reason = 2;
+  int32 expected_version = 3;
+}
+
+// --------------------
+// Service
+// --------------------
 service TripService {
   rpc CreateTrip(CreateTripCommand) returns (dgdo.trip.Trip);
-  rpc GetTrip(TripId) returns (dgdo.trip.Trip);
-  rpc UpdateTripStatus(dgdo.trip.Trip) returns (dgdo.trip.Trip);
+
+  rpc GetTripById(GetTripByIdRequest) returns (dgdo.trip.Trip);
+  rpc GetTripByRequestId(GetTripByRequestIdRequest) returns (dgdo.trip.Trip);
+
+  rpc UpdateTripStatus(UpdateTripStatusCommand) returns (dgdo.trip.Trip);
+  rpc CancelTrip(CancelTripCommand) returns (dgdo.trip.Trip);
 }

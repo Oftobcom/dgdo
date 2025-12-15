@@ -1,0 +1,26 @@
+I’m developing the open-source project “DG Do Matching Engine”, a ride-hailing platform similar to Uber, Lyft, Bolt, and Yandex Go.
+Minimum Viable Product (MVP)
+Launch
+Start the full system with:
+ docker compose up
+Version 0.1 — Must-Have Features
+Passenger registration
+Submitting a trip request: from → to
+Display available drivers on the map
+Driver assignment algorithm
+Order status flow: accepted → en route → completed
+Simple admin panel
+REST + WebSocket API
+
+
+Architecture & Stack
+High-load components (matching, routing) in C++ gRPC
+API Gateway in Python FastAPI
+Admin Panel in React.js
+Geographical data handling with PostGIS
+Map data from OpenStreetMap (OSM)
+Routing engine using Valhalla for real-world routes
+WebSocket to push driver locations to the map
+Use TileServer GL to serve vector tiles generated from OSM data (Khujand)
+Integrate MapLibre in React
+API Contracts (protobuf first!)

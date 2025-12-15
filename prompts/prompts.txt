@@ -224,3 +224,14 @@ Analytics & Machine Learning & Data-Driven Decisions:
 What libraries can I use to create a simple C++ API project?
 ---
 Create a simple, minimal Docker-based C++ API project using Drogon. I will run the project on Ubuntu 24.04.
+---
+Help me to Implement core services in isolation.
+TripService: Start here because it owns immutable Trip state.
+Follow Single Responsibility Principle: TripService does only Trip creation, updates, cancellations.
+Keep idempotency central: use trip_request_id versioning.
+---
+Implement MatchingService: Standalone microservice next.
+Return only candidate sets + probabilities; no side-effects.
+Seed-based determinism ensures you can replay and debug.
+---
+Which people should I bring onto my team to implement my project faster?
