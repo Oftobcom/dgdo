@@ -26,7 +26,10 @@ if _version_not_supported:
 
 
 class MatchingServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -34,17 +37,20 @@ class MatchingServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.MatchTripRequest = channel.unary_unary(
-                '/dgdo.matching.MatchingService/MatchTripRequest',
-                request_serializer=matching__pb2.MatchTripRequestCommand.SerializeToString,
-                response_deserializer=matching__pb2.MatchDistribution.FromString,
+        self.GetCandidates = channel.unary_unary(
+                '/dgdo.matching.MatchingService/GetCandidates',
+                request_serializer=matching__pb2.MatchingRequest.SerializeToString,
+                response_deserializer=matching__pb2.MatchingResponse.FromString,
                 _registered_method=True)
 
 
 class MatchingServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
-    def MatchTripRequest(self, request, context):
+    def GetCandidates(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -53,10 +59,10 @@ class MatchingServiceServicer(object):
 
 def add_MatchingServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'MatchTripRequest': grpc.unary_unary_rpc_method_handler(
-                    servicer.MatchTripRequest,
-                    request_deserializer=matching__pb2.MatchTripRequestCommand.FromString,
-                    response_serializer=matching__pb2.MatchDistribution.SerializeToString,
+            'GetCandidates': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetCandidates,
+                    request_deserializer=matching__pb2.MatchingRequest.FromString,
+                    response_serializer=matching__pb2.MatchingResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -67,10 +73,13 @@ def add_MatchingServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MatchingService(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
     @staticmethod
-    def MatchTripRequest(request,
+    def GetCandidates(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,9 +92,9 @@ class MatchingService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/dgdo.matching.MatchingService/MatchTripRequest',
-            matching__pb2.MatchTripRequestCommand.SerializeToString,
-            matching__pb2.MatchDistribution.FromString,
+            '/dgdo.matching.MatchingService/GetCandidates',
+            matching__pb2.MatchingRequest.SerializeToString,
+            matching__pb2.MatchingResponse.FromString,
             options,
             channel_credentials,
             insecure,

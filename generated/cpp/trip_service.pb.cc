@@ -14,19 +14,45 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Location_common_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Location_common_2eproto;
 namespace dgdo {
 namespace tripservice {
 class CreateTripCommandDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CreateTripCommand> _instance;
 } _CreateTripCommand_default_instance_;
-class TripIdDefaultTypeInternal {
+class GetTripByIdRequestDefaultTypeInternal {
  public:
-  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TripId> _instance;
-} _TripId_default_instance_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetTripByIdRequest> _instance;
+} _GetTripByIdRequest_default_instance_;
+class GetTripByRequestIdRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetTripByRequestIdRequest> _instance;
+} _GetTripByRequestIdRequest_default_instance_;
+class UpdateTripStatusCommandDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<UpdateTripStatusCommand> _instance;
+} _UpdateTripStatusCommand_default_instance_;
+class CancelTripCommandDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CancelTripCommand> _instance;
+} _CancelTripCommand_default_instance_;
 }  // namespace tripservice
 }  // namespace dgdo
+static void InitDefaultsscc_info_CancelTripCommand_trip_5fservice_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::tripservice::_CancelTripCommand_default_instance_;
+    new (ptr) ::dgdo::tripservice::CancelTripCommand();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::tripservice::CancelTripCommand::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CancelTripCommand_trip_5fservice_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CancelTripCommand_trip_5fservice_2eproto}, {}};
+
 static void InitDefaultsscc_info_CreateTripCommand_trip_5fservice_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -42,21 +68,49 @@ static void InitDefaultsscc_info_CreateTripCommand_trip_5fservice_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_CreateTripCommand_trip_5fservice_2eproto}, {
       &scc_info_Location_common_2eproto.base,}};
 
-static void InitDefaultsscc_info_TripId_trip_5fservice_2eproto() {
+static void InitDefaultsscc_info_GetTripByIdRequest_trip_5fservice_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   {
-    void* ptr = &::dgdo::tripservice::_TripId_default_instance_;
-    new (ptr) ::dgdo::tripservice::TripId();
+    void* ptr = &::dgdo::tripservice::_GetTripByIdRequest_default_instance_;
+    new (ptr) ::dgdo::tripservice::GetTripByIdRequest();
     ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::dgdo::tripservice::TripId::InitAsDefaultInstance();
+  ::dgdo::tripservice::GetTripByIdRequest::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TripId_trip_5fservice_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TripId_trip_5fservice_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GetTripByIdRequest_trip_5fservice_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GetTripByIdRequest_trip_5fservice_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trip_5fservice_2eproto[2];
+static void InitDefaultsscc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::tripservice::_GetTripByRequestIdRequest_default_instance_;
+    new (ptr) ::dgdo::tripservice::GetTripByRequestIdRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::tripservice::GetTripByRequestIdRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto}, {}};
+
+static void InitDefaultsscc_info_UpdateTripStatusCommand_trip_5fservice_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::tripservice::_UpdateTripStatusCommand_default_instance_;
+    new (ptr) ::dgdo::tripservice::UpdateTripStatusCommand();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::tripservice::UpdateTripStatusCommand::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_UpdateTripStatusCommand_trip_5fservice_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_UpdateTripStatusCommand_trip_5fservice_2eproto}, {}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trip_5fservice_2eproto[5];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_trip_5fservice_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_trip_5fservice_2eproto = nullptr;
 
@@ -66,56 +120,99 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trip_5fservice_2eproto::offset
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, request_id_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, trip_request_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, passenger_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, driver_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, origin_),
   PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CreateTripCommand, destination_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::TripId, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::GetTripByIdRequest, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::TripId, id_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::GetTripByIdRequest, trip_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::GetTripByRequestIdRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::GetTripByRequestIdRequest, trip_request_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::UpdateTripStatusCommand, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::UpdateTripStatusCommand, trip_id_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::UpdateTripStatusCommand, new_status_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::UpdateTripStatusCommand, expected_version_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CancelTripCommand, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CancelTripCommand, trip_id_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CancelTripCommand, reason_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::tripservice::CancelTripCommand, expected_version_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::dgdo::tripservice::CreateTripCommand)},
-  { 10, -1, sizeof(::dgdo::tripservice::TripId)},
+  { 10, -1, sizeof(::dgdo::tripservice::GetTripByIdRequest)},
+  { 16, -1, sizeof(::dgdo::tripservice::GetTripByRequestIdRequest)},
+  { 22, -1, sizeof(::dgdo::tripservice::UpdateTripStatusCommand)},
+  { 30, -1, sizeof(::dgdo::tripservice::CancelTripCommand)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_CreateTripCommand_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_TripId_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_GetTripByIdRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_GetTripByRequestIdRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_UpdateTripStatusCommand_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::tripservice::_CancelTripCommand_default_instance_),
 };
 
 const char descriptor_table_protodef_trip_5fservice_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022trip_service.proto\022\020dgdo.tripservice\032\014"
-  "common.proto\032\ntrip.proto\"\243\001\n\021CreateTripC"
-  "ommand\022\022\n\nrequest_id\030\001 \001(\t\022\024\n\014passenger_"
-  "id\030\002 \001(\t\022\021\n\tdriver_id\030\003 \001(\t\022%\n\006origin\030\004 "
-  "\001(\0132\025.dgdo.common.Location\022*\n\013destinatio"
-  "n\030\005 \001(\0132\025.dgdo.common.Location\"\024\n\006TripId"
-  "\022\n\n\002id\030\001 \001(\t2\275\001\n\013TripService\022B\n\nCreateTr"
-  "ip\022#.dgdo.tripservice.CreateTripCommand\032"
-  "\017.dgdo.trip.Trip\0224\n\007GetTrip\022\030.dgdo.trips"
-  "ervice.TripId\032\017.dgdo.trip.Trip\0224\n\020Update"
-  "TripStatus\022\017.dgdo.trip.Trip\032\017.dgdo.trip."
-  "Tripb\006proto3"
+  "common.proto\032\ntrip.proto\"\250\001\n\021CreateTripC"
+  "ommand\022\027\n\017trip_request_id\030\001 \001(\t\022\024\n\014passe"
+  "nger_id\030\002 \001(\t\022\021\n\tdriver_id\030\003 \001(\t\022%\n\006orig"
+  "in\030\004 \001(\0132\025.dgdo.common.Location\022*\n\013desti"
+  "nation\030\005 \001(\0132\025.dgdo.common.Location\"%\n\022G"
+  "etTripByIdRequest\022\017\n\007trip_id\030\001 \001(\t\"4\n\031Ge"
+  "tTripByRequestIdRequest\022\027\n\017trip_request_"
+  "id\030\001 \001(\t\"o\n\027UpdateTripStatusCommand\022\017\n\007t"
+  "rip_id\030\001 \001(\t\022)\n\nnew_status\030\002 \001(\0162\025.dgdo."
+  "trip.TripStatus\022\030\n\020expected_version\030\003 \001("
+  "\005\"e\n\021CancelTripCommand\022\017\n\007trip_id\030\001 \001(\t\022"
+  "%\n\006reason\030\002 \001(\0162\025.dgdo.trip.TripStatus\022\030"
+  "\n\020expected_version\030\003 \001(\0052\377\002\n\013TripService"
+  "\022B\n\nCreateTrip\022#.dgdo.tripservice.Create"
+  "TripCommand\032\017.dgdo.trip.Trip\022D\n\013GetTripB"
+  "yId\022$.dgdo.tripservice.GetTripByIdReques"
+  "t\032\017.dgdo.trip.Trip\022R\n\022GetTripByRequestId"
+  "\022+.dgdo.tripservice.GetTripByRequestIdRe"
+  "quest\032\017.dgdo.trip.Trip\022N\n\020UpdateTripStat"
+  "us\022).dgdo.tripservice.UpdateTripStatusCo"
+  "mmand\032\017.dgdo.trip.Trip\022B\n\nCancelTrip\022#.d"
+  "gdo.tripservice.CancelTripCommand\032\017.dgdo"
+  ".trip.Tripb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trip_5fservice_2eproto_deps[2] = {
   &::descriptor_table_common_2eproto,
   &::descriptor_table_trip_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trip_5fservice_2eproto_sccs[2] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trip_5fservice_2eproto_sccs[5] = {
+  &scc_info_CancelTripCommand_trip_5fservice_2eproto.base,
   &scc_info_CreateTripCommand_trip_5fservice_2eproto.base,
-  &scc_info_TripId_trip_5fservice_2eproto.base,
+  &scc_info_GetTripByIdRequest_trip_5fservice_2eproto.base,
+  &scc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto.base,
+  &scc_info_UpdateTripStatusCommand_trip_5fservice_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trip_5fservice_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trip_5fservice_2eproto = {
-  false, false, descriptor_table_protodef_trip_5fservice_2eproto, "trip_service.proto", 452,
-  &descriptor_table_trip_5fservice_2eproto_once, descriptor_table_trip_5fservice_2eproto_sccs, descriptor_table_trip_5fservice_2eproto_deps, 2, 2,
+  false, false, descriptor_table_protodef_trip_5fservice_2eproto, "trip_service.proto", 938,
+  &descriptor_table_trip_5fservice_2eproto_once, descriptor_table_trip_5fservice_2eproto_sccs, descriptor_table_trip_5fservice_2eproto_deps, 5, 2,
   schemas, file_default_instances, TableStruct_trip_5fservice_2eproto::offsets,
-  file_level_metadata_trip_5fservice_2eproto, 2, file_level_enum_descriptors_trip_5fservice_2eproto, file_level_service_descriptors_trip_5fservice_2eproto,
+  file_level_metadata_trip_5fservice_2eproto, 5, file_level_enum_descriptors_trip_5fservice_2eproto, file_level_service_descriptors_trip_5fservice_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -166,9 +263,9 @@ CreateTripCommand::CreateTripCommand(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 CreateTripCommand::CreateTripCommand(const CreateTripCommand& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_request_id().empty()) {
-    request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_request_id(),
+  trip_request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trip_request_id().empty()) {
+    trip_request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_request_id(),
       GetArena());
   }
   passenger_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -196,7 +293,7 @@ CreateTripCommand::CreateTripCommand(const CreateTripCommand& from)
 
 void CreateTripCommand::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CreateTripCommand_trip_5fservice_2eproto.base);
-  request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trip_request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   passenger_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&origin_, 0, static_cast<size_t>(
@@ -212,7 +309,7 @@ CreateTripCommand::~CreateTripCommand() {
 
 void CreateTripCommand::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
-  request_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trip_request_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   passenger_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   driver_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete origin_;
@@ -240,7 +337,7 @@ void CreateTripCommand::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  trip_request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   passenger_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   driver_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   if (GetArena() == nullptr && origin_ != nullptr) {
@@ -262,12 +359,12 @@ const char* CreateTripCommand::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string request_id = 1;
+      // string trip_request_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_request_id();
+          auto str = _internal_mutable_trip_request_id();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.CreateTripCommand.request_id"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.CreateTripCommand.trip_request_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -331,14 +428,14 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string request_id = 1;
-  if (this->request_id().size() > 0) {
+  // string trip_request_id = 1;
+  if (this->trip_request_id().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_request_id().data(), static_cast<int>(this->_internal_request_id().length()),
+      this->_internal_trip_request_id().data(), static_cast<int>(this->_internal_trip_request_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "dgdo.tripservice.CreateTripCommand.request_id");
+      "dgdo.tripservice.CreateTripCommand.trip_request_id");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_request_id(), target);
+        1, this->_internal_trip_request_id(), target);
   }
 
   // string passenger_id = 2;
@@ -393,11 +490,11 @@ size_t CreateTripCommand::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string request_id = 1;
-  if (this->request_id().size() > 0) {
+  // string trip_request_id = 1;
+  if (this->trip_request_id().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_request_id());
+        this->_internal_trip_request_id());
   }
 
   // string passenger_id = 2;
@@ -459,8 +556,8 @@ void CreateTripCommand::MergeFrom(const CreateTripCommand& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.request_id().size() > 0) {
-    _internal_set_request_id(from._internal_request_id());
+  if (from.trip_request_id().size() > 0) {
+    _internal_set_trip_request_id(from._internal_trip_request_id());
   }
   if (from.passenger_id().size() > 0) {
     _internal_set_passenger_id(from._internal_passenger_id());
@@ -497,7 +594,7 @@ bool CreateTripCommand::IsInitialized() const {
 void CreateTripCommand::InternalSwap(CreateTripCommand* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  request_id_.Swap(&other->request_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  trip_request_id_.Swap(&other->trip_request_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   passenger_id_.Swap(&other->passenger_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   driver_id_.Swap(&other->driver_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
@@ -515,71 +612,71 @@ void CreateTripCommand::InternalSwap(CreateTripCommand* other) {
 
 // ===================================================================
 
-void TripId::InitAsDefaultInstance() {
+void GetTripByIdRequest::InitAsDefaultInstance() {
 }
-class TripId::_Internal {
+class GetTripByIdRequest::_Internal {
  public:
 };
 
-TripId::TripId(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+GetTripByIdRequest::GetTripByIdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
   RegisterArenaDtor(arena);
-  // @@protoc_insertion_point(arena_constructor:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(arena_constructor:dgdo.tripservice.GetTripByIdRequest)
 }
-TripId::TripId(const TripId& from)
+GetTripByIdRequest::GetTripByIdRequest(const GetTripByIdRequest& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_id().empty()) {
-    id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_id(),
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trip_id().empty()) {
+    trip_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_id(),
       GetArena());
   }
-  // @@protoc_insertion_point(copy_constructor:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(copy_constructor:dgdo.tripservice.GetTripByIdRequest)
 }
 
-void TripId::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TripId_trip_5fservice_2eproto.base);
-  id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+void GetTripByIdRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetTripByIdRequest_trip_5fservice_2eproto.base);
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-TripId::~TripId() {
-  // @@protoc_insertion_point(destructor:dgdo.tripservice.TripId)
+GetTripByIdRequest::~GetTripByIdRequest() {
+  // @@protoc_insertion_point(destructor:dgdo.tripservice.GetTripByIdRequest)
   SharedDtor();
   _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-void TripId::SharedDtor() {
+void GetTripByIdRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
-  id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trip_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
-void TripId::ArenaDtor(void* object) {
-  TripId* _this = reinterpret_cast< TripId* >(object);
+void GetTripByIdRequest::ArenaDtor(void* object) {
+  GetTripByIdRequest* _this = reinterpret_cast< GetTripByIdRequest* >(object);
   (void)_this;
 }
-void TripId::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+void GetTripByIdRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
 }
-void TripId::SetCachedSize(int size) const {
+void GetTripByIdRequest::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const TripId& TripId::default_instance() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TripId_trip_5fservice_2eproto.base);
+const GetTripByIdRequest& GetTripByIdRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetTripByIdRequest_trip_5fservice_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void TripId::Clear() {
-// @@protoc_insertion_point(message_clear_start:dgdo.tripservice.TripId)
+void GetTripByIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.tripservice.GetTripByIdRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  trip_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* TripId::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+const char* GetTripByIdRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
   while (!ctx->Done(&ptr)) {
@@ -587,12 +684,12 @@ const char* TripId::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // string id = 1;
+      // string trip_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_id();
+          auto str = _internal_mutable_trip_id();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.TripId.id"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.GetTripByIdRequest.trip_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -618,43 +715,43 @@ failure:
 #undef CHK_
 }
 
-::PROTOBUF_NAMESPACE_ID::uint8* TripId::_InternalSerialize(
+::PROTOBUF_NAMESPACE_ID::uint8* GetTripByIdRequest::_InternalSerialize(
     ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.tripservice.GetTripByIdRequest)
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // string id = 1;
-  if (this->id().size() > 0) {
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_id().data(), static_cast<int>(this->_internal_id().length()),
+      this->_internal_trip_id().data(), static_cast<int>(this->_internal_trip_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "dgdo.tripservice.TripId.id");
+      "dgdo.tripservice.GetTripByIdRequest.trip_id");
     target = stream->WriteStringMaybeAliased(
-        1, this->_internal_id(), target);
+        1, this->_internal_trip_id(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.tripservice.GetTripByIdRequest)
   return target;
 }
 
-size_t TripId::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:dgdo.tripservice.TripId)
+size_t GetTripByIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.tripservice.GetTripByIdRequest)
   size_t total_size = 0;
 
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string id = 1;
-  if (this->id().size() > 0) {
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_id());
+        this->_internal_trip_id());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -666,58 +763,809 @@ size_t TripId::ByteSizeLong() const {
   return total_size;
 }
 
-void TripId::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:dgdo.tripservice.TripId)
+void GetTripByIdRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.tripservice.GetTripByIdRequest)
   GOOGLE_DCHECK_NE(&from, this);
-  const TripId* source =
-      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TripId>(
+  const GetTripByIdRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTripByIdRequest>(
           &from);
   if (source == nullptr) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.tripservice.GetTripByIdRequest)
     ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.tripservice.TripId)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.tripservice.GetTripByIdRequest)
     MergeFrom(*source);
   }
 }
 
-void TripId::MergeFrom(const TripId& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.tripservice.TripId)
+void GetTripByIdRequest::MergeFrom(const GetTripByIdRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.tripservice.GetTripByIdRequest)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.id().size() > 0) {
-    _internal_set_id(from._internal_id());
+  if (from.trip_id().size() > 0) {
+    _internal_set_trip_id(from._internal_trip_id());
   }
 }
 
-void TripId::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:dgdo.tripservice.TripId)
+void GetTripByIdRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.tripservice.GetTripByIdRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-void TripId::CopyFrom(const TripId& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.tripservice.TripId)
+void GetTripByIdRequest::CopyFrom(const GetTripByIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.tripservice.GetTripByIdRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool TripId::IsInitialized() const {
+bool GetTripByIdRequest::IsInitialized() const {
   return true;
 }
 
-void TripId::InternalSwap(TripId* other) {
+void GetTripByIdRequest::InternalSwap(GetTripByIdRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
-  id_.Swap(&other->id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  trip_id_.Swap(&other->trip_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata TripId::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata GetTripByIdRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetTripByRequestIdRequest::InitAsDefaultInstance() {
+}
+class GetTripByRequestIdRequest::_Internal {
+ public:
+};
+
+GetTripByRequestIdRequest::GetTripByRequestIdRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.tripservice.GetTripByRequestIdRequest)
+}
+GetTripByRequestIdRequest::GetTripByRequestIdRequest(const GetTripByRequestIdRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  trip_request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trip_request_id().empty()) {
+    trip_request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_request_id(),
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:dgdo.tripservice.GetTripByRequestIdRequest)
+}
+
+void GetTripByRequestIdRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto.base);
+  trip_request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+GetTripByRequestIdRequest::~GetTripByRequestIdRequest() {
+  // @@protoc_insertion_point(destructor:dgdo.tripservice.GetTripByRequestIdRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void GetTripByRequestIdRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  trip_request_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void GetTripByRequestIdRequest::ArenaDtor(void* object) {
+  GetTripByRequestIdRequest* _this = reinterpret_cast< GetTripByRequestIdRequest* >(object);
+  (void)_this;
+}
+void GetTripByRequestIdRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GetTripByRequestIdRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetTripByRequestIdRequest& GetTripByRequestIdRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetTripByRequestIdRequest_trip_5fservice_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetTripByRequestIdRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  trip_request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetTripByRequestIdRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string trip_request_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_trip_request_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.GetTripByRequestIdRequest.trip_request_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetTripByRequestIdRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string trip_request_id = 1;
+  if (this->trip_request_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_trip_request_id().data(), static_cast<int>(this->_internal_trip_request_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.tripservice.GetTripByRequestIdRequest.trip_request_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_trip_request_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.tripservice.GetTripByRequestIdRequest)
+  return target;
+}
+
+size_t GetTripByRequestIdRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string trip_request_id = 1;
+  if (this->trip_request_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_trip_request_id());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetTripByRequestIdRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetTripByRequestIdRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetTripByRequestIdRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.tripservice.GetTripByRequestIdRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.tripservice.GetTripByRequestIdRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetTripByRequestIdRequest::MergeFrom(const GetTripByRequestIdRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.trip_request_id().size() > 0) {
+    _internal_set_trip_request_id(from._internal_trip_request_id());
+  }
+}
+
+void GetTripByRequestIdRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetTripByRequestIdRequest::CopyFrom(const GetTripByRequestIdRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.tripservice.GetTripByRequestIdRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetTripByRequestIdRequest::IsInitialized() const {
+  return true;
+}
+
+void GetTripByRequestIdRequest::InternalSwap(GetTripByRequestIdRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  trip_request_id_.Swap(&other->trip_request_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetTripByRequestIdRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void UpdateTripStatusCommand::InitAsDefaultInstance() {
+}
+class UpdateTripStatusCommand::_Internal {
+ public:
+};
+
+UpdateTripStatusCommand::UpdateTripStatusCommand(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.tripservice.UpdateTripStatusCommand)
+}
+UpdateTripStatusCommand::UpdateTripStatusCommand(const UpdateTripStatusCommand& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trip_id().empty()) {
+    trip_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_id(),
+      GetArena());
+  }
+  ::memcpy(&new_status_, &from.new_status_,
+    static_cast<size_t>(reinterpret_cast<char*>(&expected_version_) -
+    reinterpret_cast<char*>(&new_status_)) + sizeof(expected_version_));
+  // @@protoc_insertion_point(copy_constructor:dgdo.tripservice.UpdateTripStatusCommand)
+}
+
+void UpdateTripStatusCommand::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_UpdateTripStatusCommand_trip_5fservice_2eproto.base);
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&new_status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&new_status_)) + sizeof(expected_version_));
+}
+
+UpdateTripStatusCommand::~UpdateTripStatusCommand() {
+  // @@protoc_insertion_point(destructor:dgdo.tripservice.UpdateTripStatusCommand)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UpdateTripStatusCommand::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  trip_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void UpdateTripStatusCommand::ArenaDtor(void* object) {
+  UpdateTripStatusCommand* _this = reinterpret_cast< UpdateTripStatusCommand* >(object);
+  (void)_this;
+}
+void UpdateTripStatusCommand::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UpdateTripStatusCommand::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const UpdateTripStatusCommand& UpdateTripStatusCommand::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_UpdateTripStatusCommand_trip_5fservice_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void UpdateTripStatusCommand::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.tripservice.UpdateTripStatusCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  trip_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::memset(&new_status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&new_status_)) + sizeof(expected_version_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UpdateTripStatusCommand::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string trip_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_trip_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.UpdateTripStatusCommand.trip_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.trip.TripStatus new_status = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_new_status(static_cast<::dgdo::trip::TripStatus>(val));
+        } else goto handle_unusual;
+        continue;
+      // int32 expected_version = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          expected_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UpdateTripStatusCommand::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.tripservice.UpdateTripStatusCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_trip_id().data(), static_cast<int>(this->_internal_trip_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.tripservice.UpdateTripStatusCommand.trip_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_trip_id(), target);
+  }
+
+  // .dgdo.trip.TripStatus new_status = 2;
+  if (this->new_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_new_status(), target);
+  }
+
+  // int32 expected_version = 3;
+  if (this->expected_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_expected_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.tripservice.UpdateTripStatusCommand)
+  return target;
+}
+
+size_t UpdateTripStatusCommand::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.tripservice.UpdateTripStatusCommand)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_trip_id());
+  }
+
+  // .dgdo.trip.TripStatus new_status = 2;
+  if (this->new_status() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_new_status());
+  }
+
+  // int32 expected_version = 3;
+  if (this->expected_version() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_expected_version());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UpdateTripStatusCommand::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.tripservice.UpdateTripStatusCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UpdateTripStatusCommand* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UpdateTripStatusCommand>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.tripservice.UpdateTripStatusCommand)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.tripservice.UpdateTripStatusCommand)
+    MergeFrom(*source);
+  }
+}
+
+void UpdateTripStatusCommand::MergeFrom(const UpdateTripStatusCommand& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.tripservice.UpdateTripStatusCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.trip_id().size() > 0) {
+    _internal_set_trip_id(from._internal_trip_id());
+  }
+  if (from.new_status() != 0) {
+    _internal_set_new_status(from._internal_new_status());
+  }
+  if (from.expected_version() != 0) {
+    _internal_set_expected_version(from._internal_expected_version());
+  }
+}
+
+void UpdateTripStatusCommand::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.tripservice.UpdateTripStatusCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UpdateTripStatusCommand::CopyFrom(const UpdateTripStatusCommand& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.tripservice.UpdateTripStatusCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UpdateTripStatusCommand::IsInitialized() const {
+  return true;
+}
+
+void UpdateTripStatusCommand::InternalSwap(UpdateTripStatusCommand* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  trip_id_.Swap(&other->trip_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UpdateTripStatusCommand, expected_version_)
+      + sizeof(UpdateTripStatusCommand::expected_version_)
+      - PROTOBUF_FIELD_OFFSET(UpdateTripStatusCommand, new_status_)>(
+          reinterpret_cast<char*>(&new_status_),
+          reinterpret_cast<char*>(&other->new_status_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UpdateTripStatusCommand::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void CancelTripCommand::InitAsDefaultInstance() {
+}
+class CancelTripCommand::_Internal {
+ public:
+};
+
+CancelTripCommand::CancelTripCommand(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.tripservice.CancelTripCommand)
+}
+CancelTripCommand::CancelTripCommand(const CancelTripCommand& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_trip_id().empty()) {
+    trip_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_id(),
+      GetArena());
+  }
+  ::memcpy(&reason_, &from.reason_,
+    static_cast<size_t>(reinterpret_cast<char*>(&expected_version_) -
+    reinterpret_cast<char*>(&reason_)) + sizeof(expected_version_));
+  // @@protoc_insertion_point(copy_constructor:dgdo.tripservice.CancelTripCommand)
+}
+
+void CancelTripCommand::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CancelTripCommand_trip_5fservice_2eproto.base);
+  trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&reason_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&reason_)) + sizeof(expected_version_));
+}
+
+CancelTripCommand::~CancelTripCommand() {
+  // @@protoc_insertion_point(destructor:dgdo.tripservice.CancelTripCommand)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void CancelTripCommand::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  trip_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void CancelTripCommand::ArenaDtor(void* object) {
+  CancelTripCommand* _this = reinterpret_cast< CancelTripCommand* >(object);
+  (void)_this;
+}
+void CancelTripCommand::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void CancelTripCommand::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CancelTripCommand& CancelTripCommand::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CancelTripCommand_trip_5fservice_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CancelTripCommand::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.tripservice.CancelTripCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  trip_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::memset(&reason_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&reason_)) + sizeof(expected_version_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CancelTripCommand::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string trip_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_trip_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.tripservice.CancelTripCommand.trip_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.trip.TripStatus reason = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_reason(static_cast<::dgdo::trip::TripStatus>(val));
+        } else goto handle_unusual;
+        continue;
+      // int32 expected_version = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          expected_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CancelTripCommand::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.tripservice.CancelTripCommand)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_trip_id().data(), static_cast<int>(this->_internal_trip_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.tripservice.CancelTripCommand.trip_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_trip_id(), target);
+  }
+
+  // .dgdo.trip.TripStatus reason = 2;
+  if (this->reason() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_reason(), target);
+  }
+
+  // int32 expected_version = 3;
+  if (this->expected_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(3, this->_internal_expected_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.tripservice.CancelTripCommand)
+  return target;
+}
+
+size_t CancelTripCommand::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.tripservice.CancelTripCommand)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string trip_id = 1;
+  if (this->trip_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_trip_id());
+  }
+
+  // .dgdo.trip.TripStatus reason = 2;
+  if (this->reason() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_reason());
+  }
+
+  // int32 expected_version = 3;
+  if (this->expected_version() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_expected_version());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CancelTripCommand::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.tripservice.CancelTripCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CancelTripCommand* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CancelTripCommand>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.tripservice.CancelTripCommand)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.tripservice.CancelTripCommand)
+    MergeFrom(*source);
+  }
+}
+
+void CancelTripCommand::MergeFrom(const CancelTripCommand& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.tripservice.CancelTripCommand)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.trip_id().size() > 0) {
+    _internal_set_trip_id(from._internal_trip_id());
+  }
+  if (from.reason() != 0) {
+    _internal_set_reason(from._internal_reason());
+  }
+  if (from.expected_version() != 0) {
+    _internal_set_expected_version(from._internal_expected_version());
+  }
+}
+
+void CancelTripCommand::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.tripservice.CancelTripCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CancelTripCommand::CopyFrom(const CancelTripCommand& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.tripservice.CancelTripCommand)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CancelTripCommand::IsInitialized() const {
+  return true;
+}
+
+void CancelTripCommand::InternalSwap(CancelTripCommand* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  trip_id_.Swap(&other->trip_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CancelTripCommand, expected_version_)
+      + sizeof(CancelTripCommand::expected_version_)
+      - PROTOBUF_FIELD_OFFSET(CancelTripCommand, reason_)>(
+          reinterpret_cast<char*>(&reason_),
+          reinterpret_cast<char*>(&other->reason_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CancelTripCommand::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -729,8 +1577,17 @@ PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::dgdo::tripservice::CreateTripCommand* Arena::CreateMaybeMessage< ::dgdo::tripservice::CreateTripCommand >(Arena* arena) {
   return Arena::CreateMessageInternal< ::dgdo::tripservice::CreateTripCommand >(arena);
 }
-template<> PROTOBUF_NOINLINE ::dgdo::tripservice::TripId* Arena::CreateMaybeMessage< ::dgdo::tripservice::TripId >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::dgdo::tripservice::TripId >(arena);
+template<> PROTOBUF_NOINLINE ::dgdo::tripservice::GetTripByIdRequest* Arena::CreateMaybeMessage< ::dgdo::tripservice::GetTripByIdRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::tripservice::GetTripByIdRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::tripservice::GetTripByRequestIdRequest* Arena::CreateMaybeMessage< ::dgdo::tripservice::GetTripByRequestIdRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::tripservice::GetTripByRequestIdRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::tripservice::UpdateTripStatusCommand* Arena::CreateMaybeMessage< ::dgdo::tripservice::UpdateTripStatusCommand >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::tripservice::UpdateTripStatusCommand >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::tripservice::CancelTripCommand* Arena::CreateMaybeMessage< ::dgdo::tripservice::CancelTripCommand >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::tripservice::CancelTripCommand >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

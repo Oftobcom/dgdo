@@ -66,19 +66,19 @@ void MLFeedbackService::Stub::experimental_async::SendFeedback(::grpc::ClientCon
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::ml_feedback::Feedback>::Create(channel_.get(), cq, rpcmethod_SendFeedback_, context, request, false);
 }
 
-::grpc::ClientReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::GetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::common::Metadata& request) {
+::grpc::ClientReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::GetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::ml_feedback::TrainingBatchRequest& request) {
   return ::grpc_impl::internal::ClientReaderFactory< ::dgdo::ml_feedback::Feedback>::Create(channel_.get(), rpcmethod_GetTrainingBatch_, context, request);
 }
 
-void MLFeedbackService::Stub::experimental_async::GetTrainingBatch(::grpc::ClientContext* context, ::dgdo::common::Metadata* request, ::grpc::experimental::ClientReadReactor< ::dgdo::ml_feedback::Feedback>* reactor) {
+void MLFeedbackService::Stub::experimental_async::GetTrainingBatch(::grpc::ClientContext* context, ::dgdo::ml_feedback::TrainingBatchRequest* request, ::grpc::experimental::ClientReadReactor< ::dgdo::ml_feedback::Feedback>* reactor) {
   ::grpc_impl::internal::ClientCallbackReaderFactory< ::dgdo::ml_feedback::Feedback>::Create(stub_->channel_.get(), stub_->rpcmethod_GetTrainingBatch_, context, request, reactor);
 }
 
-::grpc::ClientAsyncReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::AsyncGetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::common::Metadata& request, ::grpc::CompletionQueue* cq, void* tag) {
+::grpc::ClientAsyncReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::AsyncGetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::ml_feedback::TrainingBatchRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::dgdo::ml_feedback::Feedback>::Create(channel_.get(), cq, rpcmethod_GetTrainingBatch_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::PrepareAsyncGetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::common::Metadata& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncReader< ::dgdo::ml_feedback::Feedback>* MLFeedbackService::Stub::PrepareAsyncGetTrainingBatchRaw(::grpc::ClientContext* context, const ::dgdo::ml_feedback::TrainingBatchRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::dgdo::ml_feedback::Feedback>::Create(channel_.get(), cq, rpcmethod_GetTrainingBatch_, context, request, false, nullptr);
 }
 
@@ -96,10 +96,10 @@ MLFeedbackService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MLFeedbackService_method_names[1],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
-      new ::grpc::internal::ServerStreamingHandler< MLFeedbackService::Service, ::dgdo::common::Metadata, ::dgdo::ml_feedback::Feedback>(
+      new ::grpc::internal::ServerStreamingHandler< MLFeedbackService::Service, ::dgdo::ml_feedback::TrainingBatchRequest, ::dgdo::ml_feedback::Feedback>(
           [](MLFeedbackService::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::dgdo::common::Metadata* req,
+             const ::dgdo::ml_feedback::TrainingBatchRequest* req,
              ::grpc_impl::ServerWriter<::dgdo::ml_feedback::Feedback>* writer) {
                return service->GetTrainingBatch(ctx, req, writer);
              }, this)));
@@ -115,7 +115,7 @@ MLFeedbackService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status MLFeedbackService::Service::GetTrainingBatch(::grpc::ServerContext* context, const ::dgdo::common::Metadata* request, ::grpc::ServerWriter< ::dgdo::ml_feedback::Feedback>* writer) {
+::grpc::Status MLFeedbackService::Service::GetTrainingBatch(::grpc::ServerContext* context, const ::dgdo::ml_feedback::TrainingBatchRequest* request, ::grpc::ServerWriter< ::dgdo::ml_feedback::Feedback>* writer) {
   (void) context;
   (void) request;
   (void) writer;

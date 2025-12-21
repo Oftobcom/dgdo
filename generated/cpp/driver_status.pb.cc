@@ -14,7 +14,8 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Location_common_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Location_common_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Metadata_common_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_driver_5fstatus_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_VehicleInfo_driver_5fstatus_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
 namespace dgdo {
@@ -27,6 +28,14 @@ class DriverStatusDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<DriverStatus> _instance;
 } _DriverStatus_default_instance_;
+class UpdateDriverStatusRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<UpdateDriverStatusRequest> _instance;
+} _UpdateDriverStatusRequest_default_instance_;
+class GetAvailableDriversRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<GetAvailableDriversRequest> _instance;
+} _GetAvailableDriversRequest_default_instance_;
 }  // namespace driver_status
 }  // namespace dgdo
 static void InitDefaultsscc_info_DriverStatus_driver_5fstatus_2eproto() {
@@ -40,11 +49,42 @@ static void InitDefaultsscc_info_DriverStatus_driver_5fstatus_2eproto() {
   ::dgdo::driver_status::DriverStatus::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_DriverStatus_driver_5fstatus_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_DriverStatus_driver_5fstatus_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_DriverStatus_driver_5fstatus_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_DriverStatus_driver_5fstatus_2eproto}, {
       &scc_info_Location_common_2eproto.base,
       &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_VehicleInfo_driver_5fstatus_2eproto.base,}};
+      &scc_info_VehicleInfo_driver_5fstatus_2eproto.base,
+      &scc_info_Metadata_common_2eproto.base,}};
+
+static void InitDefaultsscc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::driver_status::_GetAvailableDriversRequest_default_instance_;
+    new (ptr) ::dgdo::driver_status::GetAvailableDriversRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::driver_status::GetAvailableDriversRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto}, {
+      &scc_info_Location_common_2eproto.base,}};
+
+static void InitDefaultsscc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::driver_status::_UpdateDriverStatusRequest_default_instance_;
+    new (ptr) ::dgdo::driver_status::UpdateDriverStatusRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::driver_status::UpdateDriverStatusRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto}, {
+      &scc_info_Location_common_2eproto.base,}};
 
 static void InitDefaultsscc_info_VehicleInfo_driver_5fstatus_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -60,7 +100,7 @@ static void InitDefaultsscc_info_VehicleInfo_driver_5fstatus_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_VehicleInfo_driver_5fstatus_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_VehicleInfo_driver_5fstatus_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_driver_5fstatus_2eproto[2];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_driver_5fstatus_2eproto[4];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_driver_5fstatus_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_driver_5fstatus_2eproto = nullptr;
 
@@ -80,51 +120,86 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_driver_5fstatus_2eproto::offse
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, driver_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, is_available_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, current_trip_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, current_location_),
   PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, last_seen_),
   PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, vehicle_info_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, version_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::DriverStatus, metadata_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, driver_id_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, is_available_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, current_location_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, idempotency_key_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::UpdateDriverStatusRequest, expected_version_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::GetAvailableDriversRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::GetAvailableDriversRequest, location_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::driver_status::GetAvailableDriversRequest, max_results_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::dgdo::driver_status::VehicleInfo)},
   { 8, -1, sizeof(::dgdo::driver_status::DriverStatus)},
+  { 21, -1, sizeof(::dgdo::driver_status::UpdateDriverStatusRequest)},
+  { 31, -1, sizeof(::dgdo::driver_status::GetAvailableDriversRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::driver_status::_VehicleInfo_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::driver_status::_DriverStatus_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::driver_status::_UpdateDriverStatusRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::driver_status::_GetAvailableDriversRequest_default_instance_),
 };
 
 const char descriptor_table_protodef_driver_5fstatus_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\023driver_status.proto\022\022dgdo.driver_statu"
   "s\032\037google/protobuf/timestamp.proto\032\014comm"
   "on.proto\"@\n\013VehicleInfo\022\014\n\004make\030\001 \001(\t\022\r\n"
-  "\005model\030\002 \001(\t\022\024\n\014plate_number\030\003 \001(\t\"\316\001\n\014D"
+  "\005model\030\002 \001(\t\022\024\n\014plate_number\030\003 \001(\t\"\241\002\n\014D"
   "riverStatus\022\021\n\tdriver_id\030\001 \001(\t\022\024\n\014is_ava"
-  "ilable\030\002 \001(\010\022/\n\020current_location\030\003 \001(\0132\025"
-  ".dgdo.common.Location\022-\n\tlast_seen\030\004 \001(\013"
-  "2\032.google.protobuf.Timestamp\0225\n\014vehicle_"
-  "info\030\005 \001(\0132\037.dgdo.driver_status.VehicleI"
-  "nfo2\301\001\n\023DriverStatusService\022X\n\022UpdateDri"
-  "verStatus\022 .dgdo.driver_status.DriverSta"
-  "tus\032 .dgdo.driver_status.DriverStatus\022P\n"
-  "\023GetAvailableDrivers\022\025.dgdo.common.Locat"
-  "ion\032 .dgdo.driver_status.DriverStatus0\001b"
-  "\006proto3"
+  "ilable\030\002 \001(\010\022\027\n\017current_trip_id\030\003 \001(\t\022/\n"
+  "\020current_location\030\004 \001(\0132\025.dgdo.common.Lo"
+  "cation\022-\n\tlast_seen\030\005 \001(\0132\032.google.proto"
+  "buf.Timestamp\0225\n\014vehicle_info\030\006 \001(\0132\037.dg"
+  "do.driver_status.VehicleInfo\022\017\n\007version\030"
+  "\007 \001(\005\022\'\n\010metadata\030\010 \001(\0132\025.dgdo.common.Me"
+  "tadata\"\250\001\n\031UpdateDriverStatusRequest\022\021\n\t"
+  "driver_id\030\001 \001(\t\022\024\n\014is_available\030\002 \001(\010\022/\n"
+  "\020current_location\030\003 \001(\0132\025.dgdo.common.Lo"
+  "cation\022\027\n\017idempotency_key\030\004 \001(\t\022\030\n\020expec"
+  "ted_version\030\005 \001(\005\"Z\n\032GetAvailableDrivers"
+  "Request\022\'\n\010location\030\001 \001(\0132\025.dgdo.common."
+  "Location\022\023\n\013max_results\030\002 \001(\r2\347\001\n\023Driver"
+  "StatusService\022e\n\022UpdateDriverStatus\022-.dg"
+  "do.driver_status.UpdateDriverStatusReque"
+  "st\032 .dgdo.driver_status.DriverStatus\022i\n\023"
+  "GetAvailableDrivers\022..dgdo.driver_status"
+  ".GetAvailableDriversRequest\032 .dgdo.drive"
+  "r_status.DriverStatus0\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_driver_5fstatus_2eproto_deps[2] = {
   &::descriptor_table_common_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_driver_5fstatus_2eproto_sccs[2] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_driver_5fstatus_2eproto_sccs[4] = {
   &scc_info_DriverStatus_driver_5fstatus_2eproto.base,
+  &scc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto.base,
+  &scc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto.base,
   &scc_info_VehicleInfo_driver_5fstatus_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_driver_5fstatus_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_driver_5fstatus_2eproto = {
-  false, false, descriptor_table_protodef_driver_5fstatus_2eproto, "driver_status.proto", 567,
-  &descriptor_table_driver_5fstatus_2eproto_once, descriptor_table_driver_5fstatus_2eproto_sccs, descriptor_table_driver_5fstatus_2eproto_deps, 2, 2,
+  false, false, descriptor_table_protodef_driver_5fstatus_2eproto, "driver_status.proto", 951,
+  &descriptor_table_driver_5fstatus_2eproto_once, descriptor_table_driver_5fstatus_2eproto_sccs, descriptor_table_driver_5fstatus_2eproto_deps, 4, 2,
   schemas, file_default_instances, TableStruct_driver_5fstatus_2eproto::offsets,
-  file_level_metadata_driver_5fstatus_2eproto, 2, file_level_enum_descriptors_driver_5fstatus_2eproto, file_level_service_descriptors_driver_5fstatus_2eproto,
+  file_level_metadata_driver_5fstatus_2eproto, 4, file_level_enum_descriptors_driver_5fstatus_2eproto, file_level_service_descriptors_driver_5fstatus_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -426,12 +501,15 @@ void DriverStatus::InitAsDefaultInstance() {
       PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
   ::dgdo::driver_status::_DriverStatus_default_instance_._instance.get_mutable()->vehicle_info_ = const_cast< ::dgdo::driver_status::VehicleInfo*>(
       ::dgdo::driver_status::VehicleInfo::internal_default_instance());
+  ::dgdo::driver_status::_DriverStatus_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dgdo::common::Metadata*>(
+      ::dgdo::common::Metadata::internal_default_instance());
 }
 class DriverStatus::_Internal {
  public:
   static const ::dgdo::common::Location& current_location(const DriverStatus* msg);
   static const PROTOBUF_NAMESPACE_ID::Timestamp& last_seen(const DriverStatus* msg);
   static const ::dgdo::driver_status::VehicleInfo& vehicle_info(const DriverStatus* msg);
+  static const ::dgdo::common::Metadata& metadata(const DriverStatus* msg);
 };
 
 const ::dgdo::common::Location&
@@ -446,6 +524,10 @@ const ::dgdo::driver_status::VehicleInfo&
 DriverStatus::_Internal::vehicle_info(const DriverStatus* msg) {
   return *msg->vehicle_info_;
 }
+const ::dgdo::common::Metadata&
+DriverStatus::_Internal::metadata(const DriverStatus* msg) {
+  return *msg->metadata_;
+}
 void DriverStatus::clear_current_location() {
   if (GetArena() == nullptr && current_location_ != nullptr) {
     delete current_location_;
@@ -457,6 +539,12 @@ void DriverStatus::clear_last_seen() {
     delete last_seen_;
   }
   last_seen_ = nullptr;
+}
+void DriverStatus::clear_metadata() {
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
 }
 DriverStatus::DriverStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -470,6 +558,11 @@ DriverStatus::DriverStatus(const DriverStatus& from)
   driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_driver_id().empty()) {
     driver_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_driver_id(),
+      GetArena());
+  }
+  current_trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_current_trip_id().empty()) {
+    current_trip_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_current_trip_id(),
       GetArena());
   }
   if (from._internal_has_current_location()) {
@@ -487,16 +580,24 @@ DriverStatus::DriverStatus(const DriverStatus& from)
   } else {
     vehicle_info_ = nullptr;
   }
-  is_available_ = from.is_available_;
+  if (from._internal_has_metadata()) {
+    metadata_ = new ::dgdo::common::Metadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
+  }
+  ::memcpy(&is_available_, &from.is_available_,
+    static_cast<size_t>(reinterpret_cast<char*>(&version_) -
+    reinterpret_cast<char*>(&is_available_)) + sizeof(version_));
   // @@protoc_insertion_point(copy_constructor:dgdo.driver_status.DriverStatus)
 }
 
 void DriverStatus::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_DriverStatus_driver_5fstatus_2eproto.base);
   driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  current_trip_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&current_location_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&is_available_) -
-      reinterpret_cast<char*>(&current_location_)) + sizeof(is_available_));
+      reinterpret_cast<char*>(&version_) -
+      reinterpret_cast<char*>(&current_location_)) + sizeof(version_));
 }
 
 DriverStatus::~DriverStatus() {
@@ -508,9 +609,11 @@ DriverStatus::~DriverStatus() {
 void DriverStatus::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   driver_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  current_trip_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete current_location_;
   if (this != internal_default_instance()) delete last_seen_;
   if (this != internal_default_instance()) delete vehicle_info_;
+  if (this != internal_default_instance()) delete metadata_;
 }
 
 void DriverStatus::ArenaDtor(void* object) {
@@ -535,6 +638,7 @@ void DriverStatus::Clear() {
   (void) cached_has_bits;
 
   driver_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  current_trip_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   if (GetArena() == nullptr && current_location_ != nullptr) {
     delete current_location_;
   }
@@ -547,7 +651,13 @@ void DriverStatus::Clear() {
     delete vehicle_info_;
   }
   vehicle_info_ = nullptr;
-  is_available_ = false;
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
+  ::memset(&is_available_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&version_) -
+      reinterpret_cast<char*>(&is_available_)) + sizeof(version_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -575,24 +685,47 @@ const char* DriverStatus::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .dgdo.common.Location current_location = 3;
+      // string current_trip_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_current_trip_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.driver_status.DriverStatus.current_trip_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.common.Location current_location = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_current_location(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .google.protobuf.Timestamp last_seen = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+      // .google.protobuf.Timestamp last_seen = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
           ptr = ctx->ParseMessage(_internal_mutable_last_seen(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .dgdo.driver_status.VehicleInfo vehicle_info = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+      // .dgdo.driver_status.VehicleInfo vehicle_info = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_vehicle_info(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 version = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.common.Metadata metadata = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -640,28 +773,52 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_is_available(), target);
   }
 
-  // .dgdo.common.Location current_location = 3;
+  // string current_trip_id = 3;
+  if (this->current_trip_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_current_trip_id().data(), static_cast<int>(this->_internal_current_trip_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.driver_status.DriverStatus.current_trip_id");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_current_trip_id(), target);
+  }
+
+  // .dgdo.common.Location current_location = 4;
   if (this->has_current_location()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        3, _Internal::current_location(this), target, stream);
+        4, _Internal::current_location(this), target, stream);
   }
 
-  // .google.protobuf.Timestamp last_seen = 4;
+  // .google.protobuf.Timestamp last_seen = 5;
   if (this->has_last_seen()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        4, _Internal::last_seen(this), target, stream);
+        5, _Internal::last_seen(this), target, stream);
   }
 
-  // .dgdo.driver_status.VehicleInfo vehicle_info = 5;
+  // .dgdo.driver_status.VehicleInfo vehicle_info = 6;
   if (this->has_vehicle_info()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        5, _Internal::vehicle_info(this), target, stream);
+        6, _Internal::vehicle_info(this), target, stream);
+  }
+
+  // int32 version = 7;
+  if (this->version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_version(), target);
+  }
+
+  // .dgdo.common.Metadata metadata = 8;
+  if (this->has_metadata()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        8, _Internal::metadata(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -687,30 +844,51 @@ size_t DriverStatus::ByteSizeLong() const {
         this->_internal_driver_id());
   }
 
-  // .dgdo.common.Location current_location = 3;
+  // string current_trip_id = 3;
+  if (this->current_trip_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_current_trip_id());
+  }
+
+  // .dgdo.common.Location current_location = 4;
   if (this->has_current_location()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *current_location_);
   }
 
-  // .google.protobuf.Timestamp last_seen = 4;
+  // .google.protobuf.Timestamp last_seen = 5;
   if (this->has_last_seen()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *last_seen_);
   }
 
-  // .dgdo.driver_status.VehicleInfo vehicle_info = 5;
+  // .dgdo.driver_status.VehicleInfo vehicle_info = 6;
   if (this->has_vehicle_info()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *vehicle_info_);
   }
 
+  // .dgdo.common.Metadata metadata = 8;
+  if (this->has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *metadata_);
+  }
+
   // bool is_available = 2;
   if (this->is_available() != 0) {
     total_size += 1 + 1;
+  }
+
+  // int32 version = 7;
+  if (this->version() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_version());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -747,6 +925,9 @@ void DriverStatus::MergeFrom(const DriverStatus& from) {
   if (from.driver_id().size() > 0) {
     _internal_set_driver_id(from._internal_driver_id());
   }
+  if (from.current_trip_id().size() > 0) {
+    _internal_set_current_trip_id(from._internal_current_trip_id());
+  }
   if (from.has_current_location()) {
     _internal_mutable_current_location()->::dgdo::common::Location::MergeFrom(from._internal_current_location());
   }
@@ -756,8 +937,14 @@ void DriverStatus::MergeFrom(const DriverStatus& from) {
   if (from.has_vehicle_info()) {
     _internal_mutable_vehicle_info()->::dgdo::driver_status::VehicleInfo::MergeFrom(from._internal_vehicle_info());
   }
+  if (from.has_metadata()) {
+    _internal_mutable_metadata()->::dgdo::common::Metadata::MergeFrom(from._internal_metadata());
+  }
   if (from.is_available() != 0) {
     _internal_set_is_available(from._internal_is_available());
+  }
+  if (from.version() != 0) {
+    _internal_set_version(from._internal_version());
   }
 }
 
@@ -783,15 +970,623 @@ void DriverStatus::InternalSwap(DriverStatus* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   driver_id_.Swap(&other->driver_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  current_trip_id_.Swap(&other->current_trip_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(DriverStatus, is_available_)
-      + sizeof(DriverStatus::is_available_)
+      PROTOBUF_FIELD_OFFSET(DriverStatus, version_)
+      + sizeof(DriverStatus::version_)
       - PROTOBUF_FIELD_OFFSET(DriverStatus, current_location_)>(
           reinterpret_cast<char*>(&current_location_),
           reinterpret_cast<char*>(&other->current_location_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata DriverStatus::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void UpdateDriverStatusRequest::InitAsDefaultInstance() {
+  ::dgdo::driver_status::_UpdateDriverStatusRequest_default_instance_._instance.get_mutable()->current_location_ = const_cast< ::dgdo::common::Location*>(
+      ::dgdo::common::Location::internal_default_instance());
+}
+class UpdateDriverStatusRequest::_Internal {
+ public:
+  static const ::dgdo::common::Location& current_location(const UpdateDriverStatusRequest* msg);
+};
+
+const ::dgdo::common::Location&
+UpdateDriverStatusRequest::_Internal::current_location(const UpdateDriverStatusRequest* msg) {
+  return *msg->current_location_;
+}
+void UpdateDriverStatusRequest::clear_current_location() {
+  if (GetArena() == nullptr && current_location_ != nullptr) {
+    delete current_location_;
+  }
+  current_location_ = nullptr;
+}
+UpdateDriverStatusRequest::UpdateDriverStatusRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.driver_status.UpdateDriverStatusRequest)
+}
+UpdateDriverStatusRequest::UpdateDriverStatusRequest(const UpdateDriverStatusRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_driver_id().empty()) {
+    driver_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_driver_id(),
+      GetArena());
+  }
+  idempotency_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_idempotency_key().empty()) {
+    idempotency_key_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_idempotency_key(),
+      GetArena());
+  }
+  if (from._internal_has_current_location()) {
+    current_location_ = new ::dgdo::common::Location(*from.current_location_);
+  } else {
+    current_location_ = nullptr;
+  }
+  ::memcpy(&is_available_, &from.is_available_,
+    static_cast<size_t>(reinterpret_cast<char*>(&expected_version_) -
+    reinterpret_cast<char*>(&is_available_)) + sizeof(expected_version_));
+  // @@protoc_insertion_point(copy_constructor:dgdo.driver_status.UpdateDriverStatusRequest)
+}
+
+void UpdateDriverStatusRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto.base);
+  driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  idempotency_key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&current_location_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&current_location_)) + sizeof(expected_version_));
+}
+
+UpdateDriverStatusRequest::~UpdateDriverStatusRequest() {
+  // @@protoc_insertion_point(destructor:dgdo.driver_status.UpdateDriverStatusRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void UpdateDriverStatusRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  driver_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  idempotency_key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete current_location_;
+}
+
+void UpdateDriverStatusRequest::ArenaDtor(void* object) {
+  UpdateDriverStatusRequest* _this = reinterpret_cast< UpdateDriverStatusRequest* >(object);
+  (void)_this;
+}
+void UpdateDriverStatusRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void UpdateDriverStatusRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const UpdateDriverStatusRequest& UpdateDriverStatusRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_UpdateDriverStatusRequest_driver_5fstatus_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void UpdateDriverStatusRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  driver_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  idempotency_key_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  if (GetArena() == nullptr && current_location_ != nullptr) {
+    delete current_location_;
+  }
+  current_location_ = nullptr;
+  ::memset(&is_available_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&expected_version_) -
+      reinterpret_cast<char*>(&is_available_)) + sizeof(expected_version_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UpdateDriverStatusRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string driver_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_driver_id();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.driver_status.UpdateDriverStatusRequest.driver_id"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool is_available = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          is_available_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.common.Location current_location = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_current_location(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string idempotency_key = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_idempotency_key();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.driver_status.UpdateDriverStatusRequest.idempotency_key"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 expected_version = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          expected_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* UpdateDriverStatusRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string driver_id = 1;
+  if (this->driver_id().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_driver_id().data(), static_cast<int>(this->_internal_driver_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.driver_status.UpdateDriverStatusRequest.driver_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_driver_id(), target);
+  }
+
+  // bool is_available = 2;
+  if (this->is_available() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_is_available(), target);
+  }
+
+  // .dgdo.common.Location current_location = 3;
+  if (this->has_current_location()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::current_location(this), target, stream);
+  }
+
+  // string idempotency_key = 4;
+  if (this->idempotency_key().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_idempotency_key().data(), static_cast<int>(this->_internal_idempotency_key().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "dgdo.driver_status.UpdateDriverStatusRequest.idempotency_key");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_idempotency_key(), target);
+  }
+
+  // int32 expected_version = 5;
+  if (this->expected_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(5, this->_internal_expected_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.driver_status.UpdateDriverStatusRequest)
+  return target;
+}
+
+size_t UpdateDriverStatusRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string driver_id = 1;
+  if (this->driver_id().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_driver_id());
+  }
+
+  // string idempotency_key = 4;
+  if (this->idempotency_key().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_idempotency_key());
+  }
+
+  // .dgdo.common.Location current_location = 3;
+  if (this->has_current_location()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *current_location_);
+  }
+
+  // bool is_available = 2;
+  if (this->is_available() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // int32 expected_version = 5;
+  if (this->expected_version() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_expected_version());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void UpdateDriverStatusRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const UpdateDriverStatusRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<UpdateDriverStatusRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.driver_status.UpdateDriverStatusRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.driver_status.UpdateDriverStatusRequest)
+    MergeFrom(*source);
+  }
+}
+
+void UpdateDriverStatusRequest::MergeFrom(const UpdateDriverStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.driver_id().size() > 0) {
+    _internal_set_driver_id(from._internal_driver_id());
+  }
+  if (from.idempotency_key().size() > 0) {
+    _internal_set_idempotency_key(from._internal_idempotency_key());
+  }
+  if (from.has_current_location()) {
+    _internal_mutable_current_location()->::dgdo::common::Location::MergeFrom(from._internal_current_location());
+  }
+  if (from.is_available() != 0) {
+    _internal_set_is_available(from._internal_is_available());
+  }
+  if (from.expected_version() != 0) {
+    _internal_set_expected_version(from._internal_expected_version());
+  }
+}
+
+void UpdateDriverStatusRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void UpdateDriverStatusRequest::CopyFrom(const UpdateDriverStatusRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.driver_status.UpdateDriverStatusRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UpdateDriverStatusRequest::IsInitialized() const {
+  return true;
+}
+
+void UpdateDriverStatusRequest::InternalSwap(UpdateDriverStatusRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  driver_id_.Swap(&other->driver_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  idempotency_key_.Swap(&other->idempotency_key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UpdateDriverStatusRequest, expected_version_)
+      + sizeof(UpdateDriverStatusRequest::expected_version_)
+      - PROTOBUF_FIELD_OFFSET(UpdateDriverStatusRequest, current_location_)>(
+          reinterpret_cast<char*>(&current_location_),
+          reinterpret_cast<char*>(&other->current_location_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UpdateDriverStatusRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void GetAvailableDriversRequest::InitAsDefaultInstance() {
+  ::dgdo::driver_status::_GetAvailableDriversRequest_default_instance_._instance.get_mutable()->location_ = const_cast< ::dgdo::common::Location*>(
+      ::dgdo::common::Location::internal_default_instance());
+}
+class GetAvailableDriversRequest::_Internal {
+ public:
+  static const ::dgdo::common::Location& location(const GetAvailableDriversRequest* msg);
+};
+
+const ::dgdo::common::Location&
+GetAvailableDriversRequest::_Internal::location(const GetAvailableDriversRequest* msg) {
+  return *msg->location_;
+}
+void GetAvailableDriversRequest::clear_location() {
+  if (GetArena() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+}
+GetAvailableDriversRequest::GetAvailableDriversRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.driver_status.GetAvailableDriversRequest)
+}
+GetAvailableDriversRequest::GetAvailableDriversRequest(const GetAvailableDriversRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_location()) {
+    location_ = new ::dgdo::common::Location(*from.location_);
+  } else {
+    location_ = nullptr;
+  }
+  max_results_ = from.max_results_;
+  // @@protoc_insertion_point(copy_constructor:dgdo.driver_status.GetAvailableDriversRequest)
+}
+
+void GetAvailableDriversRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto.base);
+  ::memset(&location_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&max_results_) -
+      reinterpret_cast<char*>(&location_)) + sizeof(max_results_));
+}
+
+GetAvailableDriversRequest::~GetAvailableDriversRequest() {
+  // @@protoc_insertion_point(destructor:dgdo.driver_status.GetAvailableDriversRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void GetAvailableDriversRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete location_;
+}
+
+void GetAvailableDriversRequest::ArenaDtor(void* object) {
+  GetAvailableDriversRequest* _this = reinterpret_cast< GetAvailableDriversRequest* >(object);
+  (void)_this;
+}
+void GetAvailableDriversRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void GetAvailableDriversRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const GetAvailableDriversRequest& GetAvailableDriversRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_GetAvailableDriversRequest_driver_5fstatus_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void GetAvailableDriversRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.driver_status.GetAvailableDriversRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArena() == nullptr && location_ != nullptr) {
+    delete location_;
+  }
+  location_ = nullptr;
+  max_results_ = 0u;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetAvailableDriversRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .dgdo.common.Location location = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_location(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // uint32 max_results = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          max_results_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* GetAvailableDriversRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.driver_status.GetAvailableDriversRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .dgdo.common.Location location = 1;
+  if (this->has_location()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::location(this), target, stream);
+  }
+
+  // uint32 max_results = 2;
+  if (this->max_results() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(2, this->_internal_max_results(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.driver_status.GetAvailableDriversRequest)
+  return target;
+}
+
+size_t GetAvailableDriversRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.driver_status.GetAvailableDriversRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .dgdo.common.Location location = 1;
+  if (this->has_location()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *location_);
+  }
+
+  // uint32 max_results = 2;
+  if (this->max_results() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_max_results());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void GetAvailableDriversRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.driver_status.GetAvailableDriversRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const GetAvailableDriversRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<GetAvailableDriversRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.driver_status.GetAvailableDriversRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.driver_status.GetAvailableDriversRequest)
+    MergeFrom(*source);
+  }
+}
+
+void GetAvailableDriversRequest::MergeFrom(const GetAvailableDriversRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.driver_status.GetAvailableDriversRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_location()) {
+    _internal_mutable_location()->::dgdo::common::Location::MergeFrom(from._internal_location());
+  }
+  if (from.max_results() != 0) {
+    _internal_set_max_results(from._internal_max_results());
+  }
+}
+
+void GetAvailableDriversRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.driver_status.GetAvailableDriversRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void GetAvailableDriversRequest::CopyFrom(const GetAvailableDriversRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.driver_status.GetAvailableDriversRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetAvailableDriversRequest::IsInitialized() const {
+  return true;
+}
+
+void GetAvailableDriversRequest::InternalSwap(GetAvailableDriversRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetAvailableDriversRequest, max_results_)
+      + sizeof(GetAvailableDriversRequest::max_results_)
+      - PROTOBUF_FIELD_OFFSET(GetAvailableDriversRequest, location_)>(
+          reinterpret_cast<char*>(&location_),
+          reinterpret_cast<char*>(&other->location_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetAvailableDriversRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -805,6 +1600,12 @@ template<> PROTOBUF_NOINLINE ::dgdo::driver_status::VehicleInfo* Arena::CreateMa
 }
 template<> PROTOBUF_NOINLINE ::dgdo::driver_status::DriverStatus* Arena::CreateMaybeMessage< ::dgdo::driver_status::DriverStatus >(Arena* arena) {
   return Arena::CreateMessageInternal< ::dgdo::driver_status::DriverStatus >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::driver_status::UpdateDriverStatusRequest* Arena::CreateMaybeMessage< ::dgdo::driver_status::UpdateDriverStatusRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::driver_status::UpdateDriverStatusRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::driver_status::GetAvailableDriversRequest* Arena::CreateMaybeMessage< ::dgdo::driver_status::GetAvailableDriversRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::driver_status::GetAvailableDriversRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

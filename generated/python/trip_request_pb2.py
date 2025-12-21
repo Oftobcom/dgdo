@@ -26,21 +26,23 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12trip_request.proto\x12\x10\x64gdo.triprequest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63ommon.proto\"\x97\x02\n\x0bTripRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0cpassenger_id\x18\x02 \x01(\t\x12%\n\x06origin\x18\x03 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x04 \x01(\x0b\x32\x15.dgdo.common.Location\x12\x33\n\x06status\x18\x05 \x01(\x0e\x32#.dgdo.triprequest.TripRequestStatus\x12.\n\ncreated_at\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x83\x01\n\x18\x43reateTripRequestCommand\x12\x14\n\x0cpassenger_id\x18\x01 \x01(\t\x12%\n\x06origin\x18\x02 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x03 \x01(\x0b\x32\x15.dgdo.common.Location\".\n\x18\x43\x61ncelTripRequestCommand\x12\x12\n\nrequest_id\x18\x01 \x01(\t*k\n\x11TripRequestStatus\x12#\n\x1fTRIP_REQUEST_STATUS_UNSPECIFIED\x10\x00\x12\x08\n\x04OPEN\x10\x01\x12\x0b\n\x07MATCHED\x10\x02\x12\r\n\tCANCELLED\x10\x03\x12\x0b\n\x07\x45XPIRED\x10\x04\x32\x8a\x02\n\x12TripRequestService\x12Q\n\x11\x43reateTripRequest\x12\x1d.dgdo.triprequest.TripRequest\x1a\x1d.dgdo.triprequest.TripRequest\x12Q\n\x11\x43\x61ncelTripRequest\x12\x1d.dgdo.triprequest.TripRequest\x1a\x1d.dgdo.triprequest.TripRequest\x12N\n\x0eGetTripRequest\x12\x1d.dgdo.triprequest.TripRequest\x1a\x1d.dgdo.triprequest.TripRequestb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12trip_request.proto\x12\x10\x64gdo.triprequest\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63ommon.proto\"\xa8\x02\n\x0bTripRequest\x12\n\n\x02id\x18\x01 \x01(\t\x12\x14\n\x0cpassenger_id\x18\x02 \x01(\t\x12%\n\x06origin\x18\x03 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x04 \x01(\x0b\x32\x15.dgdo.common.Location\x12\x33\n\x06status\x18\x05 \x01(\x0e\x32#.dgdo.triprequest.TripRequestStatus\x12\x0f\n\x07version\x18\x06 \x01(\x05\x12.\n\ncreated_at\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12.\n\nupdated_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\"\x83\x01\n\x18\x43reateTripRequestCommand\x12\x14\n\x0cpassenger_id\x18\x01 \x01(\t\x12%\n\x06origin\x18\x02 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x03 \x01(\x0b\x32\x15.dgdo.common.Location\"H\n\x18\x43\x61ncelTripRequestCommand\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x18\n\x10\x65xpected_version\x18\x02 \x01(\x05\"(\n\x12GetTripRequestById\x12\x12\n\nrequest_id\x18\x01 \x01(\t*k\n\x11TripRequestStatus\x12#\n\x1fTRIP_REQUEST_STATUS_UNSPECIFIED\x10\x00\x12\x08\n\x04OPEN\x10\x01\x12\x0b\n\x07MATCHED\x10\x02\x12\r\n\tCANCELLED\x10\x03\x12\x0b\n\x07\x45XPIRED\x10\x04\x32\xab\x02\n\x12TripRequestService\x12^\n\x11\x43reateTripRequest\x12*.dgdo.triprequest.CreateTripRequestCommand\x1a\x1d.dgdo.triprequest.TripRequest\x12^\n\x11\x43\x61ncelTripRequest\x12*.dgdo.triprequest.CancelTripRequestCommand\x1a\x1d.dgdo.triprequest.TripRequest\x12U\n\x0eGetTripRequest\x12$.dgdo.triprequest.GetTripRequestById\x1a\x1d.dgdo.triprequest.TripRequestb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'trip_request_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_TRIPREQUESTSTATUS']._serialized_start=551
-  _globals['_TRIPREQUESTSTATUS']._serialized_end=658
+  _globals['_TRIPREQUESTSTATUS']._serialized_start=636
+  _globals['_TRIPREQUESTSTATUS']._serialized_end=743
   _globals['_TRIPREQUEST']._serialized_start=88
-  _globals['_TRIPREQUEST']._serialized_end=367
-  _globals['_CREATETRIPREQUESTCOMMAND']._serialized_start=370
-  _globals['_CREATETRIPREQUESTCOMMAND']._serialized_end=501
-  _globals['_CANCELTRIPREQUESTCOMMAND']._serialized_start=503
-  _globals['_CANCELTRIPREQUESTCOMMAND']._serialized_end=549
-  _globals['_TRIPREQUESTSERVICE']._serialized_start=661
-  _globals['_TRIPREQUESTSERVICE']._serialized_end=927
+  _globals['_TRIPREQUEST']._serialized_end=384
+  _globals['_CREATETRIPREQUESTCOMMAND']._serialized_start=387
+  _globals['_CREATETRIPREQUESTCOMMAND']._serialized_end=518
+  _globals['_CANCELTRIPREQUESTCOMMAND']._serialized_start=520
+  _globals['_CANCELTRIPREQUESTCOMMAND']._serialized_end=592
+  _globals['_GETTRIPREQUESTBYID']._serialized_start=594
+  _globals['_GETTRIPREQUESTBYID']._serialized_end=634
+  _globals['_TRIPREQUESTSERVICE']._serialized_start=746
+  _globals['_TRIPREQUESTSERVICE']._serialized_end=1045
 # @@protoc_insertion_point(module_scope)

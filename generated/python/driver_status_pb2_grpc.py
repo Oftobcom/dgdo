@@ -3,7 +3,6 @@
 import grpc
 import warnings
 
-import common_pb2 as common__pb2
 import driver_status_pb2 as driver__status__pb2
 
 GRPC_GENERATED_VERSION = '1.76.0'
@@ -27,7 +26,9 @@ if _version_not_supported:
 
 
 class DriverStatusServiceStub(object):
-    """DriverStatus service
+    """--------------------
+    Service
+    --------------------
     """
 
     def __init__(self, channel):
@@ -38,18 +39,20 @@ class DriverStatusServiceStub(object):
         """
         self.UpdateDriverStatus = channel.unary_unary(
                 '/dgdo.driver_status.DriverStatusService/UpdateDriverStatus',
-                request_serializer=driver__status__pb2.DriverStatus.SerializeToString,
+                request_serializer=driver__status__pb2.UpdateDriverStatusRequest.SerializeToString,
                 response_deserializer=driver__status__pb2.DriverStatus.FromString,
                 _registered_method=True)
         self.GetAvailableDrivers = channel.unary_stream(
                 '/dgdo.driver_status.DriverStatusService/GetAvailableDrivers',
-                request_serializer=common__pb2.Location.SerializeToString,
+                request_serializer=driver__status__pb2.GetAvailableDriversRequest.SerializeToString,
                 response_deserializer=driver__status__pb2.DriverStatus.FromString,
                 _registered_method=True)
 
 
 class DriverStatusServiceServicer(object):
-    """DriverStatus service
+    """--------------------
+    Service
+    --------------------
     """
 
     def UpdateDriverStatus(self, request, context):
@@ -69,12 +72,12 @@ def add_DriverStatusServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'UpdateDriverStatus': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateDriverStatus,
-                    request_deserializer=driver__status__pb2.DriverStatus.FromString,
+                    request_deserializer=driver__status__pb2.UpdateDriverStatusRequest.FromString,
                     response_serializer=driver__status__pb2.DriverStatus.SerializeToString,
             ),
             'GetAvailableDrivers': grpc.unary_stream_rpc_method_handler(
                     servicer.GetAvailableDrivers,
-                    request_deserializer=common__pb2.Location.FromString,
+                    request_deserializer=driver__status__pb2.GetAvailableDriversRequest.FromString,
                     response_serializer=driver__status__pb2.DriverStatus.SerializeToString,
             ),
     }
@@ -86,7 +89,9 @@ def add_DriverStatusServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class DriverStatusService(object):
-    """DriverStatus service
+    """--------------------
+    Service
+    --------------------
     """
 
     @staticmethod
@@ -104,7 +109,7 @@ class DriverStatusService(object):
             request,
             target,
             '/dgdo.driver_status.DriverStatusService/UpdateDriverStatus',
-            driver__status__pb2.DriverStatus.SerializeToString,
+            driver__status__pb2.UpdateDriverStatusRequest.SerializeToString,
             driver__status__pb2.DriverStatus.FromString,
             options,
             channel_credentials,
@@ -131,7 +136,7 @@ class DriverStatusService(object):
             request,
             target,
             '/dgdo.driver_status.DriverStatusService/GetAvailableDrivers',
-            common__pb2.Location.SerializeToString,
+            driver__status__pb2.GetAvailableDriversRequest.SerializeToString,
             driver__status__pb2.DriverStatus.FromString,
             options,
             channel_credentials,

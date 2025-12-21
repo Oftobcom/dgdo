@@ -26,7 +26,9 @@ if _version_not_supported:
 
 
 class TripRequestServiceStub(object):
-    """TripRequest service
+    """--------------------
+    Service
+    --------------------
     """
 
     def __init__(self, channel):
@@ -37,23 +39,25 @@ class TripRequestServiceStub(object):
         """
         self.CreateTripRequest = channel.unary_unary(
                 '/dgdo.triprequest.TripRequestService/CreateTripRequest',
-                request_serializer=trip__request__pb2.TripRequest.SerializeToString,
+                request_serializer=trip__request__pb2.CreateTripRequestCommand.SerializeToString,
                 response_deserializer=trip__request__pb2.TripRequest.FromString,
                 _registered_method=True)
         self.CancelTripRequest = channel.unary_unary(
                 '/dgdo.triprequest.TripRequestService/CancelTripRequest',
-                request_serializer=trip__request__pb2.TripRequest.SerializeToString,
+                request_serializer=trip__request__pb2.CancelTripRequestCommand.SerializeToString,
                 response_deserializer=trip__request__pb2.TripRequest.FromString,
                 _registered_method=True)
         self.GetTripRequest = channel.unary_unary(
                 '/dgdo.triprequest.TripRequestService/GetTripRequest',
-                request_serializer=trip__request__pb2.TripRequest.SerializeToString,
+                request_serializer=trip__request__pb2.GetTripRequestById.SerializeToString,
                 response_deserializer=trip__request__pb2.TripRequest.FromString,
                 _registered_method=True)
 
 
 class TripRequestServiceServicer(object):
-    """TripRequest service
+    """--------------------
+    Service
+    --------------------
     """
 
     def CreateTripRequest(self, request, context):
@@ -79,17 +83,17 @@ def add_TripRequestServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'CreateTripRequest': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateTripRequest,
-                    request_deserializer=trip__request__pb2.TripRequest.FromString,
+                    request_deserializer=trip__request__pb2.CreateTripRequestCommand.FromString,
                     response_serializer=trip__request__pb2.TripRequest.SerializeToString,
             ),
             'CancelTripRequest': grpc.unary_unary_rpc_method_handler(
                     servicer.CancelTripRequest,
-                    request_deserializer=trip__request__pb2.TripRequest.FromString,
+                    request_deserializer=trip__request__pb2.CancelTripRequestCommand.FromString,
                     response_serializer=trip__request__pb2.TripRequest.SerializeToString,
             ),
             'GetTripRequest': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTripRequest,
-                    request_deserializer=trip__request__pb2.TripRequest.FromString,
+                    request_deserializer=trip__request__pb2.GetTripRequestById.FromString,
                     response_serializer=trip__request__pb2.TripRequest.SerializeToString,
             ),
     }
@@ -101,7 +105,9 @@ def add_TripRequestServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class TripRequestService(object):
-    """TripRequest service
+    """--------------------
+    Service
+    --------------------
     """
 
     @staticmethod
@@ -119,7 +125,7 @@ class TripRequestService(object):
             request,
             target,
             '/dgdo.triprequest.TripRequestService/CreateTripRequest',
-            trip__request__pb2.TripRequest.SerializeToString,
+            trip__request__pb2.CreateTripRequestCommand.SerializeToString,
             trip__request__pb2.TripRequest.FromString,
             options,
             channel_credentials,
@@ -146,7 +152,7 @@ class TripRequestService(object):
             request,
             target,
             '/dgdo.triprequest.TripRequestService/CancelTripRequest',
-            trip__request__pb2.TripRequest.SerializeToString,
+            trip__request__pb2.CancelTripRequestCommand.SerializeToString,
             trip__request__pb2.TripRequest.FromString,
             options,
             channel_credentials,
@@ -173,7 +179,7 @@ class TripRequestService(object):
             request,
             target,
             '/dgdo.triprequest.TripRequestService/GetTripRequest',
-            trip__request__pb2.TripRequest.SerializeToString,
+            trip__request__pb2.GetTripRequestById.SerializeToString,
             trip__request__pb2.TripRequest.FromString,
             options,
             channel_credentials,

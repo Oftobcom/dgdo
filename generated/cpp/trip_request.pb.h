@@ -50,7 +50,7 @@ struct TableStruct_trip_5frequest_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -65,6 +65,9 @@ extern CancelTripRequestCommandDefaultTypeInternal _CancelTripRequestCommand_def
 class CreateTripRequestCommand;
 class CreateTripRequestCommandDefaultTypeInternal;
 extern CreateTripRequestCommandDefaultTypeInternal _CreateTripRequestCommand_default_instance_;
+class GetTripRequestById;
+class GetTripRequestByIdDefaultTypeInternal;
+extern GetTripRequestByIdDefaultTypeInternal _GetTripRequestById_default_instance_;
 class TripRequest;
 class TripRequestDefaultTypeInternal;
 extern TripRequestDefaultTypeInternal _TripRequest_default_instance_;
@@ -73,6 +76,7 @@ extern TripRequestDefaultTypeInternal _TripRequest_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::dgdo::triprequest::CancelTripRequestCommand* Arena::CreateMaybeMessage<::dgdo::triprequest::CancelTripRequestCommand>(Arena*);
 template<> ::dgdo::triprequest::CreateTripRequestCommand* Arena::CreateMaybeMessage<::dgdo::triprequest::CreateTripRequestCommand>(Arena*);
+template<> ::dgdo::triprequest::GetTripRequestById* Arena::CreateMaybeMessage<::dgdo::triprequest::GetTripRequestById>(Arena*);
 template<> ::dgdo::triprequest::TripRequest* Arena::CreateMaybeMessage<::dgdo::triprequest::TripRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace dgdo {
@@ -225,9 +229,10 @@ class TripRequest PROTOBUF_FINAL :
     kPassengerIdFieldNumber = 2,
     kOriginFieldNumber = 3,
     kDestinationFieldNumber = 4,
-    kCreatedAtFieldNumber = 6,
-    kUpdatedAtFieldNumber = 7,
+    kCreatedAtFieldNumber = 7,
+    kUpdatedAtFieldNumber = 8,
     kStatusFieldNumber = 5,
+    kVersionFieldNumber = 6,
   };
   // string id = 1;
   void clear_id();
@@ -315,7 +320,7 @@ class TripRequest PROTOBUF_FINAL :
       ::dgdo::common::Location* destination);
   ::dgdo::common::Location* unsafe_arena_release_destination();
 
-  // .google.protobuf.Timestamp created_at = 6;
+  // .google.protobuf.Timestamp created_at = 7;
   bool has_created_at() const;
   private:
   bool _internal_has_created_at() const;
@@ -333,7 +338,7 @@ class TripRequest PROTOBUF_FINAL :
       PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
   PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
 
-  // .google.protobuf.Timestamp updated_at = 7;
+  // .google.protobuf.Timestamp updated_at = 8;
   bool has_updated_at() const;
   private:
   bool _internal_has_updated_at() const;
@@ -360,6 +365,15 @@ class TripRequest PROTOBUF_FINAL :
   void _internal_set_status(::dgdo::triprequest::TripRequestStatus value);
   public:
 
+  // int32 version = 6;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::int32 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:dgdo.triprequest.TripRequest)
  private:
   class _Internal;
@@ -374,6 +388,7 @@ class TripRequest PROTOBUF_FINAL :
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
   int status_;
+  ::PROTOBUF_NAMESPACE_ID::int32 version_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trip_5frequest_2eproto;
 };
@@ -686,6 +701,7 @@ class CancelTripRequestCommand PROTOBUF_FINAL :
 
   enum : int {
     kRequestIdFieldNumber = 1,
+    kExpectedVersionFieldNumber = 2,
   };
   // string request_id = 1;
   void clear_request_id();
@@ -712,7 +728,170 @@ class CancelTripRequestCommand PROTOBUF_FINAL :
   std::string* _internal_mutable_request_id();
   public:
 
+  // int32 expected_version = 2;
+  void clear_expected_version();
+  ::PROTOBUF_NAMESPACE_ID::int32 expected_version() const;
+  void set_expected_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_expected_version() const;
+  void _internal_set_expected_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:dgdo.triprequest.CancelTripRequestCommand)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request_id_;
+  ::PROTOBUF_NAMESPACE_ID::int32 expected_version_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trip_5frequest_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetTripRequestById PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:dgdo.triprequest.GetTripRequestById) */ {
+ public:
+  inline GetTripRequestById() : GetTripRequestById(nullptr) {};
+  virtual ~GetTripRequestById();
+
+  GetTripRequestById(const GetTripRequestById& from);
+  GetTripRequestById(GetTripRequestById&& from) noexcept
+    : GetTripRequestById() {
+    *this = ::std::move(from);
+  }
+
+  inline GetTripRequestById& operator=(const GetTripRequestById& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetTripRequestById& operator=(GetTripRequestById&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const GetTripRequestById& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const GetTripRequestById* internal_default_instance() {
+    return reinterpret_cast<const GetTripRequestById*>(
+               &_GetTripRequestById_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(GetTripRequestById& a, GetTripRequestById& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetTripRequestById* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetTripRequestById* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline GetTripRequestById* New() const final {
+    return CreateMaybeMessage<GetTripRequestById>(nullptr);
+  }
+
+  GetTripRequestById* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<GetTripRequestById>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const GetTripRequestById& from);
+  void MergeFrom(const GetTripRequestById& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetTripRequestById* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "dgdo.triprequest.GetTripRequestById";
+  }
+  protected:
+  explicit GetTripRequestById(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trip_5frequest_2eproto);
+    return ::descriptor_table_trip_5frequest_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRequestIdFieldNumber = 1,
+  };
+  // string request_id = 1;
+  void clear_request_id();
+  const std::string& request_id() const;
+  void set_request_id(const std::string& value);
+  void set_request_id(std::string&& value);
+  void set_request_id(const char* value);
+  void set_request_id(const char* value, size_t size);
+  std::string* mutable_request_id();
+  std::string* release_request_id();
+  void set_allocated_request_id(std::string* request_id);
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  std::string* unsafe_arena_release_request_id();
+  GOOGLE_PROTOBUF_RUNTIME_DEPRECATED("The unsafe_arena_ accessors for"
+  "    string fields are deprecated and will be removed in a"
+  "    future release.")
+  void unsafe_arena_set_allocated_request_id(
+      std::string* request_id);
+  private:
+  const std::string& _internal_request_id() const;
+  void _internal_set_request_id(const std::string& value);
+  std::string* _internal_mutable_request_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:dgdo.triprequest.GetTripRequestById)
  private:
   class _Internal;
 
@@ -1066,7 +1245,27 @@ inline void TripRequest::set_status(::dgdo::triprequest::TripRequestStatus value
   // @@protoc_insertion_point(field_set:dgdo.triprequest.TripRequest.status)
 }
 
-// .google.protobuf.Timestamp created_at = 6;
+// int32 version = 6;
+inline void TripRequest::clear_version() {
+  version_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TripRequest::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TripRequest::version() const {
+  // @@protoc_insertion_point(field_get:dgdo.triprequest.TripRequest.version)
+  return _internal_version();
+}
+inline void TripRequest::_internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  version_ = value;
+}
+inline void TripRequest::set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:dgdo.triprequest.TripRequest.version)
+}
+
+// .google.protobuf.Timestamp created_at = 7;
 inline bool TripRequest::_internal_has_created_at() const {
   return this != internal_default_instance() && created_at_ != nullptr;
 }
@@ -1141,7 +1340,7 @@ inline void TripRequest::set_allocated_created_at(PROTOBUF_NAMESPACE_ID::Timesta
   // @@protoc_insertion_point(field_set_allocated:dgdo.triprequest.TripRequest.created_at)
 }
 
-// .google.protobuf.Timestamp updated_at = 7;
+// .google.protobuf.Timestamp updated_at = 8;
 inline bool TripRequest::_internal_has_updated_at() const {
   return this != internal_default_instance() && updated_at_ != nullptr;
 }
@@ -1536,9 +1735,116 @@ inline void CancelTripRequestCommand::unsafe_arena_set_allocated_request_id(
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:dgdo.triprequest.CancelTripRequestCommand.request_id)
 }
 
+// int32 expected_version = 2;
+inline void CancelTripRequestCommand::clear_expected_version() {
+  expected_version_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CancelTripRequestCommand::_internal_expected_version() const {
+  return expected_version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CancelTripRequestCommand::expected_version() const {
+  // @@protoc_insertion_point(field_get:dgdo.triprequest.CancelTripRequestCommand.expected_version)
+  return _internal_expected_version();
+}
+inline void CancelTripRequestCommand::_internal_set_expected_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  expected_version_ = value;
+}
+inline void CancelTripRequestCommand::set_expected_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_expected_version(value);
+  // @@protoc_insertion_point(field_set:dgdo.triprequest.CancelTripRequestCommand.expected_version)
+}
+
+// -------------------------------------------------------------------
+
+// GetTripRequestById
+
+// string request_id = 1;
+inline void GetTripRequestById::clear_request_id() {
+  request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline const std::string& GetTripRequestById::request_id() const {
+  // @@protoc_insertion_point(field_get:dgdo.triprequest.GetTripRequestById.request_id)
+  return _internal_request_id();
+}
+inline void GetTripRequestById::set_request_id(const std::string& value) {
+  _internal_set_request_id(value);
+  // @@protoc_insertion_point(field_set:dgdo.triprequest.GetTripRequestById.request_id)
+}
+inline std::string* GetTripRequestById::mutable_request_id() {
+  // @@protoc_insertion_point(field_mutable:dgdo.triprequest.GetTripRequestById.request_id)
+  return _internal_mutable_request_id();
+}
+inline const std::string& GetTripRequestById::_internal_request_id() const {
+  return request_id_.Get();
+}
+inline void GetTripRequestById::_internal_set_request_id(const std::string& value) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value, GetArena());
+}
+inline void GetTripRequestById::set_request_id(std::string&& value) {
+  
+  request_id_.Set(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:dgdo.triprequest.GetTripRequestById.request_id)
+}
+inline void GetTripRequestById::set_request_id(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value),
+              GetArena());
+  // @@protoc_insertion_point(field_set_char:dgdo.triprequest.GetTripRequestById.request_id)
+}
+inline void GetTripRequestById::set_request_id(const char* value,
+    size_t size) {
+  
+  request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:dgdo.triprequest.GetTripRequestById.request_id)
+}
+inline std::string* GetTripRequestById::_internal_mutable_request_id() {
+  
+  return request_id_.Mutable(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline std::string* GetTripRequestById::release_request_id() {
+  // @@protoc_insertion_point(field_release:dgdo.triprequest.GetTripRequestById.request_id)
+  return request_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void GetTripRequestById::set_allocated_request_id(std::string* request_id) {
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request_id,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:dgdo.triprequest.GetTripRequestById.request_id)
+}
+inline std::string* GetTripRequestById::unsafe_arena_release_request_id() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:dgdo.triprequest.GetTripRequestById.request_id)
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  
+  return request_id_.UnsafeArenaRelease(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      GetArena());
+}
+inline void GetTripRequestById::unsafe_arena_set_allocated_request_id(
+    std::string* request_id) {
+  GOOGLE_DCHECK(GetArena() != nullptr);
+  if (request_id != nullptr) {
+    
+  } else {
+    
+  }
+  request_id_.UnsafeArenaSetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      request_id, GetArena());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:dgdo.triprequest.GetTripRequestById.request_id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -1,22 +1,54 @@
+// ml_feedback.proto
+
 syntax = "proto3";
 
 package dgdo.ml_feedback;
 
 import "common.proto";
 import "matching.proto";
+import "driver_status.proto";
 import "google/protobuf/timestamp.proto";
 
-// Feedback for ML
+// --------------------
+// ML Feedback for Matching
+// --------------------
 message Feedback {
-  string trip_request_id = 1;
-  repeated matching.DriverCandidate candidate_list = 2;
-  string matched_driver = 3;
+  string trip_request_id = 1;           // immutable reference / idempotency key
+
+  // List of candidate drivers returned during matching
+  repeated dgdo.matching.Candidate candidate_list = 2;
+
+  // Driver actually assigned / matched
+  string matched_driver_id = 3;
+
+  // Flag: was the trip successfully completed
   bool success_flag = 4;
-  google.protobuf.Timestamp timestamp = 5;
+
+  // Optional driver status snapshot at assignment
+  dgdo.driver_status.DriverStatus driver_status_snapshot = 5;
+
+  // When feedback was recorded
+  google.protobuf.Timestamp timestamp = 6;
+
+  // Metadata for training / analytics
+  dgdo.common.Metadata metadata = 7;
 }
 
-// ML feedback service
+// --------------------
+// Requests
+// --------------------
+message TrainingBatchRequest {
+  dgdo.common.Metadata metadata = 1;     // filter / batch criteria
+  int32 batch_size = 2;                  // max items per stream
+}
+
+// --------------------
+// Service
+// --------------------
 service MLFeedbackService {
+  // Send feedback after trip completion
   rpc SendFeedback(Feedback) returns (Feedback);
-  rpc GetTrainingBatch(dgdo.common.Metadata) returns (stream Feedback);
+
+  // Stream feedback for ML training
+  rpc GetTrainingBatch(TrainingBatchRequest) returns (stream Feedback);
 }

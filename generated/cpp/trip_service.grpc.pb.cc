@@ -24,8 +24,10 @@ namespace tripservice {
 
 static const char* TripService_method_names[] = {
   "/dgdo.tripservice.TripService/CreateTrip",
-  "/dgdo.tripservice.TripService/GetTrip",
+  "/dgdo.tripservice.TripService/GetTripById",
+  "/dgdo.tripservice.TripService/GetTripByRequestId",
   "/dgdo.tripservice.TripService/UpdateTripStatus",
+  "/dgdo.tripservice.TripService/CancelTrip",
 };
 
 std::unique_ptr< TripService::Stub> TripService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -36,8 +38,10 @@ std::unique_ptr< TripService::Stub> TripService::NewStub(const std::shared_ptr< 
 
 TripService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_CreateTrip_(TripService_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_GetTrip_(TripService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
-  , rpcmethod_UpdateTripStatus_(TripService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTripById_(TripService_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetTripByRequestId_(TripService_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_UpdateTripStatus_(TripService_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CancelTrip_(TripService_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status TripService::Stub::CreateTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::CreateTripCommand& request, ::dgdo::trip::Trip* response) {
@@ -68,39 +72,67 @@ void TripService::Stub::experimental_async::CreateTrip(::grpc::ClientContext* co
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_CreateTrip_, context, request, false);
 }
 
-::grpc::Status TripService::Stub::GetTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::TripId& request, ::dgdo::trip::Trip* response) {
-  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTrip_, context, request, response);
+::grpc::Status TripService::Stub::GetTripById(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByIdRequest& request, ::dgdo::trip::Trip* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTripById_, context, request, response);
 }
 
-void TripService::Stub::experimental_async::GetTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::TripId* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTrip_, context, request, response, std::move(f));
+void TripService::Stub::experimental_async::GetTripById(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByIdRequest* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTripById_, context, request, response, std::move(f));
 }
 
-void TripService::Stub::experimental_async::GetTrip(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
-  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTrip_, context, request, response, std::move(f));
+void TripService::Stub::experimental_async::GetTripById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTripById_, context, request, response, std::move(f));
 }
 
-void TripService::Stub::experimental_async::GetTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::TripId* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTrip_, context, request, response, reactor);
+void TripService::Stub::experimental_async::GetTripById(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByIdRequest* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTripById_, context, request, response, reactor);
 }
 
-void TripService::Stub::experimental_async::GetTrip(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
-  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTrip_, context, request, response, reactor);
+void TripService::Stub::experimental_async::GetTripById(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTripById_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncGetTripRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::TripId& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTrip_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncGetTripByIdRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTripById_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncGetTripRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::TripId& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTrip_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncGetTripByIdRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTripById_, context, request, false);
 }
 
-::grpc::Status TripService::Stub::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::trip::Trip& request, ::dgdo::trip::Trip* response) {
+::grpc::Status TripService::Stub::GetTripByRequestId(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest& request, ::dgdo::trip::Trip* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_GetTripByRequestId_, context, request, response);
+}
+
+void TripService::Stub::experimental_async::GetTripByRequestId(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTripByRequestId_, context, request, response, std::move(f));
+}
+
+void TripService::Stub::experimental_async::GetTripByRequestId(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_GetTripByRequestId_, context, request, response, std::move(f));
+}
+
+void TripService::Stub::experimental_async::GetTripByRequestId(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTripByRequestId_, context, request, response, reactor);
+}
+
+void TripService::Stub::experimental_async::GetTripByRequestId(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_GetTripByRequestId_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncGetTripByRequestIdRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTripByRequestId_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncGetTripByRequestIdRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_GetTripByRequestId_, context, request, false);
+}
+
+::grpc::Status TripService::Stub::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand& request, ::dgdo::trip::Trip* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateTripStatus_, context, request, response);
 }
 
-void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::trip::Trip* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateTripStatus_, context, request, response, std::move(f));
 }
 
@@ -108,7 +140,7 @@ void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientConte
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateTripStatus_, context, request, response, std::move(f));
 }
 
-void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::trip::Trip* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateTripStatus_, context, request, response, reactor);
 }
 
@@ -116,12 +148,40 @@ void TripService::Stub::experimental_async::UpdateTripStatus(::grpc::ClientConte
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateTripStatus_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncUpdateTripStatusRaw(::grpc::ClientContext* context, const ::dgdo::trip::Trip& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncUpdateTripStatusRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_UpdateTripStatus_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncUpdateTripStatusRaw(::grpc::ClientContext* context, const ::dgdo::trip::Trip& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncUpdateTripStatusRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_UpdateTripStatus_, context, request, false);
+}
+
+::grpc::Status TripService::Stub::CancelTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::CancelTripCommand& request, ::dgdo::trip::Trip* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_CancelTrip_, context, request, response);
+}
+
+void TripService::Stub::experimental_async::CancelTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::CancelTripCommand* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CancelTrip_, context, request, response, std::move(f));
+}
+
+void TripService::Stub::experimental_async::CancelTrip(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_CancelTrip_, context, request, response, std::move(f));
+}
+
+void TripService::Stub::experimental_async::CancelTrip(::grpc::ClientContext* context, const ::dgdo::tripservice::CancelTripCommand* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CancelTrip_, context, request, response, reactor);
+}
+
+void TripService::Stub::experimental_async::CancelTrip(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::dgdo::trip::Trip* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_CancelTrip_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::AsyncCancelTripRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::CancelTripCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_CancelTrip_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::dgdo::trip::Trip>* TripService::Stub::PrepareAsyncCancelTripRaw(::grpc::ClientContext* context, const ::dgdo::tripservice::CancelTripCommand& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::trip::Trip>::Create(channel_.get(), cq, rpcmethod_CancelTrip_, context, request, false);
 }
 
 TripService::Service::Service() {
@@ -138,22 +198,42 @@ TripService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TripService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::tripservice::TripId, ::dgdo::trip::Trip>(
+      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::tripservice::GetTripByIdRequest, ::dgdo::trip::Trip>(
           [](TripService::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::dgdo::tripservice::TripId* req,
+             const ::dgdo::tripservice::GetTripByIdRequest* req,
              ::dgdo::trip::Trip* resp) {
-               return service->GetTrip(ctx, req, resp);
+               return service->GetTripById(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TripService_method_names[2],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::trip::Trip, ::dgdo::trip::Trip>(
+      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::tripservice::GetTripByRequestIdRequest, ::dgdo::trip::Trip>(
           [](TripService::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::dgdo::trip::Trip* req,
+             const ::dgdo::tripservice::GetTripByRequestIdRequest* req,
+             ::dgdo::trip::Trip* resp) {
+               return service->GetTripByRequestId(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TripService_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::tripservice::UpdateTripStatusCommand, ::dgdo::trip::Trip>(
+          [](TripService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::dgdo::tripservice::UpdateTripStatusCommand* req,
              ::dgdo::trip::Trip* resp) {
                return service->UpdateTripStatus(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TripService_method_names[4],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TripService::Service, ::dgdo::tripservice::CancelTripCommand, ::dgdo::trip::Trip>(
+          [](TripService::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::dgdo::tripservice::CancelTripCommand* req,
+             ::dgdo::trip::Trip* resp) {
+               return service->CancelTrip(ctx, req, resp);
              }, this)));
 }
 
@@ -167,14 +247,28 @@ TripService::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status TripService::Service::GetTrip(::grpc::ServerContext* context, const ::dgdo::tripservice::TripId* request, ::dgdo::trip::Trip* response) {
+::grpc::Status TripService::Service::GetTripById(::grpc::ServerContext* context, const ::dgdo::tripservice::GetTripByIdRequest* request, ::dgdo::trip::Trip* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status TripService::Service::UpdateTripStatus(::grpc::ServerContext* context, const ::dgdo::trip::Trip* request, ::dgdo::trip::Trip* response) {
+::grpc::Status TripService::Service::GetTripByRequestId(::grpc::ServerContext* context, const ::dgdo::tripservice::GetTripByRequestIdRequest* request, ::dgdo::trip::Trip* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TripService::Service::UpdateTripStatus(::grpc::ServerContext* context, const ::dgdo::tripservice::UpdateTripStatusCommand* request, ::dgdo::trip::Trip* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TripService::Service::CancelTrip(::grpc::ServerContext* context, const ::dgdo::tripservice::CancelTripCommand* request, ::dgdo::trip::Trip* response) {
   (void) context;
   (void) request;
   (void) response;

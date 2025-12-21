@@ -1,3 +1,5 @@
+// driver_status.proto
+
 syntax = "proto3";
 
 package dgdo.driver_status;
@@ -5,24 +7,66 @@ package dgdo.driver_status;
 import "google/protobuf/timestamp.proto";
 import "common.proto";
 
+// --------------------
 // Vehicle info
+// --------------------
 message VehicleInfo {
   string make = 1;
   string model = 2;
   string plate_number = 3;
 }
 
-// Driver status
+// --------------------
+// Driver status (immutable updates)
+// --------------------
 message DriverStatus {
   string driver_id = 1;
+
+  // Availability and trip context
   bool is_available = 2;
-  dgdo.common.Location current_location = 3;
-  google.protobuf.Timestamp last_seen = 4;
-  VehicleInfo vehicle_info = 5;
+  string current_trip_id = 3;       // empty if none
+
+  // Location (optional for heartbeat)
+  dgdo.common.Location current_location = 4;
+
+  // Telemetry
+  google.protobuf.Timestamp last_seen = 5;
+
+  // Vehicle details
+  VehicleInfo vehicle_info = 6;
+
+  // Version for optimistic locking / concurrency
+  int32 version = 7;
+
+  // Metadata for ML/analytics
+  dgdo.common.Metadata metadata = 8;
 }
 
-// DriverStatus service
+// --------------------
+// Requests
+// --------------------
+message UpdateDriverStatusRequest {
+  string driver_id = 1;
+
+  // Optional updates
+  bool is_available = 2;
+  dgdo.common.Location current_location = 3;
+
+  // Client-generated idempotency key
+  string idempotency_key = 4;
+
+  int32 expected_version = 5;   // for optimistic locking
+}
+
+message GetAvailableDriversRequest {
+  dgdo.common.Location location = 1;
+  uint32 max_results = 2;
+}
+
+// --------------------
+// Service
+// --------------------
 service DriverStatusService {
-  rpc UpdateDriverStatus(DriverStatus) returns (DriverStatus);
-  rpc GetAvailableDrivers(dgdo.common.Location) returns (stream DriverStatus);
+  rpc UpdateDriverStatus(UpdateDriverStatusRequest) returns (DriverStatus);
+  rpc GetAvailableDrivers(GetAvailableDriversRequest) returns (stream DriverStatus);
 }

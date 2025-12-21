@@ -1,3 +1,5 @@
+// pricing.proto
+
 syntax = "proto3";
 
 package dgdo.pricing;

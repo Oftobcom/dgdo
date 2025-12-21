@@ -3,7 +3,6 @@
 import grpc
 import warnings
 
-import common_pb2 as common__pb2
 import ml_feedback_pb2 as ml__feedback__pb2
 
 GRPC_GENERATED_VERSION = '1.76.0'
@@ -27,7 +26,9 @@ if _version_not_supported:
 
 
 class MLFeedbackServiceStub(object):
-    """ML feedback service
+    """--------------------
+    Service
+    --------------------
     """
 
     def __init__(self, channel):
@@ -43,23 +44,27 @@ class MLFeedbackServiceStub(object):
                 _registered_method=True)
         self.GetTrainingBatch = channel.unary_stream(
                 '/dgdo.ml_feedback.MLFeedbackService/GetTrainingBatch',
-                request_serializer=common__pb2.Metadata.SerializeToString,
+                request_serializer=ml__feedback__pb2.TrainingBatchRequest.SerializeToString,
                 response_deserializer=ml__feedback__pb2.Feedback.FromString,
                 _registered_method=True)
 
 
 class MLFeedbackServiceServicer(object):
-    """ML feedback service
+    """--------------------
+    Service
+    --------------------
     """
 
     def SendFeedback(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Send feedback after trip completion
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetTrainingBatch(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Stream feedback for ML training
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -74,7 +79,7 @@ def add_MLFeedbackServiceServicer_to_server(servicer, server):
             ),
             'GetTrainingBatch': grpc.unary_stream_rpc_method_handler(
                     servicer.GetTrainingBatch,
-                    request_deserializer=common__pb2.Metadata.FromString,
+                    request_deserializer=ml__feedback__pb2.TrainingBatchRequest.FromString,
                     response_serializer=ml__feedback__pb2.Feedback.SerializeToString,
             ),
     }
@@ -86,7 +91,9 @@ def add_MLFeedbackServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MLFeedbackService(object):
-    """ML feedback service
+    """--------------------
+    Service
+    --------------------
     """
 
     @staticmethod
@@ -131,7 +138,7 @@ class MLFeedbackService(object):
             request,
             target,
             '/dgdo.ml_feedback.MLFeedbackService/GetTrainingBatch',
-            common__pb2.Metadata.SerializeToString,
+            ml__feedback__pb2.TrainingBatchRequest.SerializeToString,
             ml__feedback__pb2.Feedback.FromString,
             options,
             channel_credentials,

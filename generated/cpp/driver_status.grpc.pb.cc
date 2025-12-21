@@ -38,11 +38,11 @@ DriverStatusService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>
   , rpcmethod_GetAvailableDrivers_(DriverStatusService_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
-::grpc::Status DriverStatusService::Stub::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::DriverStatus& request, ::dgdo::driver_status::DriverStatus* response) {
+::grpc::Status DriverStatusService::Stub::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest& request, ::dgdo::driver_status::DriverStatus* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_UpdateDriverStatus_, context, request, response);
 }
 
-void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::DriverStatus* request, ::dgdo::driver_status::DriverStatus* response, std::function<void(::grpc::Status)> f) {
+void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest* request, ::dgdo::driver_status::DriverStatus* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateDriverStatus_, context, request, response, std::move(f));
 }
 
@@ -50,7 +50,7 @@ void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::C
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_UpdateDriverStatus_, context, request, response, std::move(f));
 }
 
-void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::DriverStatus* request, ::dgdo::driver_status::DriverStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::ClientContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest* request, ::dgdo::driver_status::DriverStatus* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateDriverStatus_, context, request, response, reactor);
 }
 
@@ -58,27 +58,27 @@ void DriverStatusService::Stub::experimental_async::UpdateDriverStatus(::grpc::C
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_UpdateDriverStatus_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::AsyncUpdateDriverStatusRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::DriverStatus& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::AsyncUpdateDriverStatusRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(channel_.get(), cq, rpcmethod_UpdateDriverStatus_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::PrepareAsyncUpdateDriverStatusRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::DriverStatus& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::PrepareAsyncUpdateDriverStatusRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(channel_.get(), cq, rpcmethod_UpdateDriverStatus_, context, request, false);
 }
 
-::grpc::ClientReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::GetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::common::Location& request) {
+::grpc::ClientReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::GetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::GetAvailableDriversRequest& request) {
   return ::grpc_impl::internal::ClientReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(channel_.get(), rpcmethod_GetAvailableDrivers_, context, request);
 }
 
-void DriverStatusService::Stub::experimental_async::GetAvailableDrivers(::grpc::ClientContext* context, ::dgdo::common::Location* request, ::grpc::experimental::ClientReadReactor< ::dgdo::driver_status::DriverStatus>* reactor) {
+void DriverStatusService::Stub::experimental_async::GetAvailableDrivers(::grpc::ClientContext* context, ::dgdo::driver_status::GetAvailableDriversRequest* request, ::grpc::experimental::ClientReadReactor< ::dgdo::driver_status::DriverStatus>* reactor) {
   ::grpc_impl::internal::ClientCallbackReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(stub_->channel_.get(), stub_->rpcmethod_GetAvailableDrivers_, context, request, reactor);
 }
 
-::grpc::ClientAsyncReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::AsyncGetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::common::Location& request, ::grpc::CompletionQueue* cq, void* tag) {
+::grpc::ClientAsyncReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::AsyncGetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::GetAvailableDriversRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(channel_.get(), cq, rpcmethod_GetAvailableDrivers_, context, request, true, tag);
 }
 
-::grpc::ClientAsyncReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::PrepareAsyncGetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::common::Location& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncReader< ::dgdo::driver_status::DriverStatus>* DriverStatusService::Stub::PrepareAsyncGetAvailableDriversRaw(::grpc::ClientContext* context, const ::dgdo::driver_status::GetAvailableDriversRequest& request, ::grpc::CompletionQueue* cq) {
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::dgdo::driver_status::DriverStatus>::Create(channel_.get(), cq, rpcmethod_GetAvailableDrivers_, context, request, false, nullptr);
 }
 
@@ -86,20 +86,20 @@ DriverStatusService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DriverStatusService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< DriverStatusService::Service, ::dgdo::driver_status::DriverStatus, ::dgdo::driver_status::DriverStatus>(
+      new ::grpc::internal::RpcMethodHandler< DriverStatusService::Service, ::dgdo::driver_status::UpdateDriverStatusRequest, ::dgdo::driver_status::DriverStatus>(
           [](DriverStatusService::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::dgdo::driver_status::DriverStatus* req,
+             const ::dgdo::driver_status::UpdateDriverStatusRequest* req,
              ::dgdo::driver_status::DriverStatus* resp) {
                return service->UpdateDriverStatus(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       DriverStatusService_method_names[1],
       ::grpc::internal::RpcMethod::SERVER_STREAMING,
-      new ::grpc::internal::ServerStreamingHandler< DriverStatusService::Service, ::dgdo::common::Location, ::dgdo::driver_status::DriverStatus>(
+      new ::grpc::internal::ServerStreamingHandler< DriverStatusService::Service, ::dgdo::driver_status::GetAvailableDriversRequest, ::dgdo::driver_status::DriverStatus>(
           [](DriverStatusService::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::dgdo::common::Location* req,
+             const ::dgdo::driver_status::GetAvailableDriversRequest* req,
              ::grpc_impl::ServerWriter<::dgdo::driver_status::DriverStatus>* writer) {
                return service->GetAvailableDrivers(ctx, req, writer);
              }, this)));
@@ -108,14 +108,14 @@ DriverStatusService::Service::Service() {
 DriverStatusService::Service::~Service() {
 }
 
-::grpc::Status DriverStatusService::Service::UpdateDriverStatus(::grpc::ServerContext* context, const ::dgdo::driver_status::DriverStatus* request, ::dgdo::driver_status::DriverStatus* response) {
+::grpc::Status DriverStatusService::Service::UpdateDriverStatus(::grpc::ServerContext* context, const ::dgdo::driver_status::UpdateDriverStatusRequest* request, ::dgdo::driver_status::DriverStatus* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status DriverStatusService::Service::GetAvailableDrivers(::grpc::ServerContext* context, const ::dgdo::common::Location* request, ::grpc::ServerWriter< ::dgdo::driver_status::DriverStatus>* writer) {
+::grpc::Status DriverStatusService::Service::GetAvailableDrivers(::grpc::ServerContext* context, const ::dgdo::driver_status::GetAvailableDriversRequest* request, ::grpc::ServerWriter< ::dgdo::driver_status::DriverStatus>* writer) {
   (void) context;
   (void) request;
   (void) writer;

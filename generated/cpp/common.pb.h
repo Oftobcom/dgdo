@@ -35,7 +35,6 @@
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/unknown_field_set.h>
-#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_common_2eproto
@@ -194,28 +193,9 @@ class Location PROTOBUF_FINAL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kTimestampFieldNumber = 3,
     kLatFieldNumber = 1,
     kLonFieldNumber = 2,
   };
-  // .google.protobuf.Timestamp timestamp = 3;
-  bool has_timestamp() const;
-  private:
-  bool _internal_has_timestamp() const;
-  public:
-  void clear_timestamp();
-  const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp() const;
-  PROTOBUF_NAMESPACE_ID::Timestamp* release_timestamp();
-  PROTOBUF_NAMESPACE_ID::Timestamp* mutable_timestamp();
-  void set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
-  private:
-  const PROTOBUF_NAMESPACE_ID::Timestamp& _internal_timestamp() const;
-  PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_timestamp();
-  public:
-  void unsafe_arena_set_allocated_timestamp(
-      PROTOBUF_NAMESPACE_ID::Timestamp* timestamp);
-  PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_timestamp();
-
   // double lat = 1;
   void clear_lat();
   double lat() const;
@@ -241,7 +221,6 @@ class Location PROTOBUF_FINAL :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  PROTOBUF_NAMESPACE_ID::Timestamp* timestamp_;
   double lat_;
   double lon_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -481,81 +460,6 @@ inline void Location::_internal_set_lon(double value) {
 inline void Location::set_lon(double value) {
   _internal_set_lon(value);
   // @@protoc_insertion_point(field_set:dgdo.common.Location.lon)
-}
-
-// .google.protobuf.Timestamp timestamp = 3;
-inline bool Location::_internal_has_timestamp() const {
-  return this != internal_default_instance() && timestamp_ != nullptr;
-}
-inline bool Location::has_timestamp() const {
-  return _internal_has_timestamp();
-}
-inline const PROTOBUF_NAMESPACE_ID::Timestamp& Location::_internal_timestamp() const {
-  const PROTOBUF_NAMESPACE_ID::Timestamp* p = timestamp_;
-  return p != nullptr ? *p : *reinterpret_cast<const PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      &PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const PROTOBUF_NAMESPACE_ID::Timestamp& Location::timestamp() const {
-  // @@protoc_insertion_point(field_get:dgdo.common.Location.timestamp)
-  return _internal_timestamp();
-}
-inline void Location::unsafe_arena_set_allocated_timestamp(
-    PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
-  }
-  timestamp_ = timestamp;
-  if (timestamp) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:dgdo.common.Location.timestamp)
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* Location::release_timestamp() {
-  auto temp = unsafe_arena_release_timestamp();
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* Location::unsafe_arena_release_timestamp() {
-  // @@protoc_insertion_point(field_release:dgdo.common.Location.timestamp)
-  
-  PROTOBUF_NAMESPACE_ID::Timestamp* temp = timestamp_;
-  timestamp_ = nullptr;
-  return temp;
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* Location::_internal_mutable_timestamp() {
-  
-  if (timestamp_ == nullptr) {
-    auto* p = CreateMaybeMessage<PROTOBUF_NAMESPACE_ID::Timestamp>(GetArena());
-    timestamp_ = p;
-  }
-  return timestamp_;
-}
-inline PROTOBUF_NAMESPACE_ID::Timestamp* Location::mutable_timestamp() {
-  // @@protoc_insertion_point(field_mutable:dgdo.common.Location.timestamp)
-  return _internal_mutable_timestamp();
-}
-inline void Location::set_allocated_timestamp(PROTOBUF_NAMESPACE_ID::Timestamp* timestamp) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp_);
-  }
-  if (timestamp) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(timestamp)->GetArena();
-    if (message_arena != submessage_arena) {
-      timestamp = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, timestamp, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  timestamp_ = timestamp;
-  // @@protoc_insertion_point(field_set_allocated:dgdo.common.Location.timestamp)
 }
 
 // -------------------------------------------------------------------

@@ -1,3 +1,5 @@
+// user.proto
+
 syntax = "proto3";
 
 package dgdo.user;

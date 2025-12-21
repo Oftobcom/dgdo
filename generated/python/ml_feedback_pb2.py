@@ -24,18 +24,21 @@ _sym_db = _symbol_database.Default()
 
 import common_pb2 as common__pb2
 import matching_pb2 as matching__pb2
+import driver_status_pb2 as driver__status__pb2
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11ml_feedback.proto\x12\x10\x64gdo.ml_feedback\x1a\x0c\x63ommon.proto\x1a\x0ematching.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb8\x01\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x17\n\x0ftrip_request_id\x18\x01 \x01(\t\x12\x36\n\x0e\x63\x61ndidate_list\x18\x02 \x03(\x0b\x32\x1e.dgdo.matching.DriverCandidate\x12\x16\n\x0ematched_driver\x18\x03 \x01(\t\x12\x14\n\x0csuccess_flag\x18\x04 \x01(\x08\x12-\n\ttimestamp\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp2\xa4\x01\n\x11MLFeedbackService\x12\x46\n\x0cSendFeedback\x12\x1a.dgdo.ml_feedback.Feedback\x1a\x1a.dgdo.ml_feedback.Feedback\x12G\n\x10GetTrainingBatch\x12\x15.dgdo.common.Metadata\x1a\x1a.dgdo.ml_feedback.Feedback0\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11ml_feedback.proto\x12\x10\x64gdo.ml_feedback\x1a\x0c\x63ommon.proto\x1a\x0ematching.proto\x1a\x13\x64river_status.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa0\x02\n\x08\x46\x65\x65\x64\x62\x61\x63k\x12\x17\n\x0ftrip_request_id\x18\x01 \x01(\t\x12\x30\n\x0e\x63\x61ndidate_list\x18\x02 \x03(\x0b\x32\x18.dgdo.matching.Candidate\x12\x19\n\x11matched_driver_id\x18\x03 \x01(\t\x12\x14\n\x0csuccess_flag\x18\x04 \x01(\x08\x12@\n\x16\x64river_status_snapshot\x18\x05 \x01(\x0b\x32 .dgdo.driver_status.DriverStatus\x12-\n\ttimestamp\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\'\n\x08metadata\x18\x07 \x01(\x0b\x32\x15.dgdo.common.Metadata\"S\n\x14TrainingBatchRequest\x12\'\n\x08metadata\x18\x01 \x01(\x0b\x32\x15.dgdo.common.Metadata\x12\x12\n\nbatch_size\x18\x02 \x01(\x05\x32\xb5\x01\n\x11MLFeedbackService\x12\x46\n\x0cSendFeedback\x12\x1a.dgdo.ml_feedback.Feedback\x1a\x1a.dgdo.ml_feedback.Feedback\x12X\n\x10GetTrainingBatch\x12&.dgdo.ml_feedback.TrainingBatchRequest\x1a\x1a.dgdo.ml_feedback.Feedback0\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ml_feedback_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_FEEDBACK']._serialized_start=103
-  _globals['_FEEDBACK']._serialized_end=287
-  _globals['_MLFEEDBACKSERVICE']._serialized_start=290
-  _globals['_MLFEEDBACKSERVICE']._serialized_end=454
+  _globals['_FEEDBACK']._serialized_start=124
+  _globals['_FEEDBACK']._serialized_end=412
+  _globals['_TRAININGBATCHREQUEST']._serialized_start=414
+  _globals['_TRAININGBATCHREQUEST']._serialized_end=497
+  _globals['_MLFEEDBACKSERVICE']._serialized_start=500
+  _globals['_MLFEEDBACKSERVICE']._serialized_end=681
 # @@protoc_insertion_point(module_scope)

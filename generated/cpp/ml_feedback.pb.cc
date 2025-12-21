@@ -14,7 +14,9 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_matching_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_DriverCandidate_matching_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Metadata_common_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_driver_5fstatus_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_DriverStatus_driver_5fstatus_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_matching_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Candidate_matching_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
 namespace dgdo {
 namespace ml_feedback {
@@ -22,6 +24,10 @@ class FeedbackDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Feedback> _instance;
 } _Feedback_default_instance_;
+class TrainingBatchRequestDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrainingBatchRequest> _instance;
+} _TrainingBatchRequest_default_instance_;
 }  // namespace ml_feedback
 }  // namespace dgdo
 static void InitDefaultsscc_info_Feedback_ml_5ffeedback_2eproto() {
@@ -35,12 +41,29 @@ static void InitDefaultsscc_info_Feedback_ml_5ffeedback_2eproto() {
   ::dgdo::ml_feedback::Feedback::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Feedback_ml_5ffeedback_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_Feedback_ml_5ffeedback_2eproto}, {
-      &scc_info_DriverCandidate_matching_2eproto.base,
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_Feedback_ml_5ffeedback_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_Feedback_ml_5ffeedback_2eproto}, {
+      &scc_info_Candidate_matching_2eproto.base,
+      &scc_info_DriverStatus_driver_5fstatus_2eproto.base,
+      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
+      &scc_info_Metadata_common_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_ml_5ffeedback_2eproto[1];
+static void InitDefaultsscc_info_TrainingBatchRequest_ml_5ffeedback_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::dgdo::ml_feedback::_TrainingBatchRequest_default_instance_;
+    new (ptr) ::dgdo::ml_feedback::TrainingBatchRequest();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::dgdo::ml_feedback::TrainingBatchRequest::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainingBatchRequest_ml_5ffeedback_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TrainingBatchRequest_ml_5ffeedback_2eproto}, {
+      &scc_info_Metadata_common_2eproto.base,}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_ml_5ffeedback_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_ml_5ffeedback_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_ml_5ffeedback_2eproto = nullptr;
 
@@ -52,46 +75,65 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_ml_5ffeedback_2eproto::offsets
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, trip_request_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, candidate_list_),
-  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, matched_driver_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, matched_driver_id_),
   PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, success_flag_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, driver_status_snapshot_),
   PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, timestamp_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::Feedback, metadata_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::TrainingBatchRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::TrainingBatchRequest, metadata_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::ml_feedback::TrainingBatchRequest, batch_size_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::dgdo::ml_feedback::Feedback)},
+  { 12, -1, sizeof(::dgdo::ml_feedback::TrainingBatchRequest)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::ml_feedback::_Feedback_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::dgdo::ml_feedback::_TrainingBatchRequest_default_instance_),
 };
 
 const char descriptor_table_protodef_ml_5ffeedback_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\021ml_feedback.proto\022\020dgdo.ml_feedback\032\014c"
-  "ommon.proto\032\016matching.proto\032\037google/prot"
-  "obuf/timestamp.proto\"\270\001\n\010Feedback\022\027\n\017tri"
-  "p_request_id\030\001 \001(\t\0226\n\016candidate_list\030\002 \003"
-  "(\0132\036.dgdo.matching.DriverCandidate\022\026\n\016ma"
-  "tched_driver\030\003 \001(\t\022\024\n\014success_flag\030\004 \001(\010"
-  "\022-\n\ttimestamp\030\005 \001(\0132\032.google.protobuf.Ti"
-  "mestamp2\244\001\n\021MLFeedbackService\022F\n\014SendFee"
-  "dback\022\032.dgdo.ml_feedback.Feedback\032\032.dgdo"
-  ".ml_feedback.Feedback\022G\n\020GetTrainingBatc"
-  "h\022\025.dgdo.common.Metadata\032\032.dgdo.ml_feedb"
-  "ack.Feedback0\001b\006proto3"
+  "ommon.proto\032\016matching.proto\032\023driver_stat"
+  "us.proto\032\037google/protobuf/timestamp.prot"
+  "o\"\240\002\n\010Feedback\022\027\n\017trip_request_id\030\001 \001(\t\022"
+  "0\n\016candidate_list\030\002 \003(\0132\030.dgdo.matching."
+  "Candidate\022\031\n\021matched_driver_id\030\003 \001(\t\022\024\n\014"
+  "success_flag\030\004 \001(\010\022@\n\026driver_status_snap"
+  "shot\030\005 \001(\0132 .dgdo.driver_status.DriverSt"
+  "atus\022-\n\ttimestamp\030\006 \001(\0132\032.google.protobu"
+  "f.Timestamp\022\'\n\010metadata\030\007 \001(\0132\025.dgdo.com"
+  "mon.Metadata\"S\n\024TrainingBatchRequest\022\'\n\010"
+  "metadata\030\001 \001(\0132\025.dgdo.common.Metadata\022\022\n"
+  "\nbatch_size\030\002 \001(\0052\265\001\n\021MLFeedbackService\022"
+  "F\n\014SendFeedback\022\032.dgdo.ml_feedback.Feedb"
+  "ack\032\032.dgdo.ml_feedback.Feedback\022X\n\020GetTr"
+  "ainingBatch\022&.dgdo.ml_feedback.TrainingB"
+  "atchRequest\032\032.dgdo.ml_feedback.Feedback0"
+  "\001b\006proto3"
   ;
-static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_ml_5ffeedback_2eproto_deps[3] = {
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_ml_5ffeedback_2eproto_deps[4] = {
   &::descriptor_table_common_2eproto,
+  &::descriptor_table_driver_5fstatus_2eproto,
   &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
   &::descriptor_table_matching_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ml_5ffeedback_2eproto_sccs[1] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_ml_5ffeedback_2eproto_sccs[2] = {
   &scc_info_Feedback_ml_5ffeedback_2eproto.base,
+  &scc_info_TrainingBatchRequest_ml_5ffeedback_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_ml_5ffeedback_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_ml_5ffeedback_2eproto = {
-  false, false, descriptor_table_protodef_ml_5ffeedback_2eproto, "ml_feedback.proto", 462,
-  &descriptor_table_ml_5ffeedback_2eproto_once, descriptor_table_ml_5ffeedback_2eproto_sccs, descriptor_table_ml_5ffeedback_2eproto_deps, 1, 3,
+  false, false, descriptor_table_protodef_ml_5ffeedback_2eproto, "ml_feedback.proto", 689,
+  &descriptor_table_ml_5ffeedback_2eproto_once, descriptor_table_ml_5ffeedback_2eproto_sccs, descriptor_table_ml_5ffeedback_2eproto_deps, 2, 4,
   schemas, file_default_instances, TableStruct_ml_5ffeedback_2eproto::offsets,
-  file_level_metadata_ml_5ffeedback_2eproto, 1, file_level_enum_descriptors_ml_5ffeedback_2eproto, file_level_service_descriptors_ml_5ffeedback_2eproto,
+  file_level_metadata_ml_5ffeedback_2eproto, 2, file_level_enum_descriptors_ml_5ffeedback_2eproto, file_level_service_descriptors_ml_5ffeedback_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -102,26 +144,52 @@ namespace ml_feedback {
 // ===================================================================
 
 void Feedback::InitAsDefaultInstance() {
+  ::dgdo::ml_feedback::_Feedback_default_instance_._instance.get_mutable()->driver_status_snapshot_ = const_cast< ::dgdo::driver_status::DriverStatus*>(
+      ::dgdo::driver_status::DriverStatus::internal_default_instance());
   ::dgdo::ml_feedback::_Feedback_default_instance_._instance.get_mutable()->timestamp_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
       PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
+  ::dgdo::ml_feedback::_Feedback_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dgdo::common::Metadata*>(
+      ::dgdo::common::Metadata::internal_default_instance());
 }
 class Feedback::_Internal {
  public:
+  static const ::dgdo::driver_status::DriverStatus& driver_status_snapshot(const Feedback* msg);
   static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const Feedback* msg);
+  static const ::dgdo::common::Metadata& metadata(const Feedback* msg);
 };
 
+const ::dgdo::driver_status::DriverStatus&
+Feedback::_Internal::driver_status_snapshot(const Feedback* msg) {
+  return *msg->driver_status_snapshot_;
+}
 const PROTOBUF_NAMESPACE_ID::Timestamp&
 Feedback::_Internal::timestamp(const Feedback* msg) {
   return *msg->timestamp_;
 }
+const ::dgdo::common::Metadata&
+Feedback::_Internal::metadata(const Feedback* msg) {
+  return *msg->metadata_;
+}
 void Feedback::clear_candidate_list() {
   candidate_list_.Clear();
+}
+void Feedback::clear_driver_status_snapshot() {
+  if (GetArena() == nullptr && driver_status_snapshot_ != nullptr) {
+    delete driver_status_snapshot_;
+  }
+  driver_status_snapshot_ = nullptr;
 }
 void Feedback::clear_timestamp() {
   if (GetArena() == nullptr && timestamp_ != nullptr) {
     delete timestamp_;
   }
   timestamp_ = nullptr;
+}
+void Feedback::clear_metadata() {
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
 }
 Feedback::Feedback(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena),
@@ -139,15 +207,25 @@ Feedback::Feedback(const Feedback& from)
     trip_request_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_trip_request_id(),
       GetArena());
   }
-  matched_driver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_matched_driver().empty()) {
-    matched_driver_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_matched_driver(),
+  matched_driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_matched_driver_id().empty()) {
+    matched_driver_id_.Set(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from._internal_matched_driver_id(),
       GetArena());
+  }
+  if (from._internal_has_driver_status_snapshot()) {
+    driver_status_snapshot_ = new ::dgdo::driver_status::DriverStatus(*from.driver_status_snapshot_);
+  } else {
+    driver_status_snapshot_ = nullptr;
   }
   if (from._internal_has_timestamp()) {
     timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
   } else {
     timestamp_ = nullptr;
+  }
+  if (from._internal_has_metadata()) {
+    metadata_ = new ::dgdo::common::Metadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
   }
   success_flag_ = from.success_flag_;
   // @@protoc_insertion_point(copy_constructor:dgdo.ml_feedback.Feedback)
@@ -156,10 +234,10 @@ Feedback::Feedback(const Feedback& from)
 void Feedback::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Feedback_ml_5ffeedback_2eproto.base);
   trip_request_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  matched_driver_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  ::memset(&timestamp_, 0, static_cast<size_t>(
+  matched_driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&driver_status_snapshot_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&success_flag_) -
-      reinterpret_cast<char*>(&timestamp_)) + sizeof(success_flag_));
+      reinterpret_cast<char*>(&driver_status_snapshot_)) + sizeof(success_flag_));
 }
 
 Feedback::~Feedback() {
@@ -171,8 +249,10 @@ Feedback::~Feedback() {
 void Feedback::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   trip_request_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  matched_driver_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  matched_driver_id_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete driver_status_snapshot_;
   if (this != internal_default_instance()) delete timestamp_;
+  if (this != internal_default_instance()) delete metadata_;
 }
 
 void Feedback::ArenaDtor(void* object) {
@@ -198,11 +278,19 @@ void Feedback::Clear() {
 
   candidate_list_.Clear();
   trip_request_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  matched_driver_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  matched_driver_id_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  if (GetArena() == nullptr && driver_status_snapshot_ != nullptr) {
+    delete driver_status_snapshot_;
+  }
+  driver_status_snapshot_ = nullptr;
   if (GetArena() == nullptr && timestamp_ != nullptr) {
     delete timestamp_;
   }
   timestamp_ = nullptr;
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
   success_flag_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
@@ -224,7 +312,7 @@ const char* Feedback::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // repeated .dgdo.matching.DriverCandidate candidate_list = 2;
+      // repeated .dgdo.matching.Candidate candidate_list = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           ptr -= 1;
@@ -236,12 +324,12 @@ const char* Feedback::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else goto handle_unusual;
         continue;
-      // string matched_driver = 3;
+      // string matched_driver_id = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          auto str = _internal_mutable_matched_driver();
+          auto str = _internal_mutable_matched_driver_id();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.ml_feedback.Feedback.matched_driver"));
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "dgdo.ml_feedback.Feedback.matched_driver_id"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -252,10 +340,24 @@ const char* Feedback::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .google.protobuf.Timestamp timestamp = 5;
+      // .dgdo.driver_status.DriverStatus driver_status_snapshot = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr = ctx->ParseMessage(_internal_mutable_driver_status_snapshot(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp timestamp = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
           ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .dgdo.common.Metadata metadata = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -297,7 +399,7 @@ failure:
         1, this->_internal_trip_request_id(), target);
   }
 
-  // repeated .dgdo.matching.DriverCandidate candidate_list = 2;
+  // repeated .dgdo.matching.Candidate candidate_list = 2;
   for (unsigned int i = 0,
       n = static_cast<unsigned int>(this->_internal_candidate_list_size()); i < n; i++) {
     target = stream->EnsureSpace(target);
@@ -305,14 +407,14 @@ failure:
       InternalWriteMessage(2, this->_internal_candidate_list(i), target, stream);
   }
 
-  // string matched_driver = 3;
-  if (this->matched_driver().size() > 0) {
+  // string matched_driver_id = 3;
+  if (this->matched_driver_id().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_matched_driver().data(), static_cast<int>(this->_internal_matched_driver().length()),
+      this->_internal_matched_driver_id().data(), static_cast<int>(this->_internal_matched_driver_id().length()),
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "dgdo.ml_feedback.Feedback.matched_driver");
+      "dgdo.ml_feedback.Feedback.matched_driver_id");
     target = stream->WriteStringMaybeAliased(
-        3, this->_internal_matched_driver(), target);
+        3, this->_internal_matched_driver_id(), target);
   }
 
   // bool success_flag = 4;
@@ -321,12 +423,28 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(4, this->_internal_success_flag(), target);
   }
 
-  // .google.protobuf.Timestamp timestamp = 5;
+  // .dgdo.driver_status.DriverStatus driver_status_snapshot = 5;
+  if (this->has_driver_status_snapshot()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        5, _Internal::driver_status_snapshot(this), target, stream);
+  }
+
+  // .google.protobuf.Timestamp timestamp = 6;
   if (this->has_timestamp()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        5, _Internal::timestamp(this), target, stream);
+        6, _Internal::timestamp(this), target, stream);
+  }
+
+  // .dgdo.common.Metadata metadata = 7;
+  if (this->has_metadata()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        7, _Internal::metadata(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -345,7 +463,7 @@ size_t Feedback::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .dgdo.matching.DriverCandidate candidate_list = 2;
+  // repeated .dgdo.matching.Candidate candidate_list = 2;
   total_size += 1UL * this->_internal_candidate_list_size();
   for (const auto& msg : this->candidate_list_) {
     total_size +=
@@ -359,18 +477,32 @@ size_t Feedback::ByteSizeLong() const {
         this->_internal_trip_request_id());
   }
 
-  // string matched_driver = 3;
-  if (this->matched_driver().size() > 0) {
+  // string matched_driver_id = 3;
+  if (this->matched_driver_id().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_matched_driver());
+        this->_internal_matched_driver_id());
   }
 
-  // .google.protobuf.Timestamp timestamp = 5;
+  // .dgdo.driver_status.DriverStatus driver_status_snapshot = 5;
+  if (this->has_driver_status_snapshot()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *driver_status_snapshot_);
+  }
+
+  // .google.protobuf.Timestamp timestamp = 6;
   if (this->has_timestamp()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *timestamp_);
+  }
+
+  // .dgdo.common.Metadata metadata = 7;
+  if (this->has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *metadata_);
   }
 
   // bool success_flag = 4;
@@ -413,11 +545,17 @@ void Feedback::MergeFrom(const Feedback& from) {
   if (from.trip_request_id().size() > 0) {
     _internal_set_trip_request_id(from._internal_trip_request_id());
   }
-  if (from.matched_driver().size() > 0) {
-    _internal_set_matched_driver(from._internal_matched_driver());
+  if (from.matched_driver_id().size() > 0) {
+    _internal_set_matched_driver_id(from._internal_matched_driver_id());
+  }
+  if (from.has_driver_status_snapshot()) {
+    _internal_mutable_driver_status_snapshot()->::dgdo::driver_status::DriverStatus::MergeFrom(from._internal_driver_status_snapshot());
   }
   if (from.has_timestamp()) {
     _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
+  }
+  if (from.has_metadata()) {
+    _internal_mutable_metadata()->::dgdo::common::Metadata::MergeFrom(from._internal_metadata());
   }
   if (from.success_flag() != 0) {
     _internal_set_success_flag(from._internal_success_flag());
@@ -447,16 +585,269 @@ void Feedback::InternalSwap(Feedback* other) {
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   candidate_list_.InternalSwap(&other->candidate_list_);
   trip_request_id_.Swap(&other->trip_request_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  matched_driver_.Swap(&other->matched_driver_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  matched_driver_id_.Swap(&other->matched_driver_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Feedback, success_flag_)
       + sizeof(Feedback::success_flag_)
-      - PROTOBUF_FIELD_OFFSET(Feedback, timestamp_)>(
-          reinterpret_cast<char*>(&timestamp_),
-          reinterpret_cast<char*>(&other->timestamp_));
+      - PROTOBUF_FIELD_OFFSET(Feedback, driver_status_snapshot_)>(
+          reinterpret_cast<char*>(&driver_status_snapshot_),
+          reinterpret_cast<char*>(&other->driver_status_snapshot_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Feedback::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void TrainingBatchRequest::InitAsDefaultInstance() {
+  ::dgdo::ml_feedback::_TrainingBatchRequest_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dgdo::common::Metadata*>(
+      ::dgdo::common::Metadata::internal_default_instance());
+}
+class TrainingBatchRequest::_Internal {
+ public:
+  static const ::dgdo::common::Metadata& metadata(const TrainingBatchRequest* msg);
+};
+
+const ::dgdo::common::Metadata&
+TrainingBatchRequest::_Internal::metadata(const TrainingBatchRequest* msg) {
+  return *msg->metadata_;
+}
+void TrainingBatchRequest::clear_metadata() {
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
+}
+TrainingBatchRequest::TrainingBatchRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:dgdo.ml_feedback.TrainingBatchRequest)
+}
+TrainingBatchRequest::TrainingBatchRequest(const TrainingBatchRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_metadata()) {
+    metadata_ = new ::dgdo::common::Metadata(*from.metadata_);
+  } else {
+    metadata_ = nullptr;
+  }
+  batch_size_ = from.batch_size_;
+  // @@protoc_insertion_point(copy_constructor:dgdo.ml_feedback.TrainingBatchRequest)
+}
+
+void TrainingBatchRequest::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TrainingBatchRequest_ml_5ffeedback_2eproto.base);
+  ::memset(&metadata_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&batch_size_) -
+      reinterpret_cast<char*>(&metadata_)) + sizeof(batch_size_));
+}
+
+TrainingBatchRequest::~TrainingBatchRequest() {
+  // @@protoc_insertion_point(destructor:dgdo.ml_feedback.TrainingBatchRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void TrainingBatchRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  if (this != internal_default_instance()) delete metadata_;
+}
+
+void TrainingBatchRequest::ArenaDtor(void* object) {
+  TrainingBatchRequest* _this = reinterpret_cast< TrainingBatchRequest* >(object);
+  (void)_this;
+}
+void TrainingBatchRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void TrainingBatchRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TrainingBatchRequest& TrainingBatchRequest::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TrainingBatchRequest_ml_5ffeedback_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TrainingBatchRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:dgdo.ml_feedback.TrainingBatchRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArena() == nullptr && metadata_ != nullptr) {
+    delete metadata_;
+  }
+  metadata_ = nullptr;
+  batch_size_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TrainingBatchRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  ::PROTOBUF_NAMESPACE_ID::Arena* arena = GetArena(); (void)arena;
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .dgdo.common.Metadata metadata = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 batch_size = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          batch_size_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TrainingBatchRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:dgdo.ml_feedback.TrainingBatchRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .dgdo.common.Metadata metadata = 1;
+  if (this->has_metadata()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::metadata(this), target, stream);
+  }
+
+  // int32 batch_size = 2;
+  if (this->batch_size() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(2, this->_internal_batch_size(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:dgdo.ml_feedback.TrainingBatchRequest)
+  return target;
+}
+
+size_t TrainingBatchRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:dgdo.ml_feedback.TrainingBatchRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .dgdo.common.Metadata metadata = 1;
+  if (this->has_metadata()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *metadata_);
+  }
+
+  // int32 batch_size = 2;
+  if (this->batch_size() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_batch_size());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TrainingBatchRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:dgdo.ml_feedback.TrainingBatchRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TrainingBatchRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TrainingBatchRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:dgdo.ml_feedback.TrainingBatchRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:dgdo.ml_feedback.TrainingBatchRequest)
+    MergeFrom(*source);
+  }
+}
+
+void TrainingBatchRequest::MergeFrom(const TrainingBatchRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:dgdo.ml_feedback.TrainingBatchRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_metadata()) {
+    _internal_mutable_metadata()->::dgdo::common::Metadata::MergeFrom(from._internal_metadata());
+  }
+  if (from.batch_size() != 0) {
+    _internal_set_batch_size(from._internal_batch_size());
+  }
+}
+
+void TrainingBatchRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:dgdo.ml_feedback.TrainingBatchRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TrainingBatchRequest::CopyFrom(const TrainingBatchRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:dgdo.ml_feedback.TrainingBatchRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TrainingBatchRequest::IsInitialized() const {
+  return true;
+}
+
+void TrainingBatchRequest::InternalSwap(TrainingBatchRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(TrainingBatchRequest, batch_size_)
+      + sizeof(TrainingBatchRequest::batch_size_)
+      - PROTOBUF_FIELD_OFFSET(TrainingBatchRequest, metadata_)>(
+          reinterpret_cast<char*>(&metadata_),
+          reinterpret_cast<char*>(&other->metadata_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TrainingBatchRequest::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -467,6 +858,9 @@ void Feedback::InternalSwap(Feedback* other) {
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::dgdo::ml_feedback::Feedback* Arena::CreateMaybeMessage< ::dgdo::ml_feedback::Feedback >(Arena* arena) {
   return Arena::CreateMessageInternal< ::dgdo::ml_feedback::Feedback >(arena);
+}
+template<> PROTOBUF_NOINLINE ::dgdo::ml_feedback::TrainingBatchRequest* Arena::CreateMaybeMessage< ::dgdo::ml_feedback::TrainingBatchRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::dgdo::ml_feedback::TrainingBatchRequest >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

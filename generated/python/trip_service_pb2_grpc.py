@@ -27,7 +27,10 @@ if _version_not_supported:
 
 
 class TripServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -40,20 +43,33 @@ class TripServiceStub(object):
                 request_serializer=trip__service__pb2.CreateTripCommand.SerializeToString,
                 response_deserializer=trip__pb2.Trip.FromString,
                 _registered_method=True)
-        self.GetTrip = channel.unary_unary(
-                '/dgdo.tripservice.TripService/GetTrip',
-                request_serializer=trip__service__pb2.TripId.SerializeToString,
+        self.GetTripById = channel.unary_unary(
+                '/dgdo.tripservice.TripService/GetTripById',
+                request_serializer=trip__service__pb2.GetTripByIdRequest.SerializeToString,
+                response_deserializer=trip__pb2.Trip.FromString,
+                _registered_method=True)
+        self.GetTripByRequestId = channel.unary_unary(
+                '/dgdo.tripservice.TripService/GetTripByRequestId',
+                request_serializer=trip__service__pb2.GetTripByRequestIdRequest.SerializeToString,
                 response_deserializer=trip__pb2.Trip.FromString,
                 _registered_method=True)
         self.UpdateTripStatus = channel.unary_unary(
                 '/dgdo.tripservice.TripService/UpdateTripStatus',
-                request_serializer=trip__pb2.Trip.SerializeToString,
+                request_serializer=trip__service__pb2.UpdateTripStatusCommand.SerializeToString,
+                response_deserializer=trip__pb2.Trip.FromString,
+                _registered_method=True)
+        self.CancelTrip = channel.unary_unary(
+                '/dgdo.tripservice.TripService/CancelTrip',
+                request_serializer=trip__service__pb2.CancelTripCommand.SerializeToString,
                 response_deserializer=trip__pb2.Trip.FromString,
                 _registered_method=True)
 
 
 class TripServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
     def CreateTrip(self, request, context):
         """Missing associated documentation comment in .proto file."""
@@ -61,13 +77,25 @@ class TripServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetTrip(self, request, context):
+    def GetTripById(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTripByRequestId(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def UpdateTripStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CancelTrip(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -81,14 +109,24 @@ def add_TripServiceServicer_to_server(servicer, server):
                     request_deserializer=trip__service__pb2.CreateTripCommand.FromString,
                     response_serializer=trip__pb2.Trip.SerializeToString,
             ),
-            'GetTrip': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetTrip,
-                    request_deserializer=trip__service__pb2.TripId.FromString,
+            'GetTripById': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTripById,
+                    request_deserializer=trip__service__pb2.GetTripByIdRequest.FromString,
+                    response_serializer=trip__pb2.Trip.SerializeToString,
+            ),
+            'GetTripByRequestId': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTripByRequestId,
+                    request_deserializer=trip__service__pb2.GetTripByRequestIdRequest.FromString,
                     response_serializer=trip__pb2.Trip.SerializeToString,
             ),
             'UpdateTripStatus': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateTripStatus,
-                    request_deserializer=trip__pb2.Trip.FromString,
+                    request_deserializer=trip__service__pb2.UpdateTripStatusCommand.FromString,
+                    response_serializer=trip__pb2.Trip.SerializeToString,
+            ),
+            'CancelTrip': grpc.unary_unary_rpc_method_handler(
+                    servicer.CancelTrip,
+                    request_deserializer=trip__service__pb2.CancelTripCommand.FromString,
                     response_serializer=trip__pb2.Trip.SerializeToString,
             ),
     }
@@ -100,7 +138,10 @@ def add_TripServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class TripService(object):
-    """Missing associated documentation comment in .proto file."""
+    """--------------------
+    Service
+    --------------------
+    """
 
     @staticmethod
     def CreateTrip(request,
@@ -130,7 +171,7 @@ class TripService(object):
             _registered_method=True)
 
     @staticmethod
-    def GetTrip(request,
+    def GetTripById(request,
             target,
             options=(),
             channel_credentials=None,
@@ -143,8 +184,35 @@ class TripService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/dgdo.tripservice.TripService/GetTrip',
-            trip__service__pb2.TripId.SerializeToString,
+            '/dgdo.tripservice.TripService/GetTripById',
+            trip__service__pb2.GetTripByIdRequest.SerializeToString,
+            trip__pb2.Trip.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetTripByRequestId(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dgdo.tripservice.TripService/GetTripByRequestId',
+            trip__service__pb2.GetTripByRequestIdRequest.SerializeToString,
             trip__pb2.Trip.FromString,
             options,
             channel_credentials,
@@ -171,7 +239,34 @@ class TripService(object):
             request,
             target,
             '/dgdo.tripservice.TripService/UpdateTripStatus',
-            trip__pb2.Trip.SerializeToString,
+            trip__service__pb2.UpdateTripStatusCommand.SerializeToString,
+            trip__pb2.Trip.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CancelTrip(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/dgdo.tripservice.TripService/CancelTrip',
+            trip__service__pb2.CancelTripCommand.SerializeToString,
             trip__pb2.Trip.FromString,
             options,
             channel_credentials,

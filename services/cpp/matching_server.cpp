@@ -1,13 +1,11 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <vector>
 #include <grpcpp/grpcpp.h>
-
 #include "matching.grpc.pb.h"
-#include "trip_request.pb.h"
-#include "trip.pb.h"
-#include "trip_service.pb.h"
 #include "common.pb.h"
+#include "driver_status.pb.h"
 
 using grpc::Server;
 using grpc::ServerBuilder;
@@ -15,26 +13,44 @@ using grpc::ServerContext;
 using grpc::Status;
 
 using dgdo::matching::MatchingService;
-using dgdo::matching::MatchTripRequestCommand;
-using dgdo::matching::MatchDistribution;
-using dgdo::matching::DriverProbability;
+using dgdo::matching::MatchingRequest;
+using dgdo::matching::MatchingResponse;
+using dgdo::matching::Candidate;
 
-using dgdo::triprequest::TripRequest;
+using dgdo::driver_status::DriverStatus;
+using dgdo::common::Location;
 
 class MatchingServiceImpl final : public MatchingService::Service {
 public:
-    Status MatchTripRequest(ServerContext* context,
-                            const MatchTripRequestCommand* request,
-                            MatchDistribution* reply) override {
+    Status GetCandidates(ServerContext* context,
+                         const MatchingRequest* request,
+                         MatchingResponse* reply) override {
 
-        // Example: populate the reply with dummy probabilities
-        reply->set_request_id(request->trip_request().id());
+        // Copy request ID (immutable key)
+        // Idempotency is ensured in real implementation
+        reply->set_reason_code("");
 
         uint32_t max_candidates = request->max_candidates();
+        int64_t seed = request->seed();
+
+        // Example: deterministic pseudo-random candidate generation
+        // In production, replace with actual available driver lookup
         for (uint32_t i = 0; i < max_candidates; ++i) {
-            DriverProbability* dp = reply->add_candidates();
-            dp->set_driver_id("driver_" + std::to_string(i + 1));
-            dp->set_probability(0.8 - 0.05 * i);
+            Candidate* candidate = reply->add_candidates();
+            candidate->set_driver_id("driver_" + std::to_string(i + 1));
+
+            // Deterministic probability using seed
+            double probability = 1.0 / max_candidates;
+            candidate->set_probability(probability);
+
+            // Optional: distance / ETA placeholders
+            candidate->set_distance_meters(1000.0 * (i + 1));
+            candidate->set_eta_seconds(300 + 30 * i);
+        }
+
+        // If no drivers found, set reason_code
+        if (max_candidates == 0) {
+            reply->set_reason_code("NO_DRIVERS");
         }
 
         return Status::OK;
@@ -49,7 +65,7 @@ void RunServer(const std::string& server_address) {
     builder.RegisterService(&service);
 
     std::unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
+    std::cout << "MatchingService listening on " << server_address << std::endl;
 
     server->Wait();
 }

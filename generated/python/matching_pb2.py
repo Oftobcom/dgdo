@@ -22,24 +22,22 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 _sym_db = _symbol_database.Default()
 
 
-import trip_request_pb2 as trip__request__pb2
+import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ematching.proto\x12\rdgdo.matching\x1a\x12trip_request.proto\"9\n\x0f\x44riverCandidate\x12\x11\n\tdriver_id\x18\x01 \x01(\t\x12\x13\n\x0bprobability\x18\x02 \x01(\x01\";\n\x11\x44riverProbability\x12\x11\n\tdriver_id\x18\x01 \x01(\t\x12\x13\n\x0bprobability\x18\x02 \x01(\x01\"f\n\x17MatchTripRequestCommand\x12\x33\n\x0ctrip_request\x18\x01 \x01(\x0b\x32\x1d.dgdo.triprequest.TripRequest\x12\x16\n\x0emax_candidates\x18\x02 \x01(\r\"]\n\x11MatchDistribution\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x34\n\ncandidates\x18\x02 \x03(\x0b\x32 .dgdo.matching.DriverProbability2o\n\x0fMatchingService\x12\\\n\x10MatchTripRequest\x12&.dgdo.matching.MatchTripRequestCommand\x1a .dgdo.matching.MatchDistributionb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0ematching.proto\x12\rdgdo.matching\x1a\x0c\x63ommon.proto\"a\n\tCandidate\x12\x11\n\tdriver_id\x18\x01 \x01(\t\x12\x13\n\x0bprobability\x18\x02 \x01(\x01\x12\x17\n\x0f\x64istance_meters\x18\x03 \x01(\x01\x12\x13\n\x0b\x65ta_seconds\x18\x04 \x01(\x05\"\xcc\x01\n\x0fMatchingRequest\x12\x17\n\x0ftrip_request_id\x18\x01 \x01(\t\x12%\n\x06origin\x18\x02 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x03 \x01(\x0b\x32\x15.dgdo.common.Location\x12\x16\n\x0emax_candidates\x18\x04 \x01(\r\x12\x0c\n\x04seed\x18\x05 \x01(\x03\x12\'\n\x08metadata\x18\x06 \x01(\x0b\x32\x15.dgdo.common.Metadata\"U\n\x10MatchingResponse\x12,\n\ncandidates\x18\x01 \x03(\x0b\x32\x18.dgdo.matching.Candidate\x12\x13\n\x0breason_code\x18\x02 \x01(\t2c\n\x0fMatchingService\x12P\n\rGetCandidates\x12\x1e.dgdo.matching.MatchingRequest\x1a\x1f.dgdo.matching.MatchingResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'matching_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_DRIVERCANDIDATE']._serialized_start=53
-  _globals['_DRIVERCANDIDATE']._serialized_end=110
-  _globals['_DRIVERPROBABILITY']._serialized_start=112
-  _globals['_DRIVERPROBABILITY']._serialized_end=171
-  _globals['_MATCHTRIPREQUESTCOMMAND']._serialized_start=173
-  _globals['_MATCHTRIPREQUESTCOMMAND']._serialized_end=275
-  _globals['_MATCHDISTRIBUTION']._serialized_start=277
-  _globals['_MATCHDISTRIBUTION']._serialized_end=370
-  _globals['_MATCHINGSERVICE']._serialized_start=372
-  _globals['_MATCHINGSERVICE']._serialized_end=483
+  _globals['_CANDIDATE']._serialized_start=47
+  _globals['_CANDIDATE']._serialized_end=144
+  _globals['_MATCHINGREQUEST']._serialized_start=147
+  _globals['_MATCHINGREQUEST']._serialized_end=351
+  _globals['_MATCHINGRESPONSE']._serialized_start=353
+  _globals['_MATCHINGRESPONSE']._serialized_end=438
+  _globals['_MATCHINGSERVICE']._serialized_start=440
+  _globals['_MATCHINGSERVICE']._serialized_end=539
 # @@protoc_insertion_point(module_scope)

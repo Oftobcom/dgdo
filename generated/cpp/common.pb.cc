@@ -15,7 +15,6 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Metadata_DataEntry_DoNotUse_common_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
 namespace dgdo {
 namespace common {
 class LocationDefaultTypeInternal {
@@ -43,9 +42,8 @@ static void InitDefaultsscc_info_Location_common_2eproto() {
   ::dgdo::common::Location::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Location_common_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Location_common_2eproto}, {
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Location_common_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_Location_common_2eproto}, {}};
 
 static void InitDefaultsscc_info_Metadata_common_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -87,7 +85,6 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_common_2eproto::offsets[] PROT
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::dgdo::common::Location, lat_),
   PROTOBUF_FIELD_OFFSET(::dgdo::common::Location, lon_),
-  PROTOBUF_FIELD_OFFSET(::dgdo::common::Location, timestamp_),
   PROTOBUF_FIELD_OFFSET(::dgdo::common::Metadata_DataEntry_DoNotUse, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::dgdo::common::Metadata_DataEntry_DoNotUse, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -106,8 +103,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_common_2eproto::offsets[] PROT
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::dgdo::common::Location)},
-  { 8, 15, sizeof(::dgdo::common::Metadata_DataEntry_DoNotUse)},
-  { 17, -1, sizeof(::dgdo::common::Metadata)},
+  { 7, 14, sizeof(::dgdo::common::Metadata_DataEntry_DoNotUse)},
+  { 16, -1, sizeof(::dgdo::common::Metadata)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -117,16 +114,13 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_common_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014common.proto\022\013dgdo.common\032\037google/prot"
-  "obuf/timestamp.proto\"S\n\010Location\022\013\n\003lat\030"
-  "\001 \001(\001\022\013\n\003lon\030\002 \001(\001\022-\n\ttimestamp\030\003 \001(\0132\032."
-  "google.protobuf.Timestamp\"f\n\010Metadata\022-\n"
+  "\n\014common.proto\022\013dgdo.common\"$\n\010Location\022"
+  "\013\n\003lat\030\001 \001(\001\022\013\n\003lon\030\002 \001(\001\"f\n\010Metadata\022-\n"
   "\004data\030\001 \003(\0132\037.dgdo.common.Metadata.DataE"
   "ntry\032+\n\tDataEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030"
   "\002 \001(\t:\0028\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_common_2eproto_deps[1] = {
-  &::descriptor_table_google_2fprotobuf_2ftimestamp_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_common_2eproto_sccs[3] = {
   &scc_info_Location_common_2eproto.base,
@@ -135,8 +129,8 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_com
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_common_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_common_2eproto = {
-  false, false, descriptor_table_protodef_common_2eproto, "common.proto", 257,
-  &descriptor_table_common_2eproto_once, descriptor_table_common_2eproto_sccs, descriptor_table_common_2eproto_deps, 3, 1,
+  false, false, descriptor_table_protodef_common_2eproto, "common.proto", 177,
+  &descriptor_table_common_2eproto_once, descriptor_table_common_2eproto_sccs, descriptor_table_common_2eproto_deps, 3, 0,
   schemas, file_default_instances, TableStruct_common_2eproto::offsets,
   file_level_metadata_common_2eproto, 3, file_level_enum_descriptors_common_2eproto, file_level_service_descriptors_common_2eproto,
 };
@@ -149,24 +143,11 @@ namespace common {
 // ===================================================================
 
 void Location::InitAsDefaultInstance() {
-  ::dgdo::common::_Location_default_instance_._instance.get_mutable()->timestamp_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
-      PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
 }
 class Location::_Internal {
  public:
-  static const PROTOBUF_NAMESPACE_ID::Timestamp& timestamp(const Location* msg);
 };
 
-const PROTOBUF_NAMESPACE_ID::Timestamp&
-Location::_Internal::timestamp(const Location* msg) {
-  return *msg->timestamp_;
-}
-void Location::clear_timestamp() {
-  if (GetArena() == nullptr && timestamp_ != nullptr) {
-    delete timestamp_;
-  }
-  timestamp_ = nullptr;
-}
 Location::Location(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
   SharedCtor();
@@ -176,11 +157,6 @@ Location::Location(::PROTOBUF_NAMESPACE_ID::Arena* arena)
 Location::Location(const Location& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_timestamp()) {
-    timestamp_ = new PROTOBUF_NAMESPACE_ID::Timestamp(*from.timestamp_);
-  } else {
-    timestamp_ = nullptr;
-  }
   ::memcpy(&lat_, &from.lat_,
     static_cast<size_t>(reinterpret_cast<char*>(&lon_) -
     reinterpret_cast<char*>(&lat_)) + sizeof(lon_));
@@ -188,10 +164,9 @@ Location::Location(const Location& from)
 }
 
 void Location::SharedCtor() {
-  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Location_common_2eproto.base);
-  ::memset(&timestamp_, 0, static_cast<size_t>(
+  ::memset(&lat_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&lon_) -
-      reinterpret_cast<char*>(&timestamp_)) + sizeof(lon_));
+      reinterpret_cast<char*>(&lat_)) + sizeof(lon_));
 }
 
 Location::~Location() {
@@ -202,7 +177,6 @@ Location::~Location() {
 
 void Location::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
-  if (this != internal_default_instance()) delete timestamp_;
 }
 
 void Location::ArenaDtor(void* object) {
@@ -226,10 +200,6 @@ void Location::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArena() == nullptr && timestamp_ != nullptr) {
-    delete timestamp_;
-  }
-  timestamp_ = nullptr;
   ::memset(&lat_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&lon_) -
       reinterpret_cast<char*>(&lat_)) + sizeof(lon_));
@@ -256,13 +226,6 @@ const char* Location::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
           lon_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
-        } else goto handle_unusual;
-        continue;
-      // .google.protobuf.Timestamp timestamp = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
-          ptr = ctx->ParseMessage(_internal_mutable_timestamp(), ptr);
-          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -305,14 +268,6 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_lon(), target);
   }
 
-  // .google.protobuf.Timestamp timestamp = 3;
-  if (this->has_timestamp()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        3, _Internal::timestamp(this), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -328,13 +283,6 @@ size_t Location::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // .google.protobuf.Timestamp timestamp = 3;
-  if (this->has_timestamp()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *timestamp_);
-  }
 
   // double lat = 1;
   if (!(this->lat() <= 0 && this->lat() >= 0)) {
@@ -377,9 +325,6 @@ void Location::MergeFrom(const Location& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.has_timestamp()) {
-    _internal_mutable_timestamp()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_timestamp());
-  }
   if (!(from.lat() <= 0 && from.lat() >= 0)) {
     _internal_set_lat(from._internal_lat());
   }
@@ -412,9 +357,9 @@ void Location::InternalSwap(Location* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Location, lon_)
       + sizeof(Location::lon_)
-      - PROTOBUF_FIELD_OFFSET(Location, timestamp_)>(
-          reinterpret_cast<char*>(&timestamp_),
-          reinterpret_cast<char*>(&other->timestamp_));
+      - PROTOBUF_FIELD_OFFSET(Location, lat_)>(
+          reinterpret_cast<char*>(&lat_),
+          reinterpret_cast<char*>(&other->lat_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Location::GetMetadata() const {

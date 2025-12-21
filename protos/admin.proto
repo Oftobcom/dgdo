@@ -1,3 +1,5 @@
+// admin.proto
+
 syntax = "proto3";
 
 package dgdo.admin;

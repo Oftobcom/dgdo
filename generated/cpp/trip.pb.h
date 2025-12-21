@@ -219,10 +219,10 @@ class Trip PROTOBUF_FINAL :
     kDriverIdFieldNumber = 4,
     kOriginFieldNumber = 5,
     kDestinationFieldNumber = 6,
-    kCreatedAtFieldNumber = 8,
-    kUpdatedAtFieldNumber = 9,
-    kMetadataFieldNumber = 10,
+    kCreatedAtFieldNumber = 9,
+    kUpdatedAtFieldNumber = 10,
     kStatusFieldNumber = 7,
+    kVersionFieldNumber = 8,
   };
   // string id = 1;
   void clear_id();
@@ -360,7 +360,7 @@ class Trip PROTOBUF_FINAL :
       ::dgdo::common::Location* destination);
   ::dgdo::common::Location* unsafe_arena_release_destination();
 
-  // .google.protobuf.Timestamp created_at = 8;
+  // .google.protobuf.Timestamp created_at = 9;
   bool has_created_at() const;
   private:
   bool _internal_has_created_at() const;
@@ -378,7 +378,7 @@ class Trip PROTOBUF_FINAL :
       PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
   PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
 
-  // .google.protobuf.Timestamp updated_at = 9;
+  // .google.protobuf.Timestamp updated_at = 10;
   bool has_updated_at() const;
   private:
   bool _internal_has_updated_at() const;
@@ -396,24 +396,6 @@ class Trip PROTOBUF_FINAL :
       PROTOBUF_NAMESPACE_ID::Timestamp* updated_at);
   PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_updated_at();
 
-  // .dgdo.common.Metadata metadata = 10;
-  bool has_metadata() const;
-  private:
-  bool _internal_has_metadata() const;
-  public:
-  void clear_metadata();
-  const ::dgdo::common::Metadata& metadata() const;
-  ::dgdo::common::Metadata* release_metadata();
-  ::dgdo::common::Metadata* mutable_metadata();
-  void set_allocated_metadata(::dgdo::common::Metadata* metadata);
-  private:
-  const ::dgdo::common::Metadata& _internal_metadata() const;
-  ::dgdo::common::Metadata* _internal_mutable_metadata();
-  public:
-  void unsafe_arena_set_allocated_metadata(
-      ::dgdo::common::Metadata* metadata);
-  ::dgdo::common::Metadata* unsafe_arena_release_metadata();
-
   // .dgdo.trip.TripStatus status = 7;
   void clear_status();
   ::dgdo::trip::TripStatus status() const;
@@ -421,6 +403,15 @@ class Trip PROTOBUF_FINAL :
   private:
   ::dgdo::trip::TripStatus _internal_status() const;
   void _internal_set_status(::dgdo::trip::TripStatus value);
+  public:
+
+  // int32 version = 8;
+  void clear_version();
+  ::PROTOBUF_NAMESPACE_ID::int32 version() const;
+  void set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_version() const;
+  void _internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:dgdo.trip.Trip)
@@ -438,8 +429,8 @@ class Trip PROTOBUF_FINAL :
   ::dgdo::common::Location* destination_;
   PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
   PROTOBUF_NAMESPACE_ID::Timestamp* updated_at_;
-  ::dgdo::common::Metadata* metadata_;
   int status_;
+  ::PROTOBUF_NAMESPACE_ID::int32 version_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trip_2eproto;
 };
@@ -948,7 +939,27 @@ inline void Trip::set_status(::dgdo::trip::TripStatus value) {
   // @@protoc_insertion_point(field_set:dgdo.trip.Trip.status)
 }
 
-// .google.protobuf.Timestamp created_at = 8;
+// int32 version = 8;
+inline void Trip::clear_version() {
+  version_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Trip::_internal_version() const {
+  return version_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 Trip::version() const {
+  // @@protoc_insertion_point(field_get:dgdo.trip.Trip.version)
+  return _internal_version();
+}
+inline void Trip::_internal_set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  version_ = value;
+}
+inline void Trip::set_version(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_version(value);
+  // @@protoc_insertion_point(field_set:dgdo.trip.Trip.version)
+}
+
+// .google.protobuf.Timestamp created_at = 9;
 inline bool Trip::_internal_has_created_at() const {
   return this != internal_default_instance() && created_at_ != nullptr;
 }
@@ -1023,7 +1034,7 @@ inline void Trip::set_allocated_created_at(PROTOBUF_NAMESPACE_ID::Timestamp* cre
   // @@protoc_insertion_point(field_set_allocated:dgdo.trip.Trip.created_at)
 }
 
-// .google.protobuf.Timestamp updated_at = 9;
+// .google.protobuf.Timestamp updated_at = 10;
 inline bool Trip::_internal_has_updated_at() const {
   return this != internal_default_instance() && updated_at_ != nullptr;
 }
@@ -1096,81 +1107,6 @@ inline void Trip::set_allocated_updated_at(PROTOBUF_NAMESPACE_ID::Timestamp* upd
   }
   updated_at_ = updated_at;
   // @@protoc_insertion_point(field_set_allocated:dgdo.trip.Trip.updated_at)
-}
-
-// .dgdo.common.Metadata metadata = 10;
-inline bool Trip::_internal_has_metadata() const {
-  return this != internal_default_instance() && metadata_ != nullptr;
-}
-inline bool Trip::has_metadata() const {
-  return _internal_has_metadata();
-}
-inline const ::dgdo::common::Metadata& Trip::_internal_metadata() const {
-  const ::dgdo::common::Metadata* p = metadata_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::dgdo::common::Metadata*>(
-      &::dgdo::common::_Metadata_default_instance_);
-}
-inline const ::dgdo::common::Metadata& Trip::metadata() const {
-  // @@protoc_insertion_point(field_get:dgdo.trip.Trip.metadata)
-  return _internal_metadata();
-}
-inline void Trip::unsafe_arena_set_allocated_metadata(
-    ::dgdo::common::Metadata* metadata) {
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
-  }
-  metadata_ = metadata;
-  if (metadata) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:dgdo.trip.Trip.metadata)
-}
-inline ::dgdo::common::Metadata* Trip::release_metadata() {
-  auto temp = unsafe_arena_release_metadata();
-  if (GetArena() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-  return temp;
-}
-inline ::dgdo::common::Metadata* Trip::unsafe_arena_release_metadata() {
-  // @@protoc_insertion_point(field_release:dgdo.trip.Trip.metadata)
-  
-  ::dgdo::common::Metadata* temp = metadata_;
-  metadata_ = nullptr;
-  return temp;
-}
-inline ::dgdo::common::Metadata* Trip::_internal_mutable_metadata() {
-  
-  if (metadata_ == nullptr) {
-    auto* p = CreateMaybeMessage<::dgdo::common::Metadata>(GetArena());
-    metadata_ = p;
-  }
-  return metadata_;
-}
-inline ::dgdo::common::Metadata* Trip::mutable_metadata() {
-  // @@protoc_insertion_point(field_mutable:dgdo.trip.Trip.metadata)
-  return _internal_mutable_metadata();
-}
-inline void Trip::set_allocated_metadata(::dgdo::common::Metadata* metadata) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArena();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata_);
-  }
-  if (metadata) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-      reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(metadata)->GetArena();
-    if (message_arena != submessage_arena) {
-      metadata = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, metadata, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  metadata_ = metadata;
-  // @@protoc_insertion_point(field_set_allocated:dgdo.trip.Trip.metadata)
 }
 
 #ifdef __GNUC__

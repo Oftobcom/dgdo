@@ -9,23 +9,26 @@ import "common.proto";
 // --------------------
 // Candidate driver
 // --------------------
-
 message Candidate {
   string driver_id = 1;
-  double probability = 2;   // normalized, sum ≈ 1
+  double probability = 2;           // normalized, sum ≈ 1
+  double distance_meters = 3;       // optional, for ranking
+  int32 eta_seconds = 4;            // optional
 }
 
 // --------------------
 // Matching request (command)
 // --------------------
 message MatchingRequest {
-  string trip_request_id = 1;      // immutable reference for idempotency
-  double origin_lat = 2;           // minimal geo info
-  double origin_lon = 3;
-  double dest_lat = 4;
-  double dest_lon = 5;
-  uint32 max_candidates = 6;       // hard cap
-  int64 seed = 7;                  // deterministic replay
+  string trip_request_id = 1;         // immutable reference / idempotency key
+
+  dgdo.common.Location origin = 2;
+  dgdo.common.Location destination = 3;
+
+  uint32 max_candidates = 4;          // hard cap
+  int64 seed = 5;                     // deterministic replay
+
+  dgdo.common.Metadata metadata = 6;  // optional, for ML/telemetry
 }
 
 // --------------------
@@ -33,7 +36,7 @@ message MatchingRequest {
 // --------------------
 message MatchingResponse {
   repeated Candidate candidates = 1;
-  string reason_code = 2;          // e.g., "NO_DRIVERS", empty if OK
+  string reason_code = 2;             // e.g., "NO_DRIVERS", empty if OK
 }
 
 // --------------------

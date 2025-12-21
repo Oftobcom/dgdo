@@ -26,7 +26,7 @@ import common_pb2 as common__pb2
 import trip_pb2 as trip__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12trip_service.proto\x12\x10\x64gdo.tripservice\x1a\x0c\x63ommon.proto\x1a\ntrip.proto\"\xa3\x01\n\x11\x43reateTripCommand\x12\x12\n\nrequest_id\x18\x01 \x01(\t\x12\x14\n\x0cpassenger_id\x18\x02 \x01(\t\x12\x11\n\tdriver_id\x18\x03 \x01(\t\x12%\n\x06origin\x18\x04 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x05 \x01(\x0b\x32\x15.dgdo.common.Location\"\x14\n\x06TripId\x12\n\n\x02id\x18\x01 \x01(\t2\xbd\x01\n\x0bTripService\x12\x42\n\nCreateTrip\x12#.dgdo.tripservice.CreateTripCommand\x1a\x0f.dgdo.trip.Trip\x12\x34\n\x07GetTrip\x12\x18.dgdo.tripservice.TripId\x1a\x0f.dgdo.trip.Trip\x12\x34\n\x10UpdateTripStatus\x12\x0f.dgdo.trip.Trip\x1a\x0f.dgdo.trip.Tripb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x12trip_service.proto\x12\x10\x64gdo.tripservice\x1a\x0c\x63ommon.proto\x1a\ntrip.proto\"\xa8\x01\n\x11\x43reateTripCommand\x12\x17\n\x0ftrip_request_id\x18\x01 \x01(\t\x12\x14\n\x0cpassenger_id\x18\x02 \x01(\t\x12\x11\n\tdriver_id\x18\x03 \x01(\t\x12%\n\x06origin\x18\x04 \x01(\x0b\x32\x15.dgdo.common.Location\x12*\n\x0b\x64\x65stination\x18\x05 \x01(\x0b\x32\x15.dgdo.common.Location\"%\n\x12GetTripByIdRequest\x12\x0f\n\x07trip_id\x18\x01 \x01(\t\"4\n\x19GetTripByRequestIdRequest\x12\x17\n\x0ftrip_request_id\x18\x01 \x01(\t\"o\n\x17UpdateTripStatusCommand\x12\x0f\n\x07trip_id\x18\x01 \x01(\t\x12)\n\nnew_status\x18\x02 \x01(\x0e\x32\x15.dgdo.trip.TripStatus\x12\x18\n\x10\x65xpected_version\x18\x03 \x01(\x05\"e\n\x11\x43\x61ncelTripCommand\x12\x0f\n\x07trip_id\x18\x01 \x01(\t\x12%\n\x06reason\x18\x02 \x01(\x0e\x32\x15.dgdo.trip.TripStatus\x12\x18\n\x10\x65xpected_version\x18\x03 \x01(\x05\x32\xff\x02\n\x0bTripService\x12\x42\n\nCreateTrip\x12#.dgdo.tripservice.CreateTripCommand\x1a\x0f.dgdo.trip.Trip\x12\x44\n\x0bGetTripById\x12$.dgdo.tripservice.GetTripByIdRequest\x1a\x0f.dgdo.trip.Trip\x12R\n\x12GetTripByRequestId\x12+.dgdo.tripservice.GetTripByRequestIdRequest\x1a\x0f.dgdo.trip.Trip\x12N\n\x10UpdateTripStatus\x12).dgdo.tripservice.UpdateTripStatusCommand\x1a\x0f.dgdo.trip.Trip\x12\x42\n\nCancelTrip\x12#.dgdo.tripservice.CancelTripCommand\x1a\x0f.dgdo.trip.Tripb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,9 +34,15 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'trip_service_pb2', _globals
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CREATETRIPCOMMAND']._serialized_start=67
-  _globals['_CREATETRIPCOMMAND']._serialized_end=230
-  _globals['_TRIPID']._serialized_start=232
-  _globals['_TRIPID']._serialized_end=252
-  _globals['_TRIPSERVICE']._serialized_start=255
-  _globals['_TRIPSERVICE']._serialized_end=444
+  _globals['_CREATETRIPCOMMAND']._serialized_end=235
+  _globals['_GETTRIPBYIDREQUEST']._serialized_start=237
+  _globals['_GETTRIPBYIDREQUEST']._serialized_end=274
+  _globals['_GETTRIPBYREQUESTIDREQUEST']._serialized_start=276
+  _globals['_GETTRIPBYREQUESTIDREQUEST']._serialized_end=328
+  _globals['_UPDATETRIPSTATUSCOMMAND']._serialized_start=330
+  _globals['_UPDATETRIPSTATUSCOMMAND']._serialized_end=441
+  _globals['_CANCELTRIPCOMMAND']._serialized_start=443
+  _globals['_CANCELTRIPCOMMAND']._serialized_end=544
+  _globals['_TRIPSERVICE']._serialized_start=547
+  _globals['_TRIPSERVICE']._serialized_end=930
 # @@protoc_insertion_point(module_scope)

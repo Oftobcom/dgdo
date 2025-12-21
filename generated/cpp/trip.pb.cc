@@ -14,8 +14,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Location_common_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Metadata_common_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_common_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Location_common_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_google_2fprotobuf_2ftimestamp_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto;
 namespace dgdo {
 namespace trip {
@@ -36,11 +35,10 @@ static void InitDefaultsscc_info_Trip_trip_2eproto() {
   ::dgdo::trip::Trip::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Trip_trip_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_Trip_trip_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Trip_trip_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_Trip_trip_2eproto}, {
       &scc_info_Location_common_2eproto.base,
-      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,
-      &scc_info_Metadata_common_2eproto.base,}};
+      &scc_info_Timestamp_google_2fprotobuf_2ftimestamp_2eproto.base,}};
 
 static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trip_2eproto[1];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_trip_2eproto[1];
@@ -59,9 +57,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trip_2eproto::offsets[] PROTOB
   PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, origin_),
   PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, destination_),
   PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, status_),
+  PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, version_),
   PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, created_at_),
   PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, updated_at_),
-  PROTOBUF_FIELD_OFFSET(::dgdo::trip::Trip, metadata_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::dgdo::trip::Trip)},
@@ -73,19 +71,18 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_trip_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ntrip.proto\022\tdgdo.trip\032\037google/protobuf"
-  "/timestamp.proto\032\014common.proto\"\327\002\n\004Trip\022"
+  "/timestamp.proto\032\014common.proto\"\277\002\n\004Trip\022"
   "\n\n\002id\030\001 \001(\t\022\027\n\017trip_request_id\030\002 \001(\t\022\024\n\014"
   "passenger_id\030\003 \001(\t\022\021\n\tdriver_id\030\004 \001(\t\022%\n"
   "\006origin\030\005 \001(\0132\025.dgdo.common.Location\022*\n\013"
   "destination\030\006 \001(\0132\025.dgdo.common.Location"
   "\022%\n\006status\030\007 \001(\0162\025.dgdo.trip.TripStatus\022"
-  ".\n\ncreated_at\030\010 \001(\0132\032.google.protobuf.Ti"
-  "mestamp\022.\n\nupdated_at\030\t \001(\0132\032.google.pro"
-  "tobuf.Timestamp\022\'\n\010metadata\030\n \001(\0132\025.dgdo"
-  ".common.Metadata*_\n\nTripStatus\022\014\n\010ACCEPT"
-  "ED\020\000\022\014\n\010EN_ROUTE\020\001\022\r\n\tCOMPLETED\020\002\022\r\n\tCAN"
-  "CELLED\020\003\022\027\n\023CANCELLED_BY_DRIVER\020\004b\006proto"
-  "3"
+  "\017\n\007version\030\010 \001(\005\022.\n\ncreated_at\030\t \001(\0132\032.g"
+  "oogle.protobuf.Timestamp\022.\n\nupdated_at\030\n"
+  " \001(\0132\032.google.protobuf.Timestamp*_\n\nTrip"
+  "Status\022\014\n\010ACCEPTED\020\000\022\014\n\010EN_ROUTE\020\001\022\r\n\tCO"
+  "MPLETED\020\002\022\r\n\tCANCELLED\020\003\022\027\n\023CANCELLED_BY"
+  "_DRIVER\020\004b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trip_2eproto_deps[2] = {
   &::descriptor_table_common_2eproto,
@@ -96,7 +93,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tri
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trip_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trip_2eproto = {
-  false, false, descriptor_table_protodef_trip_2eproto, "trip.proto", 521,
+  false, false, descriptor_table_protodef_trip_2eproto, "trip.proto", 497,
   &descriptor_table_trip_2eproto_once, descriptor_table_trip_2eproto_sccs, descriptor_table_trip_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_trip_2eproto::offsets,
   file_level_metadata_trip_2eproto, 1, file_level_enum_descriptors_trip_2eproto, file_level_service_descriptors_trip_2eproto,
@@ -135,8 +132,6 @@ void Trip::InitAsDefaultInstance() {
       PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
   ::dgdo::trip::_Trip_default_instance_._instance.get_mutable()->updated_at_ = const_cast< PROTOBUF_NAMESPACE_ID::Timestamp*>(
       PROTOBUF_NAMESPACE_ID::Timestamp::internal_default_instance());
-  ::dgdo::trip::_Trip_default_instance_._instance.get_mutable()->metadata_ = const_cast< ::dgdo::common::Metadata*>(
-      ::dgdo::common::Metadata::internal_default_instance());
 }
 class Trip::_Internal {
  public:
@@ -144,7 +139,6 @@ class Trip::_Internal {
   static const ::dgdo::common::Location& destination(const Trip* msg);
   static const PROTOBUF_NAMESPACE_ID::Timestamp& created_at(const Trip* msg);
   static const PROTOBUF_NAMESPACE_ID::Timestamp& updated_at(const Trip* msg);
-  static const ::dgdo::common::Metadata& metadata(const Trip* msg);
 };
 
 const ::dgdo::common::Location&
@@ -162,10 +156,6 @@ Trip::_Internal::created_at(const Trip* msg) {
 const PROTOBUF_NAMESPACE_ID::Timestamp&
 Trip::_Internal::updated_at(const Trip* msg) {
   return *msg->updated_at_;
-}
-const ::dgdo::common::Metadata&
-Trip::_Internal::metadata(const Trip* msg) {
-  return *msg->metadata_;
 }
 void Trip::clear_origin() {
   if (GetArena() == nullptr && origin_ != nullptr) {
@@ -190,12 +180,6 @@ void Trip::clear_updated_at() {
     delete updated_at_;
   }
   updated_at_ = nullptr;
-}
-void Trip::clear_metadata() {
-  if (GetArena() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
-  }
-  metadata_ = nullptr;
 }
 Trip::Trip(::PROTOBUF_NAMESPACE_ID::Arena* arena)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
@@ -246,12 +230,9 @@ Trip::Trip(const Trip& from)
   } else {
     updated_at_ = nullptr;
   }
-  if (from._internal_has_metadata()) {
-    metadata_ = new ::dgdo::common::Metadata(*from.metadata_);
-  } else {
-    metadata_ = nullptr;
-  }
-  status_ = from.status_;
+  ::memcpy(&status_, &from.status_,
+    static_cast<size_t>(reinterpret_cast<char*>(&version_) -
+    reinterpret_cast<char*>(&status_)) + sizeof(version_));
   // @@protoc_insertion_point(copy_constructor:dgdo.trip.Trip)
 }
 
@@ -262,8 +243,8 @@ void Trip::SharedCtor() {
   passenger_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   driver_id_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&origin_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&status_) -
-      reinterpret_cast<char*>(&origin_)) + sizeof(status_));
+      reinterpret_cast<char*>(&version_) -
+      reinterpret_cast<char*>(&origin_)) + sizeof(version_));
 }
 
 Trip::~Trip() {
@@ -282,7 +263,6 @@ void Trip::SharedDtor() {
   if (this != internal_default_instance()) delete destination_;
   if (this != internal_default_instance()) delete created_at_;
   if (this != internal_default_instance()) delete updated_at_;
-  if (this != internal_default_instance()) delete metadata_;
 }
 
 void Trip::ArenaDtor(void* object) {
@@ -326,11 +306,9 @@ void Trip::Clear() {
     delete updated_at_;
   }
   updated_at_ = nullptr;
-  if (GetArena() == nullptr && metadata_ != nullptr) {
-    delete metadata_;
-  }
-  metadata_ = nullptr;
-  status_ = 0;
+  ::memset(&status_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&version_) -
+      reinterpret_cast<char*>(&status_)) + sizeof(version_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -400,24 +378,24 @@ const char* Trip::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::inter
           _internal_set_status(static_cast<::dgdo::trip::TripStatus>(val));
         } else goto handle_unusual;
         continue;
-      // .google.protobuf.Timestamp created_at = 8;
+      // int32 version = 8;
       case 8:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .google.protobuf.Timestamp created_at = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
           ptr = ctx->ParseMessage(_internal_mutable_created_at(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .google.protobuf.Timestamp updated_at = 9;
-      case 9:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
-          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // .dgdo.common.Metadata metadata = 10;
+      // .google.protobuf.Timestamp updated_at = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
-          ptr = ctx->ParseMessage(_internal_mutable_metadata(), ptr);
+          ptr = ctx->ParseMessage(_internal_mutable_updated_at(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -512,28 +490,26 @@ failure:
       7, this->_internal_status(), target);
   }
 
-  // .google.protobuf.Timestamp created_at = 8;
+  // int32 version = 8;
+  if (this->version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(8, this->_internal_version(), target);
+  }
+
+  // .google.protobuf.Timestamp created_at = 9;
   if (this->has_created_at()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        8, _Internal::created_at(this), target, stream);
+        9, _Internal::created_at(this), target, stream);
   }
 
-  // .google.protobuf.Timestamp updated_at = 9;
+  // .google.protobuf.Timestamp updated_at = 10;
   if (this->has_updated_at()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        9, _Internal::updated_at(this), target, stream);
-  }
-
-  // .dgdo.common.Metadata metadata = 10;
-  if (this->has_metadata()) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(
-        10, _Internal::metadata(this), target, stream);
+        10, _Internal::updated_at(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -594,31 +570,31 @@ size_t Trip::ByteSizeLong() const {
         *destination_);
   }
 
-  // .google.protobuf.Timestamp created_at = 8;
+  // .google.protobuf.Timestamp created_at = 9;
   if (this->has_created_at()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *created_at_);
   }
 
-  // .google.protobuf.Timestamp updated_at = 9;
+  // .google.protobuf.Timestamp updated_at = 10;
   if (this->has_updated_at()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *updated_at_);
   }
 
-  // .dgdo.common.Metadata metadata = 10;
-  if (this->has_metadata()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *metadata_);
-  }
-
   // .dgdo.trip.TripStatus status = 7;
   if (this->status() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  // int32 version = 8;
+  if (this->version() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_version());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -676,11 +652,11 @@ void Trip::MergeFrom(const Trip& from) {
   if (from.has_updated_at()) {
     _internal_mutable_updated_at()->PROTOBUF_NAMESPACE_ID::Timestamp::MergeFrom(from._internal_updated_at());
   }
-  if (from.has_metadata()) {
-    _internal_mutable_metadata()->::dgdo::common::Metadata::MergeFrom(from._internal_metadata());
-  }
   if (from.status() != 0) {
     _internal_set_status(from._internal_status());
+  }
+  if (from.version() != 0) {
+    _internal_set_version(from._internal_version());
   }
 }
 
@@ -710,8 +686,8 @@ void Trip::InternalSwap(Trip* other) {
   passenger_id_.Swap(&other->passenger_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   driver_id_.Swap(&other->driver_id_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Trip, status_)
-      + sizeof(Trip::status_)
+      PROTOBUF_FIELD_OFFSET(Trip, version_)
+      + sizeof(Trip::version_)
       - PROTOBUF_FIELD_OFFSET(Trip, origin_)>(
           reinterpret_cast<char*>(&origin_),
           reinterpret_cast<char*>(&other->origin_));
