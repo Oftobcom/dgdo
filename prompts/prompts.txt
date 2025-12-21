@@ -235,3 +235,14 @@ Return only candidate sets + probabilities; no side-effects.
 Seed-based determinism ensures you can replay and debug.
 ---
 Which people should I bring onto my team to implement my project faster?
+---
+I now have prototypes of three services running on the following ports:
+port 50051: dgdo-matching
+port 50052: dgdo-trip-request
+port 50053: dgdo-trip-service
+What should I do next?
+---
+concurrent end-to-end test to a time-based simulation, where each trip progresses in “real time” through FSM states, simulating the driver moving toward the destination, and allowing trips to be cancelled dynamically
+---
+create production-ready test_realtime_logged.py that integrates TripRequestService, MatchingService, and TripService, using structured JSON logs and proper log levels at every step, where each trip progresses in “real time” through FSM states, simulating the driver moving toward the destination, and allowing trips to be cancelled dynamically
+---

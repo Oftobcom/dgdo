@@ -8,11 +8,6 @@
 
 docker build -t dgdo-python-base -f docker/python_base.Dockerfile .
 
-
-# Python services
-docker build -t dgdo-telemetry -f docker/telemetry_service.Dockerfile .
-docker build -t dgdo-ml-feedback -f docker/ml_feedback_service.Dockerfile .
-
 Assuming your `trip_request_service.Dockerfile` is ready:
 
 ```bash
@@ -128,3 +123,7 @@ Updated: 2025-12-21 11:16:12.515736
 ```
 
 ---
+
+# Python services
+docker build -t dgdo-telemetry -f docker/telemetry_service.Dockerfile .
+docker build -t dgdo-ml-feedback -f docker/ml_feedback_service.Dockerfile .
