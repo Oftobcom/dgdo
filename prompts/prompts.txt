@@ -246,3 +246,7 @@ concurrent end-to-end test to a time-based simulation, where each trip progresse
 ---
 create production-ready test_realtime_logged.py that integrates TripRequestService, MatchingService, and TripService, using structured JSON logs and proper log levels at every step, where each trip progresses in “real time” through FSM states, simulating the driver moving toward the destination, and allowing trips to be cancelled dynamically
 ---
+Where should i use postgresql database?
+---
+precise, production-grade PostgreSQL + PostGIS schema design for dgdo, fully compatible with current proto-files and three services (Matching Service, Trip Request Service, Trip Service)
+---
