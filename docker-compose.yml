@@ -1,27 +1,27 @@
 version: "3.9"
 
 services:
+  matching_service:
+    image: dgdo-matching
+    ports:
+      - "50051:50051"
+
   trip_request_service:
     image: dgdo-trip-request
     ports:
-      - "50051:50051"
+      - "50052:50052"
 
   trip_service:
     image: dgdo-trip-service
     ports:
-      - "50052:50052"
-
-  matching_service:
-    image: dgdo-matching
-    ports:
       - "50053:50053"
 
-  telemetry_service:
-    image: dgdo-telemetry
-    ports:
-      - "50054:50054"
+  # telemetry_service:
+  #   image: dgdo-telemetry
+  #   ports:
+  #     - "50054:50054"
 
-  ml_feedback_service:
-    image: dgdo-ml-feedback
-    ports:
-      - "50055:50055"
+  # ml_feedback_service:
+  #   image: dgdo-ml-feedback
+  #   ports:
+  #     - "50055:50055"
