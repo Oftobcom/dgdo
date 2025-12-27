@@ -1,3 +1,5 @@
+I’m sending a long context. Do not reply until I write: READY. Just acknowledge received.
+
 # DG Do — Canonical Domain Laws (v0.2, Production-Oriented)
 
 > **Scope**
@@ -18,12 +20,23 @@ These principles apply to **every service, API, and data model**.
 * **Loose Coupling:** services interact only via versioned APIs/events.
 * **High Cohesion:** domain logic never leaks across service boundaries.
 
+**Primary KPI**
+
+* **Mean Time to Change (MTTC)** per service (hours)
+* **Defect Containment Ratio**
+  `% of incidents isolated to one service`
+
 ### 0.2 Operational Principles
 
 * **All operations are idempotent.**
 * **All state transitions are explicit and auditable.**
 * **All services are containerized and stateless** (except storage).
 * **Failure is expected; undefined behavior is forbidden.**
+
+**Primary KPI**
+
+* **Successful Retry Rate** (% retries resolved without manual intervention)
+* **Recovery Time Objective (RTO)**
 
 ---
 
@@ -33,6 +46,14 @@ These principles apply to **every service, API, and data model**.
 
 `TripRequest` represents **passenger intent**, not a financial or operational commitment.
 
+**Primary KPI**
+
+* **Request-to-Trip Conversion Rate**
+
+  ```
+  completed_trips / created_trip_requests
+  ```
+
 ### 1.2 Invariants
 
 1. A `TripRequest` **may exist without a driver**.
@@ -40,6 +61,11 @@ These principles apply to **every service, API, and data model**.
 3. Origin and destination **must be valid geo-locations**.
 4. Requests outside serviceable regions **must fail fast** with explicit error codes.
 5. Cancellation is allowed **until a Trip is created**.
+
+**Primary KPI**
+
+* **Invalid Request Rejection Latency (ms)**
+* **Duplicate Request Suppression Rate**
 
 ### 1.3 Idempotency
 
@@ -53,6 +79,12 @@ These principles apply to **every service, API, and data model**.
   * return existing active request, or
   * deterministically cancel + recreate (policy-driven).
 
+**Primary KPI**
+
+* **Duplicate API Call Collapse Rate**
+
+  * `% of retries resolved idempotently`
+
 ### 1.4 Cold-Start Handling
 
 * If no drivers are available:
@@ -60,6 +92,14 @@ These principles apply to **every service, API, and data model**.
   * TripRequest is **persisted and queued**
   * Passenger receives ETA or fallback options
 * No synchronous retries or busy-waiting.
+
+**Primary KPI**
+
+* **Cold-Start Fulfillment Rate**
+
+  ```
+  trips_started_after_queue / queued_requests
+  ```
 
 ---
 
@@ -75,6 +115,11 @@ These principles apply to **every service, API, and data model**.
 * money
 * liability
 
+**Primary KPI**
+
+* **Completed Trips per Active Driver per Hour**
+* **Gross Revenue per Trip**
+
 ### 2.2 Creation Rules
 
 1. A `Trip` **MUST have a driver at creation**.
@@ -87,6 +132,11 @@ These principles apply to **every service, API, and data model**.
    * origin
    * destination
    * creation timestamp (UTC)
+
+**Primary KPI**
+
+* **Trip Creation Success Rate**
+* **Time from Request → Trip Creation (ms)**
 
 ### 2.3 Trip Lifecycle (FSM — mandatory)
 
@@ -106,6 +156,14 @@ Any other transition:
 * logged
 * counted as a protocol violation
 
+**Primary KPI**
+
+* **FSM Compliance Rate**
+
+  ```
+  valid_transitions / total_transitions
+  ```
+
 ### 2.4 Failure Handling
 
 * Driver drop-off:
@@ -114,6 +172,12 @@ Any other transition:
   * passenger notified
   * optional auto-reassignment (policy-controlled)
 * All timestamps are immutable and UTC.
+
+**Primary KPI**
+
+* **Driver Drop-Off Recovery Rate**
+
+  * trips successfully reassigned or gracefully cancelled
 
 ---
 
@@ -129,6 +193,11 @@ It:
 * assigns probabilities
 * never mutates system state
 
+**Primary KPI**
+
+* **Matching Latency (p95)**
+* **Cost per Match (CPU ms)**
+
 ### 3.2 Determinism
 
 For identical inputs + seed:
@@ -136,6 +205,12 @@ For identical inputs + seed:
 * identical candidates
 * identical probabilities
 * identical ordering
+
+**Primary KPI**
+
+* **Replay Accuracy Rate**
+
+  * `% of matches reproducible from logs`
 
 ### 3.3 Constraints
 
@@ -146,10 +221,22 @@ For identical inputs + seed:
    * sum = 1 ± ε
    * immutable once computed
 
+**Primary KPI**
+
+* **Match Acceptance Rate**
+
+  * accepted_matches / offered_matches
+
 ### 3.4 Failure Behavior
 
 * Empty candidate set → explicit reason code.
 * Crashes or timeouts → safe retry with same input and seed.
+
+**Primary KPI**
+
+* **Graceful Degradation Rate**
+
+  * failures handled without cascading errors
 
 ---
 
@@ -164,11 +251,22 @@ API Gateway:
 * enforces idempotency
 * logs decisions
 
+**Primary KPI**
+
+* **End-to-End Request Success Rate**
+* **Gateway Latency Overhead**
+
 ### 4.2 Sampling
 
 * Sampling occurs **only here**
 * Uses **seed-based deterministic sampling**
 * Probabilities are never modified
+
+**Primary KPI**
+
+* **Sampling Fairness Index**
+
+  * variance in driver exposure over time
 
 ### 4.3 Reliability
 
@@ -178,6 +276,10 @@ API Gateway:
 
   * retried idempotently, or
   * queued for async recovery
+
+**Primary KPI**
+
+* **Successful Orchestrated Retry Rate**
 
 ---
 
@@ -191,6 +293,11 @@ API Gateway:
    * in-progress trips handled by TripService FSM
 4. Passenger state is **derived**, not inferred.
 
+**Primary KPI**
+
+* **Driver Utilization Rate**
+* **Idle Driver Time (minutes/hour)**
+
 ---
 
 ## 6. Eventing & Telemetry Laws
@@ -200,6 +307,11 @@ API Gateway:
 * Events are **append-only**
 * Events are **fail-safe**
 * Event duplication is allowed; side effects are idempotent
+
+**Primary KPI**
+
+* **Event Delivery Reliability**
+* **Event Lag (p95)**
 
 ### 6.2 Mandatory Telemetry
 
@@ -211,10 +323,22 @@ Logged for every critical operation:
 * Trip FSM transitions
 * Failures, retries, cancellations
 
+**Primary KPI**
+
+* **Incident Diagnosis Time**
+
+  * time from alert → root cause
+
 ### 6.3 Replayability
 
 * Any incident must be reproducible via event replay.
 * Sampling seeds are persisted.
+
+**Primary KPI**
+
+* **Replay Coverage Rate**
+
+  * % of incidents reproducible offline
 
 ---
 
@@ -226,6 +350,11 @@ Logged for every critical operation:
 4. Data drift is monitored continuously.
 5. Retraining is triggered by **metric degradation**, not intuition.
 
+**Primary KPI**
+
+* **Model Lift vs Baseline**
+* **Revenue per Kilometer**
+
 ---
 
 ## 8. High Availability & Risk Management Laws
@@ -236,6 +365,11 @@ Logged for every critical operation:
 * Stateless services + replicated storage.
 * Leader election and failover supported.
 
+**Primary KPI**
+
+* **Service Uptime (SLA %)**
+* **Failed Match Rate under Load**
+
 ### 8.2 Data Safety
 
 * Databases must support:
@@ -245,11 +379,20 @@ Logged for every critical operation:
   * transactional guarantees
 * Idempotency enforced at storage level (unique constraints).
 
+**Primary KPI**
+
+* **Recovery Point Objective (RPO)**
+* **Backup Restore Success Rate**
+
 ### 8.3 Performance & SLAs
 
 * Latency budgets defined per service.
 * MatchingService must degrade gracefully under load.
 * Slowdowns are observable before outages.
+
+**Primary KPI**
+
+* **Latency Budget Compliance Rate**
 
 ---
 
@@ -263,3 +406,9 @@ Logged for every critical operation:
    * replay tests
 3. Failed tests = **deployment blocked**.
 4. Versioned APIs only; breaking changes require migration plans.
+
+**Primary KPI**
+
+* **Failed Deployment Prevention Rate**
+
+  * % of issues caught pre-production
