@@ -20,11 +20,14 @@ These principles apply to **every service, API, and data model**.
 * **Loose Coupling:** services interact only via versioned APIs/events.
 * **High Cohesion:** domain logic never leaks across service boundaries.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Mean Time to Change (MTTC)** per service (hours)
 * **Defect Containment Ratio**
   `% of incidents isolated to one service`
+
+**Primary Economic KPI:**
+* **Cost of Change Index**: Total operational cost (engineering + ops + downtime) required to deploy a new feature or fix, measured in USD. This forces architectural decisions to be evaluated against their long-term maintenance and adaptability cost.
 
 ### 0.2 Operational Principles
 
@@ -33,10 +36,13 @@ These principles apply to **every service, API, and data model**.
 * **All services are containerized and stateless** (except storage).
 * **Failure is expected; undefined behavior is forbidden.**
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Successful Retry Rate** (% retries resolved without manual intervention)
 * **Recovery Time Objective (RTO)**
+
+**Primary Economic KPI:**
+* **Operational Cost per 1000 Successful Trips (USD)**: This measures the pure infrastructure and support cost efficiency of the platform. It directly ties system reliability and automation to unit economics.
 
 ---
 
@@ -46,13 +52,16 @@ These principles apply to **every service, API, and data model**.
 
 `TripRequest` represents **passenger intent**, not a financial or operational commitment.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Request-to-Trip Conversion Rate**
 
   ```
   completed_trips / created_trip_requests
   ```
+
+**Primary Economic KPI:**
+* **Passenger Lifetime Value (LTV) Erosion Rate**: The rate at which the estimated future revenue from a passenger decreases due to failed requests, long wait times, or high prices. This measures the long-term customer health of the marketplace.
 
 ### 1.2 Invariants
 
@@ -62,10 +71,13 @@ These principles apply to **every service, API, and data model**.
 4. Requests outside serviceable regions **must fail fast** with explicit error codes.
 5. Cancellation is allowed **until a Trip is created**.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Invalid Request Rejection Latency (ms)**
 * **Duplicate Request Suppression Rate**
+
+**Primary Economic KPI:**
+* **Lost Gross Merchandise Value (GMV) due to Invalid/Failed Requests (USD/day)**: Quantifies the immediate revenue opportunity lost because of geofencing, validation errors, or system failures at the request stage.
 
 ### 1.3 Idempotency
 
@@ -79,11 +91,14 @@ These principles apply to **every service, API, and data model**.
   * return existing active request, or
   * deterministically cancel + recreate (policy-driven).
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Duplicate API Call Collapse Rate**
 
   * `% of retries resolved idempotently`
+
+**Primary Economic KPI:**
+* **Cost of Redundant Processing (USD/month)**: The compute and database cost incurred by processing duplicate or retry requests that are collapsed by idempotency logic. This measures the direct financial waste prevented.
 
 ### 1.4 Cold-Start Handling
 
@@ -93,13 +108,16 @@ These principles apply to **every service, API, and data model**.
   * Passenger receives ETA or fallback options
 * No synchronous retries or busy-waiting.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Cold-Start Fulfillment Rate**
 
   ```
   trips_started_after_queue / queued_requests
   ```
+
+**Primary Economic KPI:**
+* **Churn Probability of Queued Passengers**: The likelihood that a passenger who experiences a "cold-start" (no immediate driver) will not make another request in the next 7 days. This measures the direct customer attrition cost of supply shortages.
 
 ---
 
@@ -115,10 +133,13 @@ These principles apply to **every service, API, and data model**.
 * money
 * liability
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Completed Trips per Active Driver per Hour**
 * **Gross Revenue per Trip**
+
+**Primary Economic KPI:**
+* **Contribution Margin per Trip (USD)**: (Passenger Fare - Driver Payout - Direct Variable Costs). This is the fundamental unit economic health indicator. Negative margin means the business is losing money on each transaction.
 
 ### 2.2 Creation Rules
 
@@ -133,10 +154,13 @@ These principles apply to **every service, API, and data model**.
    * destination
    * creation timestamp (UTC)
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Trip Creation Success Rate**
 * **Time from Request → Trip Creation (ms)**
+
+**Primary Economic KPI:**
+* **Take Rate at Creation (%)**: (Platform Commission / Passenger Fare). This measures the revenue model's effectiveness at the moment of transaction creation, before any cancellations.
 
 ### 2.3 Trip Lifecycle (FSM — mandatory)
 
@@ -156,13 +180,16 @@ Any other transition:
 * logged
 * counted as a protocol violation
 
-**Primary KPI**
+**Primary KPI:**
 
 * **FSM Compliance Rate**
 
   ```
   valid_transitions / total_transitions
   ```
+
+**Primary Economic KPI:**
+* **Value Leakage from Invalid State Transitions (USD)**: The sum of driver guarantees paid, passenger refunds issued, or operational costs incurred due to trips entering disallowed or error states (e.g., driver paid for a trip that was never valid).
 
 ### 2.4 Failure Handling
 
@@ -173,11 +200,14 @@ Any other transition:
   * optional auto-reassignment (policy-controlled)
 * All timestamps are immutable and UTC.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Driver Drop-Off Recovery Rate**
 
   * trips successfully reassigned or gracefully cancelled
+
+**Primary Economic KPI:**
+* **Cost of Driver Cancellation (USD/event)**: Sum of passenger compensation, lost platform commission, and operational overhead (support, reassignment logic) for each `CANCELLED_BY_DRIVER` event.
 
 ---
 
@@ -193,10 +223,13 @@ It:
 * assigns probabilities
 * never mutates system state
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Matching Latency (p95)**
 * **Cost per Match (CPU ms)**
+
+**Primary Economic KPI:**
+* **Driver Acceptance Rate (%)**: The percentage of match offers that are accepted by the assigned driver. This is the single most important metric for matching effectiveness, as it directly impacts conversion and driver utilization.
 
 ### 3.2 Determinism
 
@@ -206,11 +239,14 @@ For identical inputs + seed:
 * identical probabilities
 * identical ordering
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Replay Accuracy Rate**
 
   * `% of matches reproducible from logs`
+
+**Primary Economic KPI:**
+* **Economic Consistency Score**: When replaying a match with the same seed, the variance in the resulting **Contribution Margin** of the created trip. High variance indicates pricing or matching logic that is non-deterministic in financially significant ways.
 
 ### 3.3 Constraints
 
@@ -221,22 +257,28 @@ For identical inputs + seed:
    * sum = 1 ± ε
    * immutable once computed
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Match Acceptance Rate**
 
   * accepted_matches / offered_matches
+
+**Primary Economic KPI:**
+* **Expected Driver Earnings per Match Offer (USD)**: The volume-weighted average of the `driver_price` shown to drivers for all match offers. This predicts driver satisfaction and retention based on the quality of opportunities presented.
 
 ### 3.4 Failure Behavior
 
 * Empty candidate set → explicit reason code.
 * Crashes or timeouts → safe retry with same input and seed.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Graceful Degradation Rate**
 
   * failures handled without cascading errors
+
+**Primary Economic KPI:**
+* **Lost GMV due to Matching Failure (USD/hour)**: The estimated revenue from trips that could not be created because the MatchingService returned empty, timed out, or crashed.
 
 ---
 
@@ -251,10 +293,13 @@ API Gateway:
 * enforces idempotency
 * logs decisions
 
-**Primary KPI**
+**Primary KPI:**
 
 * **End-to-End Request Success Rate**
 * **Gateway Latency Overhead**
+
+**Primary Economic KPI:**
+* **Funnel Drop-Off Cost by Stage (USD)**: Attributing lost GMV to specific orchestration stages: Request Received → Price Shown → Driver Offered → Driver Accepted. This identifies the most expensive leaks in the transaction pipeline.
 
 ### 4.2 Sampling
 
@@ -262,11 +307,14 @@ API Gateway:
 * Uses **seed-based deterministic sampling**
 * Probabilities are never modified
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Sampling Fairness Index**
 
   * variance in driver exposure over time
+
+**Primary Economic KPI:**
+* **Driver Earnings Gini Coefficient**: A measure of income inequality among drivers over a period (e.g., daily). The sampling algorithm must be tuned to balance efficiency with fairness to prevent driver churn.
 
 ### 4.3 Reliability
 
@@ -277,9 +325,12 @@ API Gateway:
   * retried idempotently, or
   * queued for async recovery
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Successful Orchestrated Retry Rate**
+
+**Primary Economic KPI:**
+* **Recovery Efficiency (USD saved/USD spent)**: The value of GMV recovered through idempotent retries and async queues, divided by the engineering and infrastructure cost of building and maintaining that reliability layer.
 
 ---
 
@@ -293,10 +344,13 @@ API Gateway:
    * in-progress trips handled by TripService FSM
 4. Passenger state is **derived**, not inferred.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Driver Utilization Rate**
 * **Idle Driver Time (minutes/hour)**
+
+**Primary Economic KPI:**
+* **Driver Hourly Earnings Post-Costs (USD)**: (Total driver payout - estimated vehicle/fuel cost) / active hours. This is the number that determines driver retention. Must be tracked in real-time and benchmarked against local alternatives.
 
 ---
 
@@ -308,10 +362,13 @@ API Gateway:
 * Events are **fail-safe**
 * Event duplication is allowed; side effects are idempotent
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Event Delivery Reliability**
 * **Event Lag (p95)**
+
+**Primary Economic KPI:**
+* **Mean Time to Financial Insight (MTTFI)**: The average delay between a real-world economic event (e.g., a driver cancels) and its accurate reflection in the financial reporting and alerting systems. Slow MTTFI means reacting to losses too late.
 
 ### 6.2 Mandatory Telemetry
 
@@ -323,22 +380,28 @@ Logged for every critical operation:
 * Trip FSM transitions
 * Failures, retries, cancellations
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Incident Diagnosis Time**
 
   * time from alert → root cause
+
+**Primary Economic KPI:**
+* **Cost of Investigation per Incident (USD)**: (Engineering and operations time spent diagnosing) + (GMV lost during outage). This measures the efficiency and effectiveness of your observability stack.
 
 ### 6.3 Replayability
 
 * Any incident must be reproducible via event replay.
 * Sampling seeds are persisted.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Replay Coverage Rate**
 
   * % of incidents reproducible offline
+
+**Primary Economic KPI:**
+* **Simulated Recovery Value (USD)**: The estimated GMV and cost savings demonstrated by using event replay to test fixes and optimizations before deploying to production.
 
 ---
 
@@ -350,10 +413,13 @@ Logged for every critical operation:
 4. Data drift is monitored continuously.
 5. Retraining is triggered by **metric degradation**, not intuition.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Model Lift vs Baseline**
 * **Revenue per Kilometer**
+
+**Primary Economic KPI:**
+* **Incremental Contribution Margin per Day (USD)**: The daily difference in total platform Contribution Margin when using the ML model versus a deterministic baseline (e.g., closest driver). This is the true measure of ML value.
 
 ---
 
@@ -365,10 +431,13 @@ Logged for every critical operation:
 * Stateless services + replicated storage.
 * Leader election and failover supported.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Service Uptime (SLA %)**
 * **Failed Match Rate under Load**
+
+**Primary Economic KPI:**
+* **Revenue At Risk (RAR) per Hour of Downtime (USD)**: The projected GMV lost for each hour of partial or full service unavailability, segmented by service component. This prioritizes redundancy investments.
 
 ### 8.2 Data Safety
 
@@ -379,10 +448,13 @@ Logged for every critical operation:
   * transactional guarantees
 * Idempotency enforced at storage level (unique constraints).
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Recovery Point Objective (RPO)**
 * **Backup Restore Success Rate**
+
+**Primary Economic KPI:**
+* **Maximum Allowable Financial Loss (USD)**: The maximum amount of transaction revenue that can be permanently lost in a disaster scenario before violating regulatory or business continuity requirements. This defines the RPO.
 
 ### 8.3 Performance & SLAs
 
@@ -390,13 +462,49 @@ Logged for every critical operation:
 * MatchingService must degrade gracefully under load.
 * Slowdowns are observable before outages.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Latency Budget Compliance Rate**
 
+**Primary Economic KPI:**
+* **Latency-to-Abandonment Conversion Cost (USD)**: A modeled function that quantifies how much GMV is lost for each X ms increase in critical path latency (e.g., price display, match time). This justifies performance investments.
+
 ---
 
-## 9. Deployment & Governance
+## 9. Pricing Laws
+
+### 9.1 Purpose
+The PricingService determines the **passenger fare** and **driver price** for every Trip. It is the economic engine that balances supply (driver earnings) and demand (passenger willingness to pay) to maximize marketplace health and platform revenue.
+
+### 9.2 Invariants
+1. **Pricing MUST be called after matching but before driver assignment.** The match informs which driver will receive the offer, allowing pricing to incorporate driver-specific factors (e.g., historical acceptance rate, current earnings streak).
+2. **Passenger fare ≥ Driver price ≥ Minimum operational cost.** This is the fundamental economic sanity check. The platform's commission (Passenger fare - Driver price) must be non-negative, and the driver's payout must cover their direct costs (fuel, vehicle wear).
+3. **All pricing inputs are immutable and logged: demand, supply, time, distance, historical acceptance rates.** Every pricing decision must be fully auditable and replayable. Logs must include the complete context used to calculate the fare and price.
+4. **Surge pricing is explicit, not hidden.** The passenger must be clearly notified when a surge multiplier is applied, and the rationale (e.g., "High demand in your area") must be communicated. The driver must also see the multiplier applied to their base rate.
+
+**Primary KPI:**
+* **Pricing Calculation Latency (p99 ms)**: The time taken to compute fare and price. Must not become the bottleneck in the request-to-offer flow.
+* **Pricing Input Validity Rate**: The percentage of pricing calls where all required inputs (distance, time, demand signal) were available and within expected bounds.
+* **Surge Transparency Compliance**: The percentage of surge-priced trips where the surge was explicitly communicated to the passenger per the invariant.
+
+**Primary Economic KPI:**
+* **Pricing-Induced Driver Acceptance Rate**: The percentage of priced trip offers that are accepted by the assigned driver. This isolates the effect of the price (and surge) from other match factors. This is the ultimate test of pricing effectiveness.
+* **Price Elasticity of Demand**: The measured relationship between changes in passenger fare and the resulting change in request conversion. This informs optimal pricing strategy.
+* **Surge Efficiency Ratio**: (Incremental GMV during surge) / (Estimated GMV lost due to passenger drop-off from surge). A ratio >1 indicates surge is profitably managing demand; <1 indicates it is destroying value.
+
+### 9.3 Failure Behavior
+* Pricing service failure or timeout must trigger a **deterministic fallback** to a conservative, rule-based pricing table (e.g., fixed rate per kilometer + time).
+* Any fallback activation must be logged as a critical incident and must not violate Invariant #2 (fare ≥ price ≥ min cost).
+**Primary KPI:** 
+
+* **Pricing Fallback Activation Rate**: Number of pricing requests where fallback mechanism was triggered / Total number of pricing requests
+
+**Primary Economic KPI:**
+* `Lost GMV due to Suboptimal Fallback Pricing (USD)`
+
+---
+
+## 10. Deployment & Governance
 
 1. Generated code is **never edited manually**.
 2. Invariants are enforced by:
@@ -407,8 +515,11 @@ Logged for every critical operation:
 3. Failed tests = **deployment blocked**.
 4. Versioned APIs only; breaking changes require migration plans.
 
-**Primary KPI**
+**Primary KPI:**
 
 * **Failed Deployment Prevention Rate**
 
   * % of issues caught pre-production
+
+**Primary Economic KPI:**
+* **Deployment Risk Cost (USD)**: The estimated cost of a rollback, hotfix, or post-deployment incident, multiplied by the probability of deployment failure. This creates a financial gate for release approval.
