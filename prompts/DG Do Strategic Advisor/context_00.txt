@@ -3,10 +3,12 @@ I’m sending a long context. Do not reply until I write: READY. Just acknowledg
 I’m developing the open-source project "DG Do Matching Engine", a ride-hailing platform similar to Uber, Lyft, Bolt, and Yandex Go; take into account the features of Dodo Pizza, Dodo IS.
 
 Minimum Viable Product (MVP)
+
 Launch
 Start the full system with:
  docker compose up
-Version 0.1 — Must-Have Features
+
+Version 0.1 — Must-Have Features:
 Passenger registration
 Submitting a trip request: from → to
 Display available drivers on the map
@@ -14,6 +16,9 @@ Driver assignment algorithm
 Order status flow: accepted → en route → completed
 Simple admin panel
 REST + WebSocket API
+Dashboards and open APIs are needed to monitor system status.
+Build data for ML with drift detection
+Risk management. For example, checking limits: one TripRequest per passenger, one Trip per driver
 
 
 Architecture & Stack
@@ -30,4 +35,4 @@ API Contracts (protobuf first!)
 .proto files are your single source of truth
 Trip Finite State Machine is explicit
 ClickHouse used only for: telemetry, analytics, ML
-
+Local Prometheus/Grafana dashboard showing the metrics from golden path test

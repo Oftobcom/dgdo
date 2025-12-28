@@ -1,0 +1,51 @@
+# pricing_config_v1.yaml
+
+version: "1.0.3"                      # Semantic version
+effective_from: "2025-12-28T00:00:00Z"
+description: "Khujand-specific pricing with local economic guardrails"
+
+default:
+  base_fare_tjs: 2.0                   # flat pickup fee
+  per_km_rate_tjs: 2.0                  # standard rate per km
+  per_min_rate_tjs: 0.5                 # rate per minute
+  commission_percent: 0.9                # platform commission
+  rounding_tjs: [0.5, 1, 3, 5]         # cash-friendly denominations
+
+time_based_multipliers:
+  peak_morning:                            # 7-9 AM
+    start_hour: 7
+    end_hour: 9
+    surge_multiplier: 1.2
+  peak_evening:                            # 5-7 PM
+    start_hour: 17
+    end_hour: 19
+    surge_multiplier: 1.2
+  night:                                   # 0-5 AM
+    start_hour: 0
+    end_hour: 5
+    surge_multiplier: 1.1
+
+zone_overrides:
+  "central_khujand":
+    per_km_rate_tjs: 2.5
+    base_fare_tjs: 2.5
+  "outskirts_khujand":
+    per_km_rate_tjs: 2.0
+    base_fare_tjs: 1.5
+
+economic_constraints:
+  min_driver_rate_tjs_per_km: 1.5
+  max_driver_rate_tjs_per_km: 3.0
+
+fallback_config:
+  base_fare_tjs: 2.0
+  per_km_rate_tjs: 2.0
+  per_min_rate_tjs: 0.5
+  commission_percent: 20
+
+ab_tests:
+  - experiment_name: "weekend_surge_test"
+    variant: "high_surge"
+    per_km_rate_tjs: 3.0
+    start_date: "2025-12-28"
+    end_date: "2025-12-31"

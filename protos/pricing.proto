@@ -4,18 +4,109 @@ syntax = "proto3";
 
 package dgdo.pricing;
 
-// Pricing info
-message Fare {
-  string trip_id = 1;
-  double base_fare = 2;
-  double distance = 3;
-  double time = 4;
-  double surge_multiplier = 5;
-  double final_fare = 6;
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+
+// ---------------------------------------------------------------
+// PRICING REQUEST - All immutable inputs required for calculation
+// ---------------------------------------------------------------
+message PriceCalculationRequest {
+  // Core identifiers for idempotency and audit
+  string trip_request_id = 1;        // Primary idempotency key
+  string passenger_id = 2;
+  string matched_driver_id = 3;      // Driver returned by MatchingService
+  
+  // Geographic context
+  dgdo.common.Location origin = 4;
+  dgdo.common.Location destination = 5;
+  
+  // Temporal context
+  google.protobuf.Timestamp request_time = 6;
+  int32 estimated_distance_meters = 7;  // From Valhalla routing
+  int32 estimated_duration_seconds = 8; // From Valhalla routing
+  
+  // Market signals (immutable at request time)
+  double demand_multiplier = 9;      // 1.0 = normal, >1.0 = surge
+  double supply_multiplier = 10;     // Driver availability in zone
+  
+  // Driver-specific factors
+  double driver_acceptance_rate = 11; // Last 100 offers
+  double driver_rating = 12;          // 0.0-5.0
+  
+  // Seed for deterministic replay
+  int64 pricing_seed = 13;
+  
+  // Telemetry/ML context
+  dgdo.common.Metadata metadata = 14;
 }
 
-// Pricing service
+// ---------------------------------------------------------------
+// PRICING RESPONSE - Dual-price output with complete breakdown
+// ---------------------------------------------------------------
+message PriceCalculationResponse {
+  // Identifiers for reconciliation
+  string trip_request_id = 1;
+  string calculation_id = 2;          // UUID for this specific calculation
+  
+  // FINAL CUSTOMER-FACING PRICES (immutable after creation)
+  double passenger_fare_total = 3;    // What passenger pays (including VAT)
+  double driver_payout_total = 4;     // What driver earns (after commission)
+  double platform_commission = 5;     // passenger_fare - driver_payout
+  
+  // Detailed breakdown for transparency and dispute resolution
+  message FareBreakdown {
+    double base_fare = 1;
+    double distance_fare = 2;         // rate_per_meter * estimated_distance_meters
+    double time_fare = 3;             // rate_per_second * estimated_duration_seconds
+    double surge_multiplier = 4;      // Applied to (base + distance + time)
+    double cancellation_surcharge = 5; // If applicable
+    double safety_fee = 6;
+    double vat_tax = 7;
+  }
+  
+  FareBreakdown passenger_breakdown = 6;
+  FareBreakdown driver_breakdown = 7; // May differ from passenger breakdown
+  
+  // Pricing metadata for analytics and ML feedback
+  double estimated_distance_meters = 8;
+  double estimated_duration_seconds = 9;
+  double demand_multiplier_at_request = 10;
+  string pricing_model_version = 11;  // e.g., "linear_v1", "ml_v2"
+  string pricing_tier = 12;           // "economy", "comfort", "premium"
+  
+  // Validity window
+  google.protobuf.Timestamp price_expires_at = 13;
+  
+  // Audit trail
+  google.protobuf.Timestamp calculated_at = 14;
+  dgdo.common.Metadata calculation_metadata = 15;
+}
+
+// ---------------------------------------------------------------
+// FALLBACK PRICING CONFIGURATION
+// ---------------------------------------------------------------
+message FallbackPricingConfig {
+  double base_rate_kzt = 1;           // Base fare in local currency
+  double per_meter_rate_kzt = 2;      // Rate per meter
+  double per_second_rate_kzt = 3;     // Rate per second
+  double minimum_fare_kzt = 4;        // Minimum charge
+  double platform_commission_rate = 5; // Fixed commission percentage
+  
+  // Version for safe updates
+  string config_version = 6;
+  google.protobuf.Timestamp valid_from = 7;
+}
+
+// ---------------------------------------------------------------
+// SERVICE DEFINITION
+// ---------------------------------------------------------------
 service PricingService {
-  rpc CalculateFare(Fare) returns (Fare);
-  rpc ApplyDiscount(Fare) returns (Fare);
+  // Core pricing operation - must be deterministic and idempotent
+  rpc CalculatePrice(PriceCalculationRequest) returns (PriceCalculationResponse);
+  
+  // Fallback mechanism for system degradation
+  rpc GetFallbackConfig(FallbackPricingConfig) returns (FallbackPricingConfig);
+  
+  // Admin operations (versioned, audited)
+  rpc UpdateFallbackConfig(FallbackPricingConfig) returns (FallbackPricingConfig);
 }

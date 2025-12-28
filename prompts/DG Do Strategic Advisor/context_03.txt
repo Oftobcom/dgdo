@@ -1,3 +1,5 @@
+I’m sending a long context. Do not reply until I write: READY. Just acknowledge received.
+
 I created proto-files: 
 admin.proto          matching.proto       pricing.proto    trip_request.proto
 common.proto         ml_feedback.proto    telemetry.proto  trip_service.proto

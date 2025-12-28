@@ -250,3 +250,138 @@ Where should i use postgresql database?
 ---
 precise, production-grade PostgreSQL + PostGIS schema design for dgdo, fully compatible with current proto-files and three services (Matching Service, Trip Request Service, Trip Service)
 ---
+**PROJECT CONTEXT: DG Do Matching Engine - Khujand, Tajikistan**
+
+**Market Reality (Khujand-Specific):**
+1. **Supply-Demand Imbalance:** Fewer drivers than passengers during peak hours (7-9 AM, 5-7 PM)
+2. **Driver Economics:** Minimum acceptable earnings = 1.5 TJS/km, daily target = 200-300 TJS
+3. **Connectivity:** Intermittent 3G, drivers go offline mid-shift requiring re-matching
+4. **Vehicle Mix:** 70% sedans (Chevrolet Cobalt, Nexia), 20% hatchbacks, 10% minivans
+5. **Cash Flow:** Drivers need same-day cash access, cannot wait 7-day payment cycles
+
+**Business Objective:** 
+Maximize **Daily Platform Contribution Margin** = SUM(Passenger Fare - Driver Payout - Variable Costs) across all trips, subject to:
+- Driver retention: Keep driver hourly earnings > 25 TJS
+- Passenger retention: Keep request-to-trip conversion > 70%
+- Operational constraint: Match latency < 2 seconds for 95% of requests
+
+**Economic Requirements for Matching:**
+1. **Decision Audit Trail:** Every match must be replayable with identical inputs → identical outputs
+2. **Opportunity Cost Tracking:** When Driver A gets Trip X, we must track what Trip Y they missed
+3. **Acceptance Probability Modeling:** Store features that predict P(acceptance | driver, trip, price)
+4. **Cold Start Metrics:** Measure time-to-first-match for new drivers (critical for supply growth)
+5. **Geographic Coverage:** Track which Khujand zones have <5 minute ETA coverage
+
+**Technical Non-Negotiables from Domain Laws:**
+1. **Deterministic Matching:** Same inputs + seed = same candidates (Law 3.2)
+2. **Immutable Training Data:** Matching outputs cannot be modified (Law 7.1)
+3. **Replay Coverage:** 100% of matches must be reproducible from logs (Law 6.3)
+4. **Idempotency:** MatchingService is pure, no side effects (Law 3.1)
+5. **Telemetry Integration:** All decisions flow to ClickHouse for ML (MVP Requirement)
+
+**Performance Requirements:**
+- Peak load: 100 match requests/second during Friday evening surge
+- P95 latency: <500ms for matching algorithm
+- Data retention: 90 days hot in PostgreSQL, 2 years cold in ClickHouse
+- Concurrent reads: 50 analysts querying match data simultaneously
+
+**Regulatory & Compliance:**
+1. **Fairness Audit:** Must prove no discriminatory matching by driver rating/age/vehicle
+2. **Data Privacy:** Driver location history anonymized after 30 days
+3. **Financial Audit:** Match decisions must tie to pricing decisions for tax reporting
+
+**Success Metrics (SLA):**
+1. **Match Acceptance Rate:** >85% of offers accepted by assigned driver
+2. **Time-to-Match:** <30 seconds for 95% of requests
+3. **Feature Freshness:** ML features available <100ms after driver status update
+4. **Replay Accuracy:** 99.9% of matches reproducible from logs
+5. **Query Performance:** Cohort analysis (1000 drivers, 7 days) completes in <10 seconds
+
+**Trade-off Priorities:**
+1. **Decision integrity** over storage efficiency
+2. **Analytical flexibility** over write optimization  
+3. **Regulatory compliance** over query simplicity
+4. **Real-time ML readiness** over schema normalization
+5. **Khujand market fit** over global scalability
+
+**Integration Points:**
+- Input: DriverStatusService (real-time locations), TripRequestService
+- Output: PricingService (for price calculation), TripService (for trip creation)
+- Analytics: ClickHouse (for ML training), Grafana (for operational dashboards)
+
+**SQL Migration System for DG Do Multi-Market Platform Requirements:**
+1. **Versioned migrations:** Each change in separate, timestamped file
+2. **Idempotent execution:** Migrations can run multiple times safely
+3. **Rollback capability:** Every migration has a reversible downgrade
+4. **Data preservation:** Migrations handle existing production data
+5. **Economic validation:** Schema changes validated against business rules
+6. **Multi-environment:** Works in dev, staging, production consistently
+
+
+**Implementation Ask:**
+Design a PostgreSQL + PostGIS schema that enables:
+1. **Real-time matching** with sub-second latency
+2. **ML feature generation** without ETL pipelines
+3. **A/B test allocation** at the match level
+4. **Driver behavior analysis** (acceptance patterns, zone preferences)
+5. **Marketplace health monitoring** (supply coverage, match rate trends)
+6. Fully compatible with current proto-files and four services (Matching Service, Trip Request Service, Trip Service, PricingService)
+7. Supports multiple concurrent markets with different currencies, rules, and compliance
+8. Allows market-specific overrides of business rules (minimum fare, surge caps, commission rates)
+9. Enables feature rollout by market (progressive deployment)
+10. Maintains data isolation for regulatory compliance (GDPR, local data laws)
+11. Provides market-aware analytics without cross-market data leakage
+---
+Generate SQL
+---
+I'm building a ride-hailing platform in Khujand, Tajikistan where:
+- Local currency is TJS (Somoni)
+- Cash transactions dominate
+- Network connectivity is intermittent
+- Average income is ~1,500 TJS/month
+- Social acceptance of surge pricing is limited
+
+I need a pricing configuration system that:
+1. Separates business rules (rates, surge multipliers) from API contracts
+2. Supports runtime updates without service restarts
+3. Validates against local economic constraints (max 3 TJS/km, min 1.5 TJS/km for drivers)
+4. Handles cash rounding to common denominations (0.50, 1, 3, 5 TJS)
+5. Supports A/B testing of pricing strategies
+
+Design a YAML-based configuration format and the loading service that:
+- Validates economic guardrails on load
+- Supports versioning and gradual rollouts
+- Includes time-based multipliers (night, peak hours)
+- Zone-based pricing for different Khujand areas
+- Fallback mechanisms for offline operation
+
+Prioritize local market realities over technical elegance.
+---
+I'm implementing the trip creation workflow for a ride-hailing platform with these non-negotiable requirements:
+
+**Economic Requirements:**
+1. Every trip must have positive unit economics (fare > driver payout > operational cost)
+2. Price calculation must occur AFTER matching but BEFORE driver assignment
+3. Failed workflows must execute compensation (driver unassignment, request cleanup)
+
+**Operational Requirements:**
+1. Full idempotency: duplicate requests return same result
+2. Partial failure recovery: failed steps must roll back previous steps
+3. Telemetry for every decision to measure conversion funnel
+4. Timeouts and circuit breakers for all external service calls
+5. Deterministic replay from logs for debugging
+
+**Technical Constraints:**
+- Services: TripRequest → Matching → Pricing → DriverStatus → Trip
+- Each service has gRPC interface with defined protobufs
+- PostgreSQL for state, Redis for idempotency
+- Must handle 100 RPS with <5s 95th percentile latency
+
+Design the orchestration layer in Python that:
+1. Implements the complete state machine with compensation
+2. Enforces economic guardrails at each step
+3. Provides metrics for each decision point
+4. Handles all failure modes gracefully
+5. Maintains audit trail for regulatory compliance
+
+Focus on transaction safety over feature completeness.
