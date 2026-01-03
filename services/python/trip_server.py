@@ -4,24 +4,23 @@ import grpc
 from concurrent import futures
 import uuid
 from datetime import datetime
+from threading import Lock
 
 from google.protobuf.timestamp_pb2 import Timestamp
 
 from trip_service_pb2_grpc import TripServiceServicer, add_TripServiceServicer_to_server
-from trip_service_pb2 import (
-    CreateTripCommand,
-    UpdateTripStatusCommand,
-    CancelTripCommand,
-    GetTripByIdRequest,
-    GetTripByRequestIdRequest,
-)
+from trip_service_pb2 import CreateTripCommand, UpdateTripStatusCommand, CancelTripCommand, GetTripByIdRequest, GetTripByRequestIdRequest
 from trip_pb2 import Trip, TripStatus
 from common_pb2 import Location
+
+from pricing_pb2_grpc import PricingServiceStub
+from pricing_pb2 import PriceCalculationRequest
 
 # -----------------------------
 # In-memory store
 # -----------------------------
 trips = {}
+trips_lock = Lock()
 
 # -----------------------------
 # FSM transitions
@@ -43,106 +42,139 @@ def now_timestamp():
     return ts
 
 def valid_fsm_transition(current_status, new_status):
-    allowed = FSM.get(current_status, [])
-    return new_status in allowed
+    return new_status in FSM.get(current_status, [])
 
 # -----------------------------
-# Service implementation
+# TripService
 # -----------------------------
 class TripService(TripServiceServicer):
 
-    def CreateTrip(self, request: CreateTripCommand, context):
-        # Idempotency: trip_request_id must be unique
-        for t in trips.values():
-            if t.trip_request_id == request.trip_request_id:
-                return t
+    def __init__(self, pricing_channel):
+        self.pricing_stub = PricingServiceStub(pricing_channel)
 
-        trip_id = str(uuid.uuid4())
-        trip = Trip(
-            id=trip_id,
+    def CreateTrip(self, request: CreateTripCommand, context):
+        with trips_lock:
+            # Idempotency check
+            for t in trips.values():
+                if t.trip_request_id == request.trip_request_id:
+                    return t
+
+        # -----------------------------
+        # Call PricingService
+        # -----------------------------
+        pricing_request = PriceCalculationRequest(
             trip_request_id=request.trip_request_id,
             passenger_id=request.passenger_id,
-            driver_id=request.driver_id,
+            matched_driver_id=request.driver_id,
             origin=request.origin,
             destination=request.destination,
-            status=TripStatus.ACCEPTED,
-            version=1,
-            created_at=now_timestamp(),
-            updated_at=now_timestamp(),
+            estimated_distance_meters=10000,  # placeholder for routing
+            estimated_duration_seconds=900,   # placeholder
+            demand_multiplier=1.0,
+            supply_multiplier=1.0,
+            pricing_seed=uuid.uuid4().int & (1<<32)-1,
         )
-        trips[trip_id] = trip
-        print(f"[{datetime.utcnow()}] Created Trip {trip_id}")
+
+        try:
+            pricing_resp = self.pricing_stub.CalculatePrice(pricing_request)
+        except grpc.RpcError as e:
+            context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
+            context.set_details("Pricing failed, cannot create trip")
+            return Trip()
+
+        # -----------------------------
+        # Positive unit economics enforced
+        # -----------------------------
+        if pricing_resp.driver_payout_total <= 0 or pricing_resp.passenger_fare_total <= pricing_resp.driver_payout_total:
+            context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
+            context.set_details("Trip pricing violates unit economics")
+            return Trip()
+
+        # -----------------------------
+        # Create trip
+        # -----------------------------
+        with trips_lock:
+            trip_id = str(uuid.uuid4())
+            trip = Trip(
+                id=trip_id,
+                trip_request_id=request.trip_request_id,
+                passenger_id=request.passenger_id,
+                driver_id=request.driver_id,
+                origin=request.origin,
+                destination=request.destination,
+                status=TripStatus.ACCEPTED,
+                version=1,
+                created_at=now_timestamp(),
+                updated_at=now_timestamp(),
+            )
+            trips[trip_id] = trip
+
+        print(f"[{datetime.utcnow()}] Created Trip {trip_id} with fare {pricing_resp.passenger_fare_total}")
         return trip
 
-    def GetTripById(self, request: GetTripByIdRequest, context):
-        trip = trips.get(request.trip_id)
+    # Remaining methods are same as before (GetTripById, UpdateTripStatus, CancelTrip)
+    def GetTripById(self, request, context):
+        with trips_lock:
+            trip = trips.get(request.trip_id)
         if not trip:
             context.set_code(grpc.StatusCode.NOT_FOUND)
             context.set_details("Trip not found")
             return Trip()
         return trip
 
-    def GetTripByRequestId(self, request: GetTripByRequestIdRequest, context):
-        for t in trips.values():
-            if t.trip_request_id == request.trip_request_id:
-                return t
+    def GetTripByRequestId(self, request, context):
+        with trips_lock:
+            for t in trips.values():
+                if t.trip_request_id == request.trip_request_id:
+                    return t
         context.set_code(grpc.StatusCode.NOT_FOUND)
         context.set_details("Trip not found")
         return Trip()
 
-    def UpdateTripStatus(self, request: UpdateTripStatusCommand, context):
-        trip = trips.get(request.trip_id)
-        if not trip:
-            context.set_code(grpc.StatusCode.NOT_FOUND)
-            context.set_details("Trip not found")
-            return Trip()
-
-        # Optimistic locking
-        if trip.version != request.expected_version:
-            context.set_code(grpc.StatusCode.ABORTED)
-            context.set_details(f"Version mismatch: expected {request.expected_version}, got {trip.version}")
-            return Trip()
-
-        # FSM validation
-        if not valid_fsm_transition(trip.status, request.new_status):
-            context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
-            context.set_details(f"Invalid FSM transition from {trip.status} to {request.new_status}")
-            return Trip()
-
-        # Update status
-        trip.status = request.new_status
-        trip.version += 1
-        trip.updated_at.CopyFrom(now_timestamp())
-        print(f"[{datetime.utcnow()}] Trip {trip.id} status updated to {trip.status}")
+    def UpdateTripStatus(self, request, context):
+        with trips_lock:
+            trip = trips.get(request.trip_id)
+            if not trip:
+                context.set_code(grpc.StatusCode.NOT_FOUND)
+                context.set_details("Trip not found")
+                return Trip()
+            if trip.version != request.expected_version:
+                context.set_code(grpc.StatusCode.ABORTED)
+                context.set_details("Version mismatch")
+                return Trip()
+            if not valid_fsm_transition(trip.status, request.new_status):
+                context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
+                context.set_details("Invalid FSM transition")
+                return Trip()
+            trip.status = request.new_status
+            trip.version += 1
+            trip.updated_at.CopyFrom(now_timestamp())
         return trip
 
-    def CancelTrip(self, request: CancelTripCommand, context):
-        trip = trips.get(request.trip_id)
-        if not trip:
-            context.set_code(grpc.StatusCode.NOT_FOUND)
-            context.set_details("Trip not found")
-            return Trip()
-
-        # Optimistic locking
-        if trip.version != request.expected_version:
-            context.set_code(grpc.StatusCode.ABORTED)
-            context.set_details(f"Version mismatch: expected {request.expected_version}, got {trip.version}")
-            return Trip()
-
-        # Cancel
-        trip.status = request.reason
-        trip.version += 1
-        trip.updated_at.CopyFrom(now_timestamp())
-        print(f"[{datetime.utcnow()}] Trip {trip.id} cancelled ({trip.status})")
+    def CancelTrip(self, request, context):
+        with trips_lock:
+            trip = trips.get(request.trip_id)
+            if not trip:
+                context.set_code(grpc.StatusCode.NOT_FOUND)
+                context.set_details("Trip not found")
+                return Trip()
+            if trip.version != request.expected_version:
+                context.set_code(grpc.StatusCode.ABORTED)
+                context.set_details("Version mismatch")
+                return Trip()
+            trip.status = request.reason
+            trip.version += 1
+            trip.updated_at.CopyFrom(now_timestamp())
         return trip
 
 # -----------------------------
 # Server setup
 # -----------------------------
 def serve():
+    channel = grpc.insecure_channel("localhost:50056")  # PricingService channel
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    add_TripServiceServicer_to_server(TripService(), server)
-    server.add_insecure_port('[::]:50053')
+    add_TripServiceServicer_to_server(TripService(channel), server)
+    server.add_insecure_port("[::]:50053")
     server.start()
     print("TripService running on port 50053")
     server.wait_for_termination()

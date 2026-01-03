@@ -1,112 +1,132 @@
 # pricing_server.py
-"""
-Pricing Service for DG Do - Khujand, Tajikistan
-
-This gRPC service calculates trip fares based on a dynamically loaded YAML pricing
-configuration. It supports:
-- Zone-based pricing overrides
-- Time-of-day multipliers (peak hours, night, etc.)
-- A/B testing of pricing strategies
-- Cash rounding to common local denominations
-- Commission calculations
-"""
 
 import grpc
 from concurrent import futures
 import uuid
-import datetime
-from decimal import Decimal
+import threading
+from datetime import datetime
+from google.protobuf.timestamp_pb2 import Timestamp
 
 from pricing_pb2_grpc import PricingServiceServicer, add_PricingServiceServicer_to_server
-from pricing_pb2 import PriceCalculationRequest, PriceCalculationResponse
+from pricing_pb2 import PriceCalculationRequest, PriceCalculationResponse, FallbackPricingConfig
+from common_pb2 import Metadata
 
-from pricing_config_loader import PricingConfig
+# -----------------------------
+# In-memory fallback configuration
+# -----------------------------
+fallback_lock = threading.Lock()
+fallback_config = FallbackPricingConfig(
+    base_rate_kzt=300.0,
+    per_meter_rate_kzt=0.05,
+    per_second_rate_kzt=0.5,
+    minimum_fare_kzt=500.0,
+    platform_commission_rate=0.20,
+    config_version="v1",
+)
 
+# -----------------------------
+# Helpers
+# -----------------------------
+def now_timestamp():
+    ts = Timestamp()
+    ts.FromDatetime(datetime.utcnow())
+    return ts
 
+def positive_unit_economics(passenger_total, driver_payout, operational_cost=50):
+    """
+    Enforce positive unit economics:
+    passenger > driver payout > operational cost
+    """
+    return passenger_total > driver_payout > operational_cost
+
+# -----------------------------
+# Pricing Service
+# -----------------------------
 class PricingService(PricingServiceServicer):
-    """
-    Implementation of the PricingService gRPC server.
-
-    Uses PricingConfig to load, validate, and retrieve active pricing configuration.
-    """
-    def __init__(self, config_path: str):
-        """
-        Initialize the PricingService with path to the YAML configuration.
-
-        Args:
-            config_path (str): Path to pricing_config.yaml
-        """
-        # Load configuration with automatic reload every 30 seconds
-        self.config_loader = PricingConfig(config_path, reload_interval=30)
 
     def CalculatePrice(self, request: PriceCalculationRequest, context):
-        """
-        Calculate the passenger fare and driver payout for a trip request.
+        with fallback_lock:
+            cfg = fallback_config
 
-        Steps:
-        1. Fetch active pricing configuration (zone + current time).
-        2. Compute base, distance, and time fare.
-        3. Apply surge multiplier (time-based or zone-specific).
-        4. Round to nearest acceptable cash denomination.
-        5. Compute platform commission and driver payout.
-        """
-        # Extract zone from request metadata (optional)
-        zone = request.metadata.data.get("zone")
-        current_hour = datetime.datetime.utcnow().hour
+        # Base components
+        base = cfg.base_rate_kzt
+        distance_fare = request.estimated_distance_meters * cfg.per_meter_rate_kzt
+        time_fare = request.estimated_duration_seconds * cfg.per_second_rate_kzt
+        surge = max(1.0, request.demand_multiplier)
 
-        # Fetch active pricing configuration for this request
-        cfg = self.config_loader.get_active_config(zone=zone, current_hour=current_hour)
+        passenger_total = (base + distance_fare + time_fare) * surge
+        if passenger_total < cfg.minimum_fare_kzt:
+            passenger_total = cfg.minimum_fare_kzt
 
-        # Convert distance and time to units for pricing
-        distance_km = request.estimated_distance_meters / 1000
-        time_min = request.estimated_duration_seconds / 60
+        commission = cfg.platform_commission_rate
+        driver_payout = passenger_total * (1.0 - commission)
+        platform_take = passenger_total - driver_payout
 
-        # Base fare + distance fare + time fare
-        base_fare = Decimal(cfg.get("base_fare_tjs", 500))
-        distance_fare = Decimal(cfg.get("per_km_rate_tjs", 2.0)) * Decimal(distance_km)
-        time_fare = Decimal(cfg.get("per_min_rate_tjs", 0.5)) * Decimal(time_min)
-        subtotal = base_fare + distance_fare + time_fare
+        # Enforce positive unit economics
+        if not positive_unit_economics(passenger_total, driver_payout):
+            context.set_code(grpc.StatusCode.FAILED_PRECONDITION)
+            context.set_details("Unit economics violated: adjust pricing configuration")
+            return PriceCalculationResponse()
 
-        # Apply surge multiplier
-        total = subtotal * Decimal(cfg.get("surge_multiplier", 1.0))
-
-        # Round total to nearest acceptable denomination
-        rounding_options = cfg.get("rounding_tjs", [0.5, 1, 3, 5])
-        rounded_total = min(rounding_options, key=lambda x: abs(x - total))
-
-        # Calculate platform commission and driver payout
-        commission_percent = Decimal(cfg.get("commission_percent", 20))
-        commission = total * commission_percent / Decimal(100)
-        driver_payout = total - commission
-
-        # Return gRPC response
-        return PriceCalculationResponse(
+        # Build response
+        resp = PriceCalculationResponse(
             trip_request_id=request.trip_request_id,
-            calculation_id=str(uuid.uuid4()),  # unique ID per calculation
-            passenger_fare_total=float(rounded_total),
-            driver_payout_total=float(driver_payout),
-            platform_commission=float(commission),
-            pricing_model_version=self.config_loader.config.get("version", "v1"),
+            calculation_id=str(uuid.uuid4()),
+            passenger_fare_total=passenger_total,
+            driver_payout_total=driver_payout,
+            platform_commission=platform_take,
+            estimated_distance_meters=request.estimated_distance_meters,
+            estimated_duration_seconds=request.estimated_duration_seconds,
+            demand_multiplier_at_request=request.demand_multiplier,
+            pricing_model_version="fallback_linear_v1",
+            pricing_tier="economy",
+            price_expires_at=now_timestamp(),
+            calculated_at=now_timestamp(),
         )
 
+        # Breakdown
+        resp.passenger_breakdown.base_fare = base
+        resp.passenger_breakdown.distance_fare = distance_fare
+        resp.passenger_breakdown.time_fare = time_fare
+        resp.passenger_breakdown.surge_multiplier = surge
+
+        resp.driver_breakdown.base_fare = base * (1 - commission)
+        resp.driver_breakdown.distance_fare = distance_fare * (1 - commission)
+        resp.driver_breakdown.time_fare = time_fare * (1 - commission)
+        resp.driver_breakdown.surge_multiplier = surge
+
+        resp.calculation_metadata.data["pricing_model"] = resp.pricing_model_version
+        print(f"[{datetime.utcnow()}] Calculated price for trip {request.trip_request_id}: {passenger_total}")
+        return resp
+
+    def GetFallbackConfig(self, request: FallbackPricingConfig, context):
+        with fallback_lock:
+            return fallback_config
+
+    def UpdateFallbackConfig(self, request: FallbackPricingConfig, context):
+        with fallback_lock:
+            fallback_config.base_rate_kzt = request.base_rate_kzt
+            fallback_config.per_meter_rate_kzt = request.per_meter_rate_kzt
+            fallback_config.per_second_rate_kzt = request.per_second_rate_kzt
+            fallback_config.minimum_fare_kzt = request.minimum_fare_kzt
+            fallback_config.platform_commission_rate = request.platform_commission_rate
+            fallback_config.config_version = request.config_version or fallback_config.config_version
+        print(f"[{datetime.utcnow()}] Updated fallback config to version {fallback_config.config_version}")
+        return fallback_config
 
 def serve():
     """
     Start the gRPC server and listen for incoming pricing requests.
     """
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=8))
     # Register PricingService to gRPC server
-    add_PricingServiceServicer_to_server(PricingService("pricing_config.yaml"), server)
-    
+    add_PricingServiceServicer_to_server(PricingService(), server)
     # Bind to port 50056
     server.add_insecure_port('[::]:50056')
     server.start()
-    print("✅ PricingService running on port 50056")
-    
+    print("PricingService running on port 50056")
     # Block until termination
     server.wait_for_termination()
-
 
 if __name__ == "__main__":
     serve()
