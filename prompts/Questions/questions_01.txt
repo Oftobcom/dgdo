@@ -1,0 +1,94 @@
+Here’s a **focused set of 20 questions** specifically designed to **deepen your understanding of the DG DO Matching Engine** and help you start coding. I structured them to cover **conceptual, technical, and coding aspects**.
+
+---
+
+# 🔹 DG DO Matching Engine — 20 Guiding Questions
+
+### **Understanding the domain & core logic**
+
+1. What is the exact role of the Matching Engine in DG DO — what inputs does it receive, and what outputs does it produce?
+   *Hint:* Focus on Rider requests, Driver availability, and Match results.
+
+2. What are the invariants the Matching Engine must enforce?
+   *Hint:* Positive unit economics, driver availability, one driver per trip.
+
+3. How is a “match candidate” defined?
+   *Hint:* Consider distance, ETA, acceptance probability, and driver state.
+
+4. How do cancellations by rider or driver affect the Matching Engine?
+   *Hint:* Need for fast re-matching and compensation triggers.
+
+5. What is the life cycle of a match from request creation to driver assignment?
+   *Hint:* Include states like pending, reserved, accepted, failed.
+
+---
+
+### **Data & state modeling**
+
+6. Which data structures are used to store **live driver locations** efficiently?
+   *Hint:* Think geo-indexing: H3, quadtrees, or grids.
+
+7. How is **driver availability state** modeled and updated?
+   *Hint:* Online, Offline, Busy, Reserved, etc.
+
+8. How should the system represent **pending matches** and **timeouts**?
+   *Hint:* Consider queues, priority heaps, or event timers.
+
+9. How do we maintain **unit economics information** per match candidate?
+   *Hint:* fare, driver payout, operational cost, margin.
+
+10. How do events from external systems (e.g., location updates, pricing updates) affect internal state?
+    *Hint:* Consider pub/sub or event-driven architecture.
+
+---
+
+### **Matching logic & algorithms**
+
+11. How does the Matching Engine find the “best” driver for a given request?
+    *Hint:* Ranking by distance, ETA, acceptance probability, incentives.
+
+12. Should matching be **synchronous or asynchronous**, and why?
+    *Hint:* Think latency, scale, and fail-safety.
+
+13. How do you handle **multiple simultaneous ride requests** in the same area?
+    *Hint:* Consider concurrency, locks, or atomic operations.
+
+14. How does the Matching Engine interact with **Pricing & Economics modules**?
+    *Hint:* Match only if unit economics are valid.
+
+15. What are the fallback strategies if no drivers accept the match?
+    *Hint:* Expand search radius, extend timeout, notify rider.
+
+---
+
+### **Coding & implementation considerations**
+
+16. How do you structure the Matching Engine code so that **adding new ranking criteria** is easy?
+    *Hint:* Modular, policy-based design, or strategy pattern.
+
+17. What tests can you write to verify a match **never violates economic constraints**?
+    *Hint:* Unit tests, property-based tests, and edge cases.
+
+18. How do you simulate a realistic stream of requests and driver locations for **local testing**?
+    *Hint:* Mock data generators, event loops, or small scale simulation.
+
+19. How do you **log or expose metrics** to detect silent failures in the matching process?
+    *Hint:* Counters, failure events, dashboards.
+
+20. How do you design the Matching Engine so it can **scale horizontally** across regions or clusters?
+    *Hint:* Stateless design, partitioning by geo, event-driven queues.
+
+---
+
+These 20 questions cover:
+
+* **Domain understanding** (1–5)
+* **Data & state modeling** (6–10)
+* **Matching logic & algorithmic thinking** (11–15)
+* **Coding, testing, and scaling** (16–20)
+
+---
+
+If you want, I can **turn these questions into a concrete coding roadmap**, showing exactly **what to implement first, step by step**, so you can start building your DG DO Matching Engine today.
+
+Do you want me to do that next?
