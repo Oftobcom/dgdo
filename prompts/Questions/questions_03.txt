@@ -1,0 +1,113 @@
+Progressive set of 30 questions for the DG Do Matching Engine project, organized by difficulty, with hints to guide your thinking. These questions will help you understand domain concepts, microservice interactions, algorithms, and coding practices, preparing you to start implementing the MVP.
+
+---
+
+# DG Do Matching Engine – 30 Questions with Hints
+
+---
+
+## 🔹 Very Beginner Level (1–10)
+
+Focus: basic concepts, data structures, simple operations.
+
+1. What is a trip request, and which attributes must it contain?
+   Hint: Think of origin, destination, passenger ID, and status.
+
+2. What is a driver entity, and which attributes define it?
+   Hint: Include driver ID, location, availability, and rating.
+
+3. Why do we need a `common.proto` file?
+   Hint: Consider shared IDs, enums, and error codes.
+
+4. What is the role of `DriverStatus` in the system?
+   Hint: Think of “available,” “busy,” or “offline” and how it affects matching.
+
+5. How do we represent locations for drivers and passengers?
+   Hint: Latitude, longitude, and optional accuracy or timestamp.
+
+6. Why should driver location updates be frequent?
+   Hint: Consider the impact on matching accuracy.
+
+7. What is the purpose of a matching engine in a ride-hailing service?
+   Hint: Connect passengers with suitable nearby drivers.
+
+8. What is the minimal set of steps to create and cancel a trip request?
+   Hint: Think of create → match → optional cancel → trip status update.
+
+9. What is an enum, and why is it useful for `TripStatus`?
+   Hint: Status values like `REQUESTED`, `MATCHED`, `ONGOING`, `COMPLETED`.
+
+10. What is the difference between synchronous and asynchronous APIs in this system?
+    Hint: Matching notifications could be streamed asynchronously to drivers.
+
+---
+
+## 🔹 Beginner Level (11–20)
+
+Focus: system flow, simple algorithms, API logic.
+
+11. How does the Matching Engine select a driver for a trip?
+    Hint: Consider distance, driver availability, and status.
+
+12. What is the importance of in-memory data stores for MVP testing?
+    Hint: Think about speed and avoiding early DB setup complexity.
+
+13. Why should the Matching Engine be event-driven?
+    Hint: Updates like driver location and trip requests are continuous.
+
+14. How would you calculate the distance between driver and passenger?
+    Hint: Use Haversine formula for lat-long points.
+
+15. What happens if no drivers are available nearby?
+    Hint: Think about queueing, retries, or failure response.
+
+16. How does the Pricing Service interact with Matching Engine?
+    Hint: Price depends on matched driver, route, and trip distance.
+
+17. Why do we need a Trip Service separate from Matching?
+    Hint: Trip lifecycle (start, location updates, completion) is distinct from matching.
+
+18. How can you test the Matching Engine independently of the rest of the system?
+    Hint: Mock drivers and trip requests in a unit test.
+
+19. What is a “match event,” and how should it be communicated to drivers?
+    Hint: Consider gRPC streaming or message queue.
+
+20. How can you ensure that a trip is never assigned to two drivers at the same time?
+    Hint: Think about locking, atomic updates, or database transactions.
+
+---
+
+## 🔹 Intermediate Level (21–30)
+
+Focus: algorithms, system design, scaling, and edge cases.
+
+21. How would you implement a nearest-driver matching algorithm efficiently?
+    Hint: Use spatial indexing (like a k-d tree or geohash).
+
+22. What is surge pricing, and how can it be incorporated into fare calculation?
+    Hint: Consider demand vs supply in a geographic area.
+
+23. How would you handle a driver going offline in the middle of a match?
+    Hint: Reassign trip, cancel trip, or notify passenger.
+
+24. How would you design the microservices so they can scale independently?
+    Hint: Separate Matching, Pricing, Driver, and Trip services; use async messaging.
+
+25. How would you simulate multiple concurrent trip requests for testing?
+    Hint: Use load testing with mock data or async simulation scripts.
+
+26. What data structures would you use to maintain “nearby drivers” efficiently?
+    Hint: Spatial index or grid-based partitioning.
+
+27. How would you ensure consistency between Matching, Trip, and Pricing services?
+    Hint: Use event-driven architecture or eventual consistency patterns.
+
+28. How would you implement compensation if a trip fails after pricing calculation?
+    Hint: Rollback or refund workflow; consider transactional outbox pattern.
+
+29. How could ML feedback improve the Matching Engine?
+    Hint: Optimize driver selection using historical trip data and travel times.
+
+30. How would you extend the Matching Engine to support pooled rides (multiple passengers per driver)?
+    Hint: Consider route overlap, detour calculation, and capacity constraints.

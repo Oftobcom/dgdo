@@ -1,164 +1,106 @@
-Below is a **structured technical interview question set** for **Uber / Lyft / Bolt–style systems**, with **30 questions** split into **3 difficulty tiers**.
-Each question includes a **short hint** (what the interviewer expects you to think about, not the full answer).
+Below is a structured technical interview question set for Uber / Lyft / Bolt–style systems, with 30 questions split into 3 difficulty tiers.
+Each question includes a short hint (what the interviewer expects you to think about, not the full answer).
 
 ---
 
-# 🔹 VERY BEGINNER (10 questions)
+🔹 VERY BEGINNER (10 questions)
 
 *(Checks basic system awareness & vocabulary)*
 
-### 1. What problem does Uber/Lyft/Bolt solve?
+1. What problem does Uber/Lyft/Bolt solve?Hint: Two-sided marketplace, riders ↔ drivers, real-time coordination.
 
-**Hint:** Two-sided marketplace, riders ↔ drivers, real-time coordination.
+2. What are the main users of the system?Hint: Rider app, driver app, operations/admin.
 
-### 2. What are the main users of the system?
+3. What happens after a rider presses “Request Ride”?Hint: Request → backend → driver search → assignment.
 
-**Hint:** Rider app, driver app, operations/admin.
+4. Why does the system need a backend at all?Hint: Coordination, security, scalability, shared state.
 
-### 3. What happens after a rider presses “Request Ride”?
+5. What is a microservice?
+Hint: Small, independent service with a single responsibility.
 
-**Hint:** Request → backend → driver search → assignment.
+6. What data does a rider send when requesting a trip?
+Hint: Pickup, dropoff, time, user ID.
 
-### 4. Why does the system need a backend at all?
+7. What data does a driver send continuously?
+Hint: GPS coordinates, availability state.
 
-**Hint:** Coordination, security, scalability, shared state.
+8. Why can’t drivers just message riders directly?
+Hint: Privacy, trust, system control.
 
-### 5. What is a microservice?
+9. What is latency?
+Hint: Time between request and response.
 
-**Hint:** Small, independent service with a single responsibility.
-
-### 6. What data does a rider send when requesting a trip?
-
-**Hint:** Pickup, dropoff, time, user ID.
-
-### 7. What data does a driver send continuously?
-
-**Hint:** GPS coordinates, availability state.
-
-### 8. Why can’t drivers just message riders directly?
-
-**Hint:** Privacy, trust, system control.
-
-### 9. What is latency?
-
-**Hint:** Time between request and response.
-
-### 10. What is scalability in simple words?
-
-**Hint:** Handle more users without breaking.
+10. What is scalability in simple words?
+Hint: Handle more users without breaking.
 
 ---
 
-# 🔹 BEGINNER (10 questions)
+🔹 BEGINNER (10 questions)
 
 *(Checks understanding of components & simple trade-offs)*
 
-### 11. What are the main backend services in a ride-hailing system?
+11. What are the main backend services in a ride-hailing system?
+Hint: Auth, matching, pricing, trips, payments.
 
-**Hint:** Auth, matching, pricing, trips, payments.
+12. How does the system find nearby drivers?
+Hint: Geo-indexing, grid, distance search.
 
-### 12. How does the system find nearby drivers?
+13. Why is real-time communication needed?
+Hint: Location updates, trip status.
 
-**Hint:** Geo-indexing, grid, distance search.
+14. What is surge pricing?
+Hint: Demand > supply → price multiplier.
 
-### 13. Why is real-time communication needed?
+15. Why use Redis or in-memory cache?
+Hint: Fast access to frequently changing data.
 
-**Hint:** Location updates, trip status.
+16. Why separate rider and driver apps?
+Hint: Different roles, flows, permissions.
 
-### 14. What is surge pricing?
+17. What happens if a driver rejects a ride?
+Hint: Try next candidate, timeout logic.
 
-**Hint:** Demand > supply → price multiplier.
+18. Why should services be stateless?
+Hint: Easier scaling, failover.
 
-### 15. Why use Redis or in-memory cache?
+19. What kind of database stores trip history?
+Hint: Relational DB, strong consistency.
 
-**Hint:** Fast access to frequently changing data.
-
-### 16. Why separate rider and driver apps?
-
-**Hint:** Different roles, flows, permissions.
-
-### 17. What happens if a driver rejects a ride?
-
-**Hint:** Try next candidate, timeout logic.
-
-### 18. Why should services be stateless?
-
-**Hint:** Easier scaling, failover.
-
-### 19. What kind of database stores trip history?
-
-**Hint:** Relational DB, strong consistency.
-
-### 20. Why do we need logging and monitoring?
-
-**Hint:** Debugging, failures, metrics.
+20. Why do we need logging and monitoring?
+Hint: Debugging, failures, metrics.
 
 ---
 
-# 🔹 INTERMEDIATE (10 questions)
+🔹 INTERMEDIATE (10 questions)
 
 *(Checks system design thinking & distributed systems knowledge)*
 
-### 21. How would you prevent two drivers from accepting the same ride?
+21. How would you prevent two drivers from accepting the same ride?
+Hint: Locking, reservation, compare-and-set.
 
-**Hint:** Locking, reservation, compare-and-set.
+22. How do you scale the matching service to millions of users?
+Hint: Sharding by region, horizontal scaling.
 
-### 22. How do you scale the matching service to millions of users?
+23. GeoHash vs QuadTree vs H3 — why does it matter?
+Hint: Accuracy, performance, global scale.
 
-**Hint:** Sharding by region, horizontal scaling.
+24. Where is strong consistency required, and where is eventual consistency acceptable?
+Hint: Money & state vs location updates.
 
-### 23. GeoHash vs QuadTree vs H3 — why does it matter?
+25. What happens if the pricing service goes down?
+Hint: Fallbacks, graceful degradation.
 
-**Hint:** Accuracy, performance, global scale.
+26. How do you handle traffic spikes (rain, events, rush hour)?
+Hint: Auto-scaling, queues, backpressure.
 
-### 24. Where is strong consistency required, and where is eventual consistency acceptable?
+27. How would you design the trip state machine?
+Hint: Immutable transitions, clear states.
 
-**Hint:** Money & state vs location updates.
+28. How do you ensure positive unit economics per trip?
+Hint: Fare > payout + costs, fail fast.
 
-### 25. What happens if the pricing service goes down?
+29. What events would you publish during a trip lifecycle?
+Hint: Requested, matched, started, completed.
 
-**Hint:** Fallbacks, graceful degradation.
-
-### 26. How do you handle traffic spikes (rain, events, rush hour)?
-
-**Hint:** Auto-scaling, queues, backpressure.
-
-### 27. How would you design the trip state machine?
-
-**Hint:** Immutable transitions, clear states.
-
-### 28. How do you ensure positive unit economics per trip?
-
-**Hint:** Fare > payout + costs, fail fast.
-
-### 29. What events would you publish during a trip lifecycle?
-
-**Hint:** Requested, matched, started, completed.
-
-### 30. Where would ML be useful, and where would rules be better?
-
-**Hint:** Predictions vs hard business constraints.
-
----
-
-# 🎯 How interviewers evaluate answers
-
-They listen for:
-
-* **Clear structure**
-* **Trade-offs awareness**
-* **Failure thinking**
-* **Economic and operational realism**
-
-Not for buzzwords.
-
----
-
-If you want next:
-
-* **Model answers (short & long)**
-* Turn this into a **mock interview**
-* Add **advanced / staff-level questions**
-* Map these questions directly to **DG DO architecture**
-
-Just say which one.
+30. Where would ML be useful, and where would rules be better?
+Hint: Predictions vs hard business constraints.
