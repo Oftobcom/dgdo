@@ -1,0 +1,78 @@
+sequenceDiagram
+    autonumber
+
+    participant P as Passenger App
+    participant D as Driver App
+    participant API as API Gateway
+    participant Auth as Auth Service
+    participant Trip as Trip Service
+    participant Match as Matching Engine
+    participant Geo as Geo Service
+    participant RT as Realtime Service (WebSocket)
+    participant DB as PostgreSQL
+    participant R as Redis (Geo)
+
+    %% ========== AUTH ==========
+    P ->> API: Login (phone / OTP)
+    API ->> Auth: verify user
+    Auth ->> DB: fetch user
+    DB -->> Auth: user OK
+    Auth -->> API: JWT
+    API -->> P: JWT
+
+    %% ========== CONNECT REALTIME ==========
+    P ->> RT: Open WebSocket (JWT)
+    D ->> RT: Open WebSocket (JWT)
+
+    %% ========== REQUEST TRIP ==========
+    P ->> API: Create Trip (from, to)
+    API ->> Trip: createTrip()
+    Trip ->> DB: INSERT trip (SEARCHING)
+    DB -->> Trip: trip_id
+
+    Trip ->> Match: TripRequested(trip_id)
+
+    %% ========== MATCHING ==========
+    Match ->> Geo: find nearby drivers
+    Geo ->> R: GEOSEARCH drivers
+    R -->> Geo: driver list
+    Geo -->> Match: drivers
+
+    Note right of Match: Simple heuristic (distance / ETA)\nMVP — no ML yet
+
+    Match ->> Trip: assignDriver(driver_id)
+    Trip ->> DB: UPDATE trip → OFFERED
+
+    %% ========== DRIVER OFFER ==========
+    Trip ->> RT: push DriverOffer
+    RT -->> D: Trip offer
+
+    %% ========== DRIVER ACCEPT ==========
+    D ->> RT: Accept trip
+    RT ->> Trip: driverAccepted()
+    Trip ->> DB: UPDATE trip → ASSIGNED
+
+    Trip ->> RT: notify passenger
+    RT -->> P: Driver assigned
+
+    %% ========== TRIP START ==========
+    D ->> RT: Start trip
+    RT ->> Trip: tripStarted()
+    Trip ->> DB: UPDATE trip → IN_PROGRESS
+    Trip ->> RT: notify passenger
+    RT -->> P: Trip started
+
+    %% ========== LIVE LOCATION ==========
+    loop Every 2–5 seconds
+        D ->> RT: Location update
+        RT ->> R: update geo
+        RT -->> P: Driver location
+    end
+
+    %% ========== TRIP END ==========
+    D ->> RT: End trip
+    RT ->> Trip: tripCompleted()
+    Trip ->> DB: UPDATE trip → COMPLETED
+    Trip ->> RT: notify passenger & driver
+    RT -->> P: Trip completed
+    RT -->> D: Trip completed
