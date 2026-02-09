@@ -394,3 +394,16 @@ For DG Do project Administrator Registration create State Machine and Mermaid Se
 List of MVP API Endpoints for Passenger
 List of MVP API Endpoints for Driver
 List of MVP API Endpoints for Administrator
+---
+Generate a complete, ready-to-copy Mermaid ER diagram code for the DG Do project database. The diagram must include:
+1. Table names
+2. All fields with their data types
+3. Primary keys (PK) and foreign keys (FK)
+4. Field constraints (e.g., NOT NULL, UNIQUE)
+5. Relationships between tables (one-to-one, one-to-many, many-to-many)
+6. Triggers and their actions, if applicable
+Format the output in proper Mermaid syntax, fully ready to render, with clear and consistent notation for all tables, fields, relationships, and triggers. Ensure the diagram reflects realistic database design and relationships for a project similar to DG Do.
+---
+draw service interaction diagram
+---
+Generate one Mermaid code for classes diagram
