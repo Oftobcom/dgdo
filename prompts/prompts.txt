@@ -385,3 +385,12 @@ Design the orchestration layer in Python that:
 5. Maintains audit trail for regulatory compliance
 
 Focus on transaction safety over feature completeness.
+
+Analyze attached file
+For DG Do project Passenger Registration create State Machine and Mermaid Sequence Diagram, MVP level
+For DG Do project Driver Registration create State Machine and Mermaid Sequence Diagram, MVP level
+For DG Do project Administrator Registration create State Machine and Mermaid Sequence Diagram, MVP level
+---
+List of MVP API Endpoints for Passenger
+List of MVP API Endpoints for Driver
+List of MVP API Endpoints for Administrator
