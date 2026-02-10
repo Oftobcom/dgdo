@@ -1,0 +1,109 @@
+sequenceDiagram
+    autonumber
+
+    participant P as Passenger App
+    participant D as Driver App
+    participant API as API Gateway
+    participant AUTH as Auth Service
+    participant RT as Realtime Service (WebSocket)
+    participant MATCH as Matching Service
+    participant TRIP as Trip Service
+    participant GEO as Geo Service
+    participant DB as Database
+    participant REDIS as Redis
+
+    %% =========================
+    %% AUTHENTICATION (HTTP)
+    %% =========================
+
+    P ->> API: POST /auth/login
+    API ->> AUTH: verifyCredentials()
+    AUTH ->> DB: getUser()
+    DB -->> AUTH: user data
+    AUTH -->> API: JWT (signed)
+    API -->> P: JWT
+
+    Note over API: API Gateway validates JWT on every HTTP request\n(signature, expiry, role)
+
+    %% =========================
+    %% REALTIME CONNECTION
+    %% =========================
+
+    P ->> RT: Open WebSocket (JWT)
+    RT ->> AUTH: validate JWT
+    AUTH -->> RT: valid
+    RT -->> P: WebSocket connected
+
+    D ->> RT: Open WebSocket (JWT)
+    RT ->> AUTH: validate JWT
+    AUTH -->> RT: valid
+    RT -->> D: WebSocket connected
+
+    Note over RT: Realtime Service performs JWT validation independently\n(API Gateway is NOT involved)
+
+    %% =========================
+    %% TRIP CREATION (HTTP)
+    %% =========================
+
+    P ->> API: POST /trips (pickup, dropoff)
+    API ->> TRIP: createTrip()
+    TRIP ->> DB: insert trip (status = REQUESTED)
+    TRIP -->> API: tripId
+    API -->> P: tripId
+
+    %% =========================
+    %% MATCHING (INTERNAL)
+    %% =========================
+
+    TRIP ->> MATCH: requestMatching(tripId)
+    MATCH ->> GEO: findNearbyDrivers()
+    GEO -->> MATCH: driver list
+
+    loop For each candidate driver
+        MATCH ->> RT: sendOffer(driverId, tripId)
+        RT -->> D: Trip offer
+    end
+
+    %% =========================
+    %% DRIVER DECISION (REALTIME)
+    %% =========================
+
+    D ->> RT: Accept trip
+    RT ->> MATCH: driverAccepted(tripId, driverId)
+
+    MATCH ->> REDIS: lock trip
+    MATCH ->> TRIP: assignDriver(tripId, driverId)
+    TRIP ->> DB: update trip (status = ACCEPTED)
+    TRIP -->> MATCH: OK
+
+    Note over RT,TRIP: Internal service-to-service calls\n(trusted network, not via API Gateway)
+
+    RT -->> P: Driver assigned
+    RT -->> D: Trip confirmed
+
+    %% =========================
+    %% TRIP LIFECYCLE (REALTIME)
+    %% =========================
+
+    D ->> RT: Trip started
+    RT ->> TRIP: markStarted(tripId)
+    TRIP ->> DB: update status = IN_PROGRESS
+
+    D ->> RT: Trip completed
+    RT ->> TRIP: markCompleted(tripId)
+    TRIP ->> DB: update status = COMPLETED
+
+    RT -->> P: Trip completed notification
+    RT -->> D: Trip completed notification
+
+    %% =========================
+    %% FAILURE SCENARIOS
+    %% =========================
+
+    alt Driver rejects or timeout
+        MATCH ->> RT: notify rejection
+        RT -->> D: Offer expired
+        MATCH ->> MATCH: try next driver
+    end
+
+    Note over API,RT: Clients NEVER call backend services directly\nexcept Realtime WebSocket

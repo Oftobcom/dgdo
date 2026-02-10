@@ -1,0 +1,65 @@
+sequenceDiagram
+    autonumber
+
+    %% ======================
+    %% ACTORS & SERVICES
+    %% ======================
+    actor User as Mobile App<br/>(Passenger / Driver / Admin)
+    participant Gateway as API Gateway
+    participant Auth as Auth Service
+    participant SMS as SMS Provider
+    participant DB as Auth DB
+    participant Service as Protected Service<br/>(Trip / Matching / Profile)
+
+    %% ======================
+    %% STEP 1: REQUEST OTP
+    %% ======================
+    rect rgb(235,245,255)
+        User->>Gateway: POST /auth/otp/request<br/>{phone_number}
+        Gateway->>Auth: POST /auth/otp/request<br/>{phone_number}
+
+        Auth->>Auth: generate OTP
+        Auth->>DB: UPSERT otp(phone, code, expires_at)
+
+        Auth->>SMS: Send OTP SMS
+        SMS-->>Auth: SMS accepted
+
+        Auth-->>Gateway: 200 OK<br/>{otp_sent=true}
+        Gateway-->>User: 200 OK<br/>{otp_sent=true}
+    end
+
+    %% ======================
+    %% STEP 2: VERIFY OTP (LOGIN / REGISTER)
+    %% ======================
+    rect rgb(245,235,255)
+        User->>Gateway: POST /auth/otp/verify<br/>{phone_number, otp_code}
+        Gateway->>Auth: POST /auth/otp/verify<br/>{phone_number, otp_code}
+
+        Auth->>DB: SELECT otp WHERE phone = ?
+        DB-->>Auth: otp(code, expires_at)
+
+        Auth->>Auth: verify OTP & expiration
+
+        Auth->>DB: UPSERT user(phone, status=ACTIVE)
+        Auth->>Auth: create JWT access_token
+
+        Auth-->>Gateway: 200 OK<br/>{access_token}
+        Gateway-->>User: 200 OK<br/>{access_token}
+    end
+
+    %% ======================
+    %% STEP 3: PROTECTED REQUEST
+    %% ======================
+    rect rgb(235,255,235)
+        User->>Gateway: GET /trips/active<br/>Authorization: Bearer JWT
+
+        Gateway->>Gateway: Extract Authorization header
+        Note right of Gateway: Gateway does NOT validate JWT (MVP)
+
+        Gateway->>Service: GET /trips/active<br/>Authorization: Bearer JWT
+
+        Service->>Service: (optional) Validate JWT<br/>(later phase)
+
+        Service-->>Gateway: 200 OK<br/>{trip_data}
+        Gateway-->>User: 200 OK<br/>{trip_data}
+    end
