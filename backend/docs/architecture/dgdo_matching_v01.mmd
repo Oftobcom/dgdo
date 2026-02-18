@@ -1,0 +1,21 @@
+sequenceDiagram
+    autonumber
+
+    participant Passenger
+    participant Gateway
+    participant Matching
+    participant DriverApp
+
+    Passenger->>Gateway: POST /ride/request
+    Gateway->>Matching: ride request
+
+    Matching->>Matching: find nearest available drivers
+    Matching->>DriverApp: Ride Offer (Driver #1)
+
+    DriverApp-->>Matching: Accept / Reject
+
+    alt Accepted
+        Matching-->>Passenger: Driver assigned
+    else Rejected or Timeout
+        Matching->>DriverApp: Offer next driver
+    end

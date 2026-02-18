@@ -1,0 +1,75 @@
+sequenceDiagram
+    autonumber
+
+    participant Passenger
+    participant Gateway
+    participant Matching
+    participant Redis
+    participant Pricing
+    participant DriverWS as Driver WebSocket
+    participant PassengerWS as Passenger WebSocket
+
+    %% ======================
+    %% RIDE REQUEST
+    %% ======================
+
+    Passenger->>Gateway: POST /ride/request
+    Gateway->>Matching: ride request
+
+    %% Surge pricing calculation
+    Matching->>Pricing: calculate fare & surge
+    Pricing-->>Matching: base_fare + surge_multiplier
+
+    %% Precise driver lookup
+    Matching->>Redis: GEOSEARCH available_drivers\nBYRADIUS 5km SORT ASC
+    Redis-->>Matching: [driver_id, distance]
+
+    Matching->>Matching: filter by ride_type & status
+    Matching->>Matching: lock first driver (SETNX driver:lock)
+
+    %% ======================
+    %% REAL-TIME OFFER (WebSocket)
+    %% ======================
+
+    Matching->>DriverWS: Ride Offer (Driver #1)\n{pickup, fare, surge}
+    Note right of DriverWS: Offer timeout = 10s
+
+    DriverWS-->>Matching: Accept / Reject
+
+    alt Driver Accepts
+        Matching->>Redis: remove driver from available set
+        Matching->>PassengerWS: Driver assigned (real-time)
+        Matching-->>Passenger: 200 OK {ride_id, driver}
+    else Reject or Timeout
+        Matching->>Redis: release driver lock
+        Matching->>Matching: try next closest driver
+    end
+
+    %% ======================
+    %% DRIVER CANCELLATION FLOW
+    %% ======================
+
+    DriverWS->>Matching: Cancel ride
+
+    Matching->>Matching: mark ride as CANCELLED_BY_DRIVER
+    Matching->>Redis: add driver back to available set
+
+    Matching->>PassengerWS: Driver cancelled\nSearching new driver...
+
+    Matching->>Redis: GEOSEARCH next nearest driver
+    Redis-->>Matching: next driver
+
+    Matching->>DriverWS: New Ride Offer
+
+    %% ======================
+    %% PASSENGER CANCELLATION FLOW
+    %% ======================
+
+    Passenger->>PassengerWS: Cancel ride
+    PassengerWS->>Matching: Cancel ride
+
+    Matching->>Matching: mark ride as CANCELLED_BY_PASSENGER
+    Matching->>Redis: release driver lock / add driver back to available set
+
+    Matching->>DriverWS: Notify driver of cancellation
+    Matching-->>Passenger: 200 OK {ride_id, status: cancelled}
