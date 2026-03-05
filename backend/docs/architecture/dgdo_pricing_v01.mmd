@@ -1,0 +1,45 @@
+stateDiagram-v2
+    [*] --> PricingRequested
+
+    %% =========================
+    %% INPUT VALIDATION
+    %% =========================
+    PricingRequested --> ValidateInputs: Validate pickup, dropoff, ride_type
+    ValidateInputs --> InputsInvalid: Missing or invalid data
+    ValidateInputs --> BaseFareCalculation: Inputs valid
+
+    InputsInvalid --> PricingFailed
+    PricingFailed --> [*]
+
+    %% =========================
+    %% BASE FARE CALCULATION
+    %% =========================
+    BaseFareCalculation --> CalculateDistance: Compute estimated distance
+    CalculateDistance --> CalculateTime: Estimate duration
+    CalculateTime --> ApplyRideTypeRates: Apply ride_type pricing rules
+
+    ApplyRideTypeRates --> BaseFareComputed
+
+    %% =========================
+    %% SURGE CALCULATION
+    %% =========================
+    BaseFareComputed --> FetchSupplyDemand: Get active drivers & requests
+    FetchSupplyDemand --> ComputeDemandRatio: demand / supply ratio
+    ComputeDemandRatio --> SurgeDecision
+
+    SurgeDecision --> SurgeNotRequired: ratio <= threshold
+    SurgeDecision --> SurgeRequired: ratio > threshold
+
+    SurgeNotRequired --> SurgeMultiplierSet: multiplier = 1.0
+    SurgeRequired --> ApplySurgeFormula: Calculate surge multiplier
+    ApplySurgeFormula --> CapSurge: Apply surge cap (max limit)
+
+    CapSurge --> SurgeMultiplierSet
+
+    %% =========================
+    %% FINAL PRICE
+    %% =========================
+    SurgeMultiplierSet --> FinalFareComputed: final_fare = base_fare * multiplier
+
+    FinalFareComputed --> PricingResponseReady
+    PricingResponseReady --> [*]
