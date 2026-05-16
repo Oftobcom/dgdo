@@ -1,0 +1,23 @@
+# FastAPI framework
+fastapi
+
+# ASGI server
+uvicorn[standard]
+
+# ORM library
+sqlalchemy
+
+# PostgreSQL driver
+psycopg[binary]
+
+# JWT token library
+python-jose[cryptography]
+
+# Password hashing library
+passlib
+
+# Settings management library
+pydantic-settings
+
+# Email validation library
+email-validator
