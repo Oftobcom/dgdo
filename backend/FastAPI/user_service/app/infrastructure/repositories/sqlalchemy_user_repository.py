@@ -4,6 +4,9 @@ from uuid import UUID
 
 from sqlalchemy.orm import Session
 
+from app.domain.entities import WalletTransactionEntity
+from app.infrastructure.models.user_models import WalletTransactionModel
+
 # Repository interface
 from app.application.interfaces.user_repository import UserRepository
 
@@ -32,6 +35,38 @@ class SqlAlchemyUserRepository(UserRepository):
     # Constructor
     def __init__(self, db: Session) -> None:
         self.db = db
+
+
+
+        # Wallet balance update qilish
+    def update_wallet_balance(self, wallet_id: UUID, new_balance) -> None:
+        wallet = (
+            self.db.query(WalletModel)
+            .filter(WalletModel.id == wallet_id)
+            .first()
+        )
+
+        if wallet:
+            wallet.balance = new_balance
+            wallet.updated_at = datetime.utcnow()
+
+    # Wallet transaction yaratish
+    def create_wallet_transaction(self, transaction: WalletTransactionEntity) -> None:
+        model = WalletTransactionModel(
+            id=transaction.id,
+            wallet_id=transaction.wallet_id,
+            trip_id=transaction.trip_id,
+            type=transaction.type,
+            status=transaction.status,
+            amount=transaction.amount,
+            currency=transaction.currency,
+            balance_before=transaction.balance_before,
+            balance_after=transaction.balance_after,
+            description=transaction.description,
+            created_at=transaction.created_at,
+        )
+
+        self.db.add(model)
 
     # UserModel -> UserEntity convert qilish
     def _to_user_entity(self, model: UserModel) -> UserEntity:

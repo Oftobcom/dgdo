@@ -5,6 +5,14 @@ from uuid import UUID
 from app.application.dto.user_dto import WalletResponse
 from fastapi import HTTPException, status
 
+import uuid
+from decimal import Decimal
+from datetime import datetime
+
+from app.application.dto.user_dto import AdminWalletAdjustRequest, AdminWalletAdjustResponse
+from app.domain.entities import WalletTransactionEntity
+from app.domain.enums import WalletTransactionStatus, WalletTransactionType
+
 # DTO classlarni import qilamiz
 from app.application.dto.user_dto import (
     AdminResponse,
@@ -37,6 +45,91 @@ class UserService:
     # Constructor
     def __init__(self, user_repository: UserRepository) -> None:
         self.user_repository = user_repository
+
+
+        # Admin user wallet balanceini adjustment qiladi
+    def admin_adjust_wallet(
+        self,
+        user_id: UUID,
+        request: AdminWalletAdjustRequest,
+    ) -> AdminWalletAdjustResponse:
+
+        # User borligini tekshiramiz
+        user = self._get_user_or_404(user_id)
+
+        # User walletini olamiz
+        wallet = self.user_repository.get_wallet_by_user_id(user.id)
+
+        if not wallet:
+            raise HTTPException(
+                status_code=404,
+                detail="Wallet not found",
+            )
+
+        if not wallet.is_active:
+            raise HTTPException(
+                status_code=400,
+                detail="Wallet is inactive",
+            )
+
+        balance_before = wallet.balance
+
+        # Balance increase/decrease hisoblash
+        if request.operation == "increase":
+            balance_after = balance_before + request.amount
+
+        elif request.operation == "decrease":
+            if balance_before < request.amount:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Insufficient wallet balance",
+                )
+
+            balance_after = balance_before - request.amount
+
+        else:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid operation",
+            )
+
+        # Wallet transaction yozamiz
+        transaction = WalletTransactionEntity(
+            id=uuid.uuid4(),
+            wallet_id=wallet.id,
+            trip_id=None,
+            type=WalletTransactionType.adjustment.value,
+            status=WalletTransactionStatus.success.value,
+            amount=request.amount,
+            currency=wallet.currency,
+            balance_before=balance_before,
+            balance_after=balance_after,
+            description=request.description or "Admin wallet adjustment",
+            created_at=datetime.utcnow(),
+        )
+
+        # Wallet balance update
+        self.user_repository.update_wallet_balance(
+            wallet_id=wallet.id,
+            new_balance=balance_after,
+        )
+
+        # Transaction history yozish
+        self.user_repository.create_wallet_transaction(transaction)
+
+        # Commit
+        self.user_repository.commit()
+
+        return AdminWalletAdjustResponse(
+            wallet_id=wallet.id,
+            user_id=user.id,
+            balance_before=balance_before,
+            balance_after=balance_after,
+            currency=wallet.currency,
+            transaction_type=transaction.type,
+            description=transaction.description,
+        )
+
 
     # Passenger register qilish
     def register_passenger(self, request: RegisterPassengerRequest) -> UserResponse:

@@ -118,3 +118,40 @@ class WalletEntity:
 
     # Wallet update qilingan vaqt
     updated_at: datetime | None
+
+# Wallet transaction entity
+@dataclass
+class WalletTransactionEntity:
+
+    # Transaction unique ID
+    id: UUID
+
+    # Wallet ID
+    wallet_id: UUID
+
+    # Trip ID, admin adjustmentda None bo'ladi
+    trip_id: UUID | None
+
+    # Transaction type
+    type: str
+
+    # Transaction status
+    status: str
+
+    # Amount
+    amount: Decimal
+
+    # Currency
+    currency: str
+
+    # Oldingi balance
+    balance_before: Decimal
+
+    # Yangi balance
+    balance_after: Decimal
+
+    # Izoh
+    description: str | None
+
+    # Yaratilgan vaqt
+    created_at: datetime

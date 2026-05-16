@@ -158,3 +158,40 @@ class TokenResponse(BaseModel):
 
     # Token type
     token_type: str = "bearer"
+
+# Admin wallet balance update request DTO
+class AdminWalletAdjustRequest(BaseModel):
+
+    # Miqdor
+    amount: Decimal = Field(gt=0)
+
+    # Operation: increase yoki decrease
+    operation: str = Field(pattern="^(increase|decrease)$")
+
+    # Sabab / izoh
+    description: str | None = Field(default=None, max_length=500)
+
+
+# Admin wallet balance update response DTO
+class AdminWalletAdjustResponse(BaseModel):
+
+    # Wallet ID
+    wallet_id: UUID
+
+    # User ID
+    user_id: UUID
+
+    # Oldingi balance
+    balance_before: Decimal
+
+    # Yangi balance
+    balance_after: Decimal
+
+    # Currency
+    currency: str
+
+    # Transaction type
+    transaction_type: str
+
+    # Izoh
+    description: str | None

@@ -8,6 +8,24 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.domain.enums import UserRole, WalletOwnerType
 from app.infrastructure.database import Base
 
+from app.domain.enums import WalletTransactionStatus, WalletTransactionType
+
+
+# PostgreSQL wallet_transaction_type ENUM type
+wallet_transaction_type_enum = ENUM(
+    WalletTransactionType,
+    name="wallet_transaction_type",
+    create_type=False,
+)
+
+
+# PostgreSQL wallet_transaction_status ENUM type
+wallet_transaction_status_enum = ENUM(
+    WalletTransactionStatus,
+    name="wallet_transaction_status",
+    create_type=False,
+)
+
 
 # PostgreSQL user_role ENUM type
 user_role_enum = ENUM(
@@ -294,4 +312,92 @@ class WalletModel(Base):
     user: Mapped[UserModel] = relationship(
         "UserModel",
         back_populates="wallet",
+    )
+
+
+# PostgreSQL wallet_transaction_type ENUM type
+wallet_transaction_type_enum = ENUM(
+    WalletTransactionType,
+    name="wallet_transaction_type",
+    create_type=False,
+)
+
+
+# PostgreSQL wallet_transaction_status ENUM type
+wallet_transaction_status_enum = ENUM(
+    WalletTransactionStatus,
+    name="wallet_transaction_status",
+    create_type=False,
+)
+
+# Wallet transactions table modeli
+class WalletTransactionModel(Base):
+    __tablename__ = "wallet_transactions"
+
+    # Transaction unique ID
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+    )
+
+    # Wallet foreign key
+    wallet_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("wallets.id", ondelete="CASCADE"),
+        nullable=False,
+    )
+
+    # Trip ID, admin adjustmentda NULL bo'ladi
+    trip_id: Mapped[uuid.UUID | None] = mapped_column(
+        UUID(as_uuid=True),
+        nullable=True,
+    )
+
+    # Transaction type
+    type: Mapped[WalletTransactionType] = mapped_column(
+        wallet_transaction_type_enum,
+        nullable=False,
+    )
+
+    # Transaction status
+    status: Mapped[WalletTransactionStatus] = mapped_column(
+        wallet_transaction_status_enum,
+        nullable=False,
+    )
+
+    # Amount
+    amount: Mapped[float] = mapped_column(
+        Numeric(12, 2),
+        nullable=False,
+    )
+
+    # Currency
+    currency: Mapped[str] = mapped_column(
+        VARCHAR(8),
+        nullable=False,
+        default="TJS",
+    )
+
+    # Oldingi balance
+    balance_before: Mapped[float] = mapped_column(
+        Numeric(12, 2),
+        nullable=False,
+    )
+
+    # Yangi balance
+    balance_after: Mapped[float] = mapped_column(
+        Numeric(12, 2),
+        nullable=False,
+    )
+
+    # Izoh
+    description: Mapped[str | None] = mapped_column(
+        Text,
+        nullable=True,
+    )
+
+    # Yaratilgan vaqt
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        nullable=False,
     )

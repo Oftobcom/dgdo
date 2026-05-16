@@ -1,6 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends
+from app.application.dto.user_dto import AdminWalletAdjustRequest, AdminWalletAdjustResponse
 
 # DTO classlarni import qilamiz
 from app.application.dto.user_dto import (
@@ -28,6 +29,7 @@ from app.presentation.dependencies import (
     get_user_service,
     require_admin,
 )
+
 
 
 # Users uchun router yaratamiz
@@ -137,3 +139,13 @@ def activate_user(
     user_service: UserService = Depends(get_user_service),
 ):
     return user_service.activate_user(user_id)
+
+# Admin user wallet balanceini adjustment qiladi
+@router.patch("/{user_id}/wallet/adjust", response_model=AdminWalletAdjustResponse)
+def admin_adjust_wallet(
+    user_id: UUID,
+    request: AdminWalletAdjustRequest,
+    _: UserEntity = Depends(require_admin),
+    user_service: UserService = Depends(get_user_service),
+):
+    return user_service.admin_adjust_wallet(user_id, request)

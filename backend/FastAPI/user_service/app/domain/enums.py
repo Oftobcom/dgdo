@@ -22,3 +22,18 @@ class WalletOwnerType(str, enum.Enum):
 
     # Driver wallet
     driver = "driver"
+
+class WalletTransactionType(str, enum.Enum):
+    top_up = "top_up"
+    payment = "payment"
+    refund = "refund"
+    driver_earning = "driver_earning"
+    withdrawal = "withdrawal"
+    adjustment = "adjustment"
+
+
+class WalletTransactionStatus(str, enum.Enum):
+    pending = "pending"
+    success = "success"
+    failed = "failed"
+    cancelled = "cancelled"
