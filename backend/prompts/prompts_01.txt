@@ -1,0 +1,15 @@
+implement <SPEC> and while you do, keep a running implementation-notes.html file (or markdown) with decisions you had to make weren't in the spec, things you had to change, tradeoffs you had to make or anything else I should know
+
+---
+Он сканирует проект и проверяет циклы, повторные обращения, тяжёлые участки рендеринга, паттерны N+1 и места, где сложность можно снизить без изменения поведения.
+
+-> анализ сложности кодовой базы
+-> паттерны O(n²), O(n*m), детект повторных проходов
+-> оценка сложности до/после
+-> безопасные предложения по оптимизации
+-> уровень риска + необходимые тесты
+-> режим только отчёта по умолчанию
+-> установка одной командой
+
+---
+«Помоги мне развернуть локально и запустить Open Design внутри Codex: https://github.com/nexu-io/open-design»
